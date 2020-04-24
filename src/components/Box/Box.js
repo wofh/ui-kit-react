@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { spacing, color } from '../../styles/variables'
@@ -9,11 +10,13 @@ const padding = {
 	large: spacing.padding.large + 'px',
 }
 
-const Box = styled.div`
+const BoxStyled = styled.div`
 	padding: ${props => padding[props.pad]};
 	${props => props.align && 'text-align: ' + props.align}
 	${props => props.background && 'background-color: ' + (color[props.background] || props.background)}
 `
+
+const Box = (props) => <BoxStyled {...props} />
 
 Box.propTypes = {
 	pad: PropTypes.oneOf(Object.keys(padding)),

@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -10,9 +11,11 @@ const sizes = {
 	xxlarge: '2rem',
 }
 
-const Text = styled.span`
+const TextStyled = styled.span`
 	font-size: ${props => sizes[props.size]||props.size};
 `
+
+const Text = (props) => <TextStyled {...props} />
 
 Text.propTypes = {
 	size: PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge']),
