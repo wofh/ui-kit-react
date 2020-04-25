@@ -1,7 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
-import { color, typography } from '../../shared/styles';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
+import { color, typography } from '../../shared/styles'
+import { glow } from '../../shared/animation'
 
 export const sizes = {
 	large: 64,
@@ -24,6 +25,10 @@ const Image = styled.div`
 
 	${props => !props.src && css`
 		background: ${!props.isLoading && color.secondary};
+	`}
+
+	${props => props.isLoading && css`
+		animation: ${glow} 1.5s ease-in-out infinite;
 	`}
 
 	img {

@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { color, typography } from '../../shared/styles';
-import Avatar, { sizes } from '../Avatar';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
+import Avatar, { sizes } from '../Avatar'
+import { color, typography } from '../../shared/styles'
+import { glow } from '../../shared/animation'
 
 const marginOffset = {
 	tiny: -4,
@@ -14,6 +15,7 @@ const marginOffset = {
 const UserAvatar = styled(Avatar)`
 	box-shadow: ${color.lightest} 0 0 0 2px;
 	display: block;
+	animation: none;
 `;
 
 const UserEllipses = styled.li`
@@ -38,6 +40,10 @@ const Users = styled.ul`
 	margin: 0;
 	padding: 0;
 	list-style: none;
+
+	${props => props.isLoading && css`
+		animation: ${glow} 1.5s ease-in-out infinite;
+	`}
 
 	${User} {
 		position: relative;
