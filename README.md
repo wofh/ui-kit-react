@@ -29,7 +29,7 @@ and use them like so
 
 ### **Run and develop Emojics UI Kit locally**
 
-Clone the [Emojics U Kit GitHub project](https://github.com/emojics/ui-kit-react) then start Storybook.
+Clone the [Emojics UI Kit GitHub project](https://github.com/emojics/ui-kit-react) then start Storybook.
 
 `yarn && yarn run storybook`
 
