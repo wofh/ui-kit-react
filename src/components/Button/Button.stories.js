@@ -11,7 +11,7 @@ export default {
 export const Default = () => (
 	<div>
 		<Box pad={'xsmall'}>
-			<Button onClick={action('clicked')} label={'Primary'} />
+			<Button onClick={action('clicked')} label={'Default'} />
 		</Box>
 	</div>
 );

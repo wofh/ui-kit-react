@@ -1,7 +1,24 @@
 {
-  "name": "ui-kit-react",
+  "name": "@emojics/ui-kit-react",
   "version": "0.1.0",
-  "private": true,
+  "description": "Emojics UI Kit is a reusable component library that helps Emojics contributors build UIs faster. The goal is to make building durable UIs more productive and satisfying.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emojics/ui-kit-react.git"
+  },
+  "keywords": [
+    "design",
+    "system",
+    "ui",
+    "kit"
+  ],
+  "author": "Stefano Marra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emojics/ui-kit-react/issues"
+  },
+  "homepage": "https://github.com/emojics/ui-kit-react#readme",
   "dependencies": {
     "@storybook/addon-docs": "^5.3.18",
     "prop-types": "^15.7.2",
