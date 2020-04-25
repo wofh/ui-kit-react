@@ -16,30 +16,22 @@ const src = [
 ]
 
 export const Default = () => (
-	<div>
-		<Box pad={'xsmall'}>
-			<Avatar />
-		</Box>
-		<Box pad={'xsmall'}>
-			<Avatar src={src[0]} />
-		</Box>
-	</div>
+	<Box pad={'xsmall'}>
+		<Avatar />
+		<Avatar src={src[0]} />
+	</Box>
 );
 
 export const Loading = () => (
-	<div>
-		<Box pad={'xsmall'}>
-			<Avatar isLoading />
-		</Box>
-	</div>
+	<Box pad={'xsmall'}>
+		<Avatar isLoading />
+	</Box>
 );
 
 export const Initial = () => (
-	<div>
-		<Box pad={'xsmall'}>
-			<Avatar username={'Stefano'} />
-		</Box>
-	</div>
+	<Box pad={'xsmall'}>
+		<Avatar name={'Stefano'} />
+	</Box>
 );
 
 export const Sizes = () => (

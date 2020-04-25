@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { color, typography, spacing } from '../../styles/variables'
+import { color, typography, spacing } from '../../shared/styles'
 
 const sizes = {
 	large: typography.size.m1,
@@ -62,6 +62,10 @@ Button.propTypes = {
 	size: PropTypes.oneOf(Object.keys(sizes)),
 	use: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
 	isLoading: PropTypes.bool,
+
+	/**
+	 * When a button is in the loading state you can supply custom text
+	 */
 	loadingText: PropTypes.string,
 }
 

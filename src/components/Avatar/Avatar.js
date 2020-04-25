@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-import { color, typography } from '../../styles/variables';
+import { color, typography } from '../../shared/styles';
 
 export const sizes = {
 	large: 64,
@@ -52,14 +52,17 @@ const Initial = styled.div`
 	`}
 `;
 
-const Avatar = ({ isLoading, username, src, size, ...props }) => {
+/**
+ *
+ */
+const Avatar = ({ isLoading, name, src, size, ...props }) => {
   let avatarFigure = null;
 
   if (src) {
-    avatarFigure = <img src={src} alt={username} />;
+    avatarFigure = <img src={src} alt={name} />;
   }
   else {
-	avatarFigure = <Initial size={size} aria-hidden="true">{username.substring(0, 1)}</Initial>;
+	avatarFigure = <Initial size={size} aria-hidden="true">{name.substring(0, 1)}</Initial>;
   }
 
   return (
@@ -71,14 +74,18 @@ const Avatar = ({ isLoading, username, src, size, ...props }) => {
 
 Avatar.propTypes = {
 	isLoading: PropTypes.bool,
-	username: PropTypes.string,
+
+	/**
+	 * The name of the user
+	 */
+	name: PropTypes.string,
 	src: PropTypes.string,
 	size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
 Avatar.defaultProps = {
 	isLoading: false,
-	username: 'loading',
+	name: 'loading',
 	src: null,
 	size: 'medium',
 };
