@@ -20,15 +20,15 @@
   },
   "homepage": "https://github.com/emojics/ui-kit-react#readme",
   "dependencies": {
-    "@storybook/addon-docs": "^5.3.18",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
+    "prop-types": "^15.5.4",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-scripts": "3.4.1",
     "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-docs": "^5.3.18",
     "@storybook/addon-links": "^5.3.18",
     "@storybook/addon-storysource": "^5.3.18",
     "@storybook/addons": "^5.3.18",
@@ -36,9 +36,13 @@
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.5"
   },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
+  },
   "scripts": {
-    "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-ghpages -o docs"
+    "storybook": "start-storybook -p 9009 --docs",
+    "build-storybook": "build-storybook --docs",
+    "deploy-storybook": "storybook-to-ghpages"
   }
 }
