@@ -1,6 +1,6 @@
 {
   "name": "@emojics/ui-kit-react",
-  "version": "0.1.2",
+  "version": "0.1.9",
   "description": "Emojics UI Kit is a reusable component library that helps Emojics contributors build UIs faster. The goal is to make building durable UIs more productive and satisfying.",
   "main": "dist/index.js",
   "repository": {
@@ -45,7 +45,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "scripts": {
-    "build": "rimraf dist && cross-env NODE_ENV=production babel src --out-dir dist --copy-files --no-copy-ignored",
+    "build": "rimraf dist && babel src -d dist",
     "storybook": "start-storybook -p 9009 --docs",
     "build-storybook": "build-storybook --docs",
     "deploy-storybook": "storybook-to-ghpages"
