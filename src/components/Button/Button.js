@@ -43,8 +43,9 @@ const ButtonStyled = styled.button`
 		background-color: #A7B6C2;
 		cursor: default;
 	}
-`
-const Button = ({ children, label, loadingText, ...props }) => {
+`;
+
+export const Button = ({ children, label, loadingText, ...props }) => {
 	const getContent = () => {
 		if (props.isLoading) {
 			return loadingText
@@ -67,7 +68,7 @@ Button.propTypes = {
 	 * When a button is in the loading state you can supply custom text
 	 */
 	loadingText: PropTypes.string,
-}
+};
 
 Button.defaultProps = {
 	label: '',
@@ -75,6 +76,4 @@ Button.defaultProps = {
 	use: 'tertiary',
 	isLoading: false,
 	loadingText: 'Loading...',
-}
-
-export default Button
+};

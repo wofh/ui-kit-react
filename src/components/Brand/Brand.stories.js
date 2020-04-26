@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions'
-import Box from '../Box'
-import Brand from './Brand'
+import { Box } from '../Box'
+import { Brand } from './Brand'
 
 export default {
 	title: 'Brand',

@@ -15,7 +15,7 @@ const TextStyled = styled.span`
 	font-size: ${props => sizes[props.size]||props.size};
 `
 
-const Text = (props) => <TextStyled {...props} />
+export const Text = (props) => <TextStyled {...props} />
 
 Text.propTypes = {
 	size: PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge']),
@@ -24,5 +24,3 @@ Text.propTypes = {
 Text.defaultProps = {
 	size: 'medium'
 }
-
-export default Text

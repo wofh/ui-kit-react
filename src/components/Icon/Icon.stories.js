@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components'
-import Box from '../Box'
-import Icon from './Icon'
+import { Box } from '../Box'
+import { Icon } from './Icon'
 import { icons } from '../../shared/icons';
 
 const List = styled.ul`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions'
-import Box from '../Box'
-import AvatarList from './AvatarList'
+import { Box } from '../Box'
+import { AvatarList } from './AvatarList'
 
 export default {
 	title: 'AvatarList',

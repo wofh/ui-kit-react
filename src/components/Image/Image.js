@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const ImageStyled = styled.img`
 `
 
-const Image = (props) => <ImageStyled {...props} />
+export const Image = (props) => <ImageStyled {...props} />
 
 Image.propTypes = {
 	src: PropTypes.string
@@ -14,5 +14,3 @@ Image.propTypes = {
 Image.defaultProps = {
 	src: null
 }
-
-export default Image

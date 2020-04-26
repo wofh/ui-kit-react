@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { color, typography } from '../../shared/styles'
 import { glow } from '../../shared/animation'
+import { Icon } from '../Icon'
 
 export const sizes = {
 	large: 64,
@@ -36,6 +37,18 @@ const Image = styled.div`
 		height: auto;
 		display: block;
 	}
+
+	svg {
+		position: relative;
+		bottom: -5px;
+		height: 100%;
+		width: 100%;
+		vertical-align: top;
+	}
+
+	path {
+		fill: ${color.mediumdark};
+	}
 `;
 
 const Initial = styled.div`
@@ -60,10 +73,13 @@ const Initial = styled.div`
 /**
  *
  */
-const Avatar = ({ isLoading, name, src, size, ...props }) => {
+export const Avatar = ({ isLoading, name, src, size, ...props }) => {
   let avatarFigure = null;
 
-  if (src) {
+  if (isLoading) {
+  	avatarFigure = <Icon icon={'useralt'} />;
+  }
+  else if (src) {
     avatarFigure = <img src={src} alt={name} />;
   }
   else {
@@ -94,5 +110,3 @@ Avatar.defaultProps = {
 	src: null,
 	size: 'medium',
 };
-
-export default Avatar

@@ -16,7 +16,7 @@ const BoxStyled = styled.div`
 	${props => props.background && 'background-color: ' + (color[props.background] || props.background)}
 `
 
-const Box = (props) => <BoxStyled {...props} />
+export const Box = (props) => <BoxStyled {...props} />
 
 Box.propTypes = {
 	pad: PropTypes.oneOf(Object.keys(padding)),
@@ -27,5 +27,3 @@ Box.propTypes = {
 Box.defaultProps = {
 	pad: 'small'
 }
-
-export default Box

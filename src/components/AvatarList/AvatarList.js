@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import Avatar, { sizes } from '../Avatar'
+import { Avatar, sizes } from '../Avatar'
 import { color, typography } from '../../shared/styles'
 import { glow } from '../../shared/animation'
 
@@ -65,7 +65,7 @@ const Users = styled.ul`
 /**
  * Either pass the full list of users, or a `userCount` if known
  */
-const AvatarList = (props) => {
+export const AvatarList = (props) => {
 	const { isLoading, users, userCount, size } = props
 	const count = userCount || users.length;
 
@@ -110,5 +110,3 @@ AvatarList.defaultProps = {
 	userCount: null,
 	size: 'medium',
 };
-
-export default AvatarList
