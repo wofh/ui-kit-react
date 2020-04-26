@@ -32,8 +32,3 @@ and use them like so
 Clone the [Emojics UI Kit GitHub project](https://github.com/emojics/ui-kit-react) then start Storybook.
 
 `yarn && yarn run storybook`
-
-### **Resources**
-
-- [Introducing Storybook Design System](https://medium.com/storybookjs/introducing-storybook-design-system-23fd9b1ac3c0)
-- [GitHub repository](https://github.com/storybookjs/design-system)
