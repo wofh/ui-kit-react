@@ -10,6 +10,10 @@ Add Emojics UI Kit to your project.
 
 `npm install --save @emojics/ui-kit-react`
 
+or
+
+`yarn add --dev @emojics/ui-kit-react`
+
 ### **Use**
 
 Import components you want into your UI
@@ -31,4 +35,8 @@ and use them like so
 
 Clone the [Emojics UI Kit GitHub project](https://github.com/emojics/ui-kit-react) then start Storybook.
 
-`yarn && yarn run storybook`
+`npm install && npm run storybook`
+
+or
+
+`yarn && yarn storybook`
