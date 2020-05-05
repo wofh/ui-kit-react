@@ -7,3 +7,4 @@ export * from './Icon';
 export * from './Image';
 export * from './Text';
 export * from './ProgressDots';
+export * from './ThemeProvider';

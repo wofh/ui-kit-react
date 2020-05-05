@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { color, typography, spacing } from '../../shared/styles'
+import useTheme from '../hooks/useTheme'
 
 const sizes = {
 	large: typography.size.m1,
@@ -17,11 +18,8 @@ const padding = {
 	tiny: '0.5rem 0.75rem',
 }
 
-const backgroundColor = {
-	primary: color.primary,
-	secondary: color.secondary,
-	tertiary: color.tertiary,
-	danger: color.danger,
+const getBackgroundColor = (props) => {
+	return props.theme.color[props.use]||props.theme.color.tertiary
 }
 
 const ButtonStyled = styled.button`
@@ -30,7 +28,7 @@ const ButtonStyled = styled.button`
 	color: #FFF;
 	cursor: pointer;
 	border-radius: ${spacing.borderRadius.large}px;
-	background-color: ${props => backgroundColor[props.use]||backgroundColor.tertiary};
+	background-color: ${props => getBackgroundColor(props)};
 	padding: ${props => padding[props.size]};
 	font-size: ${props => sizes[props.size]}px;
 	line-height: ${props => sizes[props.size]}px;
@@ -46,6 +44,9 @@ const ButtonStyled = styled.button`
 `;
 
 export const Button = ({ children, label, loadingText, ...props }) => {
+	const theme = useTheme()
+	const propsWithTheme = { theme, ...props }
+
 	const getContent = () => {
 		if (props.isLoading) {
 			return loadingText
@@ -54,14 +55,14 @@ export const Button = ({ children, label, loadingText, ...props }) => {
 	}
 
 	return (
-		<ButtonStyled {...props}>{getContent()}</ButtonStyled>
+		<ButtonStyled {...propsWithTheme}>{getContent()}</ButtonStyled>
 	);
 }
 
 Button.propTypes = {
 	label: PropTypes.string,
 	size: PropTypes.oneOf(Object.keys(sizes)),
-	use: PropTypes.oneOf(['primary', 'secondary', 'tertiary', 'danger']),
+	use: PropTypes.oneOf(Object.keys(color)),
 	isLoading: PropTypes.bool,
 
 	/**
