@@ -2,7 +2,7 @@ import { createGlobalStyle, css } from 'styled-components';
 import { color, typography, spacing } from './styles';
 
 export const fontUrl =
-  'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap';
+  'https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap';
 
 export const bodyStyles = css`
   font-family: ${typography.type.primary};
@@ -16,6 +16,7 @@ export const bodyStyles = css`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-tap-highlight-color: transparent;
   -webkit-overflow-scrolling: touch;
+  letter-spacing: 0.1px;
 
   *,
   *:before,
