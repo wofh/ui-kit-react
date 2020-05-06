@@ -1,26 +1,28 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { typography } from '../../shared/styles';
 
 const sizes = {
-	xsmall: '0.8rem',
-	small: '0.9rem',
-	medium: '1rem',
-	large: '1.25rem',
-	xlarge: '1.50rem',
-	xxlarge: '2rem',
-}
+   xsmall: typography.size.s1,
+   small: typography.size.s3,
+   medium: typography.size.m1,
+   large: typography.size.l1,
+   xlarge: typography.size.l2,
+   xxlarge: typography.size.l3,
+};
 
-const TextStyled = styled.span`
-	font-size: ${props => sizes[props.size]||props.size};
-`
+const StyledText = styled.span`
+   font-size: ${(props) => sizes[props.size || 'small']}px;
+   line-height: 1.2;
+`;
 
-export const Text = (props) => <TextStyled {...props} />
+export const Text = (props) => <StyledText {...props} />;
 
 Text.propTypes = {
-	size: PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge']),
-}
+   size: PropTypes.oneOf(Object.keys(sizes)),
+};
 
 Text.defaultProps = {
-	size: 'medium'
-}
+   size: 'small',
+};

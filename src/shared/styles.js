@@ -38,17 +38,25 @@ export const typography = {
       s1: 12,
       s2: 14,
       s3: 16,
-      m1: 20,
-      m2: 24,
-      m3: 28,
-      l1: 32,
-      l2: 40,
-      l3: 48,
+      m1: 18,
+      m2: 20,
+      m3: 22,
+      l1: 24,
+      l2: 28,
+      l3: 32,
    },
 };
 
 export const spacing = {
    padding: {
+      none: 0,
+      xsmall: 5,
+      small: 10,
+      medium: 20,
+      large: 30,
+   },
+   margin: {
+      none: 0,
       xsmall: 5,
       small: 10,
       medium: 20,

@@ -34,7 +34,7 @@ const ButtonLabel = styled.span`
    display: inline-block;
 `;
 
-const ButtonStyled = styled.button`
+const StyledButton = styled.button`
    outline: none;
    border: none;
    color: #fff;
@@ -103,11 +103,11 @@ export const Button = ({ children, label, loadingText, iconLeft, iconRight, ...p
    };
 
    return (
-      <ButtonStyled {...propsWithTheme}>
+      <StyledButton {...propsWithTheme}>
          {getIconLeft()}
          <ButtonLabel>{getContent()}</ButtonLabel>
          {getIconRight()}
-      </ButtonStyled>
+      </StyledButton>
    );
 };
 
