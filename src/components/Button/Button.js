@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { color, typography, spacing } from '../../shared/styles';
+import styled, { css } from 'styled-components';
+import { color, typography } from '../../shared/styles';
 import { useTheme } from '../hooks';
 
 const sizes = {
@@ -33,6 +33,13 @@ const ButtonStyled = styled.button`
    font-size: ${(props) => sizes[props.size]}px;
    line-height: ${(props) => sizes[props.size]}px;
    font-weight: ${(props) => props.theme.typography.weight.semibold};
+
+   ${(props) =>
+      props.fullWidth &&
+      css`
+         display: block;
+         width: 100%;
+      `}
 
    &:hover {
       opacity: 0.8;
@@ -68,6 +75,11 @@ Button.propTypes = {
     * When a button is in the loading state you can supply custom text
     */
    loadingText: PropTypes.string,
+
+   /**
+    * If `true` the button will grow up to the full width of its container
+    */
+   fullWidth: PropTypes.bool,
 };
 
 Button.defaultProps = {
@@ -76,4 +88,5 @@ Button.defaultProps = {
    use: 'tertiary',
    isLoading: false,
    loadingText: 'Loading...',
+   fullWidth: false,
 };
