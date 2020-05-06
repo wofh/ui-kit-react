@@ -7,21 +7,21 @@ import { useTheme } from '../hooks';
 
 const as = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div'];
 
-const types = {
-   h6: typography.size.s1,
-   h5: typography.size.s3,
-   h4: typography.size.m1,
-   h3: typography.size.l1,
-   h2: typography.size.l2,
-   h1: typography.size.l3,
-   subtitle: typography.size.m3,
-   title: typography.size.l3,
-   div: typography.size.s3,
+const sizes = {
+   xsmall: typography.size.m1,
+   small: typography.size.m2,
+   medium: typography.size.m3,
+   large: typography.size.l1,
+   xlarge: typography.size.l2,
+   xxlarge: typography.size.l3,
 };
+
+const defaultSize = 'large';
 
 const StyledHeading = styled.div`
    font-family: ${(props) => props.theme.typography.type.primary};
-   font-size: ${(props) => types[props.type || 'div']}px;
+   font-size: ${(props) => sizes[props.size || defaultSize] || sizes[defaultSize]}px;
+   font-weight: ${(props) => props.theme.typography.weight.semibold};
    line-height: 1.2;
 
    margin-bottom: ${(props) => spacing.margin[props.spaceAfter || 'none']}px;
@@ -41,9 +41,9 @@ Heading.propTypes = {
    as: PropTypes.oneOf(as),
 
    /**
-    * The size type of Heading
+    * The size of `Heading`
     */
-   type: PropTypes.oneOf(Object.keys(types)),
+   size: PropTypes.oneOf(Object.keys(sizes)),
 
    /**
     * Adds id HTML attribute to an element
@@ -58,7 +58,7 @@ Heading.propTypes = {
 
 Heading.defaultProps = {
    as: 'div',
-   type: null,
+   size: defaultSize,
    id: null,
    spaceAfter: 'none',
 };
