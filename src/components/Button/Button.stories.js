@@ -50,13 +50,35 @@ export const Sizes = () => (
    </div>
 );
 
+export const WithIcons = () => (
+   <div>
+      <Box pad={'xsmall'}>
+         <Button iconLeft={'check'} use={'primary'} label={'Save'} />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button iconRight={'arrowright'} use={'primary'} label={'Continue to payment'} />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button iconLeft={'add'} label={'Add item'} />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button iconRight={'arrowright'} label={'Explore'} />
+      </Box>
+   </div>
+);
+
 export const Loading = () => (
    <div>
       <Box pad={'xsmall'}>
          <Button size={'medium'} use={'primary'} isLoading={true} label={'Default Loading'} />
       </Box>
       <Box pad={'xsmall'}>
-         <Button size={'medium'} use={'primary'} isLoading={true} loadingText={'Custom...'} />
+         <Button
+            size={'medium'}
+            use={'primary'}
+            isLoading={true}
+            loadingText={'Custom Loading Text...'}
+         />
       </Box>
    </div>
 );

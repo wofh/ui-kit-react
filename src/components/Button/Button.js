@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+
+import { Icon } from '../Icon';
 import { color, typography } from '../../shared/styles';
 import { useTheme } from '../hooks';
 
@@ -12,15 +14,25 @@ const sizes = {
 };
 
 const padding = {
-   large: '0.75rem 1.75rem',
-   medium: '0.75rem 1.25rem',
-   small: '0.5rem 1rem',
-   tiny: '0.5rem 0.75rem',
+   large: typography.size.m2,
+   medium: typography.size.m1,
+   small: typography.size.m1,
+   tiny: typography.size.s1,
 };
 
 const getBackgroundColor = (props) => {
    return props.theme.color[props.use] || props.theme.color.tertiary;
 };
+
+const ButtonIcon = styled.span`
+   position: relative;
+   display: inline-block;
+   top: -2px;
+`;
+
+const ButtonLabel = styled.span`
+   display: inline-block;
+`;
 
 const ButtonStyled = styled.button`
    outline: none;
@@ -29,9 +41,9 @@ const ButtonStyled = styled.button`
    cursor: pointer;
    border-radius: ${(props) => props.theme.spacing.borderRadius.large}px;
    background-color: ${(props) => getBackgroundColor(props)};
-   padding: ${(props) => padding[props.size]};
+   padding: 0 ${(props) => padding[props.size]}px;
    font-size: ${(props) => sizes[props.size]}px;
-   line-height: ${(props) => sizes[props.size]}px;
+   line-height: ${(props) => padding[props.size] * 2}px;
    font-weight: ${(props) => props.theme.typography.weight.semibold};
 
    ${(props) =>
@@ -40,6 +52,21 @@ const ButtonStyled = styled.button`
          display: block;
          width: 100%;
       `}
+
+   ${ButtonIcon} {
+      &:first-child {
+         margin-right: 10px;
+      }
+
+      &:last-child {
+         margin-left: 10px;
+      }
+
+      & > svg {
+         width: ${(props) => sizes[props.size]}px;
+         height: ${(props) => sizes[props.size]}px;
+      }
+   }
 
    &:hover {
       opacity: 0.8;
@@ -51,9 +78,22 @@ const ButtonStyled = styled.button`
    }
 `;
 
-export const Button = ({ children, label, loadingText, ...props }) => {
+export const Button = ({ children, label, loadingText, iconLeft, iconRight, ...props }) => {
    const theme = useTheme();
    const propsWithTheme = { theme, ...props };
+
+   const getIconLeft = () =>
+      iconLeft ? (
+         <ButtonIcon>
+            <Icon icon={iconLeft} />
+         </ButtonIcon>
+      ) : null;
+   const getIconRight = () =>
+      iconRight ? (
+         <ButtonIcon>
+            <Icon icon={iconRight} />
+         </ButtonIcon>
+      ) : null;
 
    const getContent = () => {
       if (props.isLoading) {
@@ -62,7 +102,13 @@ export const Button = ({ children, label, loadingText, ...props }) => {
       return label || children || '';
    };
 
-   return <ButtonStyled {...propsWithTheme}>{getContent()}</ButtonStyled>;
+   return (
+      <ButtonStyled {...propsWithTheme}>
+         {getIconLeft()}
+         <ButtonLabel>{getContent()}</ButtonLabel>
+         {getIconRight()}
+      </ButtonStyled>
+   );
 };
 
 Button.propTypes = {
@@ -80,6 +126,16 @@ Button.propTypes = {
     * If `true` the button will grow up to the full width of its container
     */
    fullWidth: PropTypes.bool,
+
+   /**
+    * The icon to show on the left side of the label
+    */
+   iconLeft: PropTypes.string,
+
+   /**
+    * The icon to show on the right side of the label
+    */
+   iconRight: PropTypes.string,
 };
 
 Button.defaultProps = {
