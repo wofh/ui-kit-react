@@ -1,11 +1,11 @@
-import { useContext } from "react"
-import { ThemeContext } from "styled-components"
-import merge from 'lodash.merge'
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 
-import defaultTheme from "../../../shared/theme";
+import { deepMerge } from '../../../utils/object';
+import defaultTheme from '../../../shared/theme';
 
 const useTheme = () => {
-	return merge(defaultTheme, useContext(ThemeContext)||{})
+  return deepMerge(defaultTheme, useContext(ThemeContext) || {});
 };
 
 export default useTheme;
