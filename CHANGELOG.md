@@ -1,3 +1,28 @@
+# v0.2.2 (Thu May 07 2020)
+
+#### ⚠️  Pushed to `master`
+
+- Updated Heading (stefano.marra1987@gmail.com)
+- Bump version (stefano.marra1987@gmail.com)
+- Added Heading (stefano.marra1987@gmail.com)
+- Added Icon support to Button (stefano.marra1987@gmail.com)
+- Added fullWidth support to Button (stefano.marra1987@gmail.com)
+- Update ThemeProvider and useTheme file structure (stefano.marra1987@gmail.com)
+- Updated button (stefano.marra1987@gmail.com)
+- Added GlobalStyle (stefano.marra1987@gmail.com)
+- Added ThemeProvider component (stefano.marra1987@gmail.com)
+- Bump verison (stefano.marra1987@gmail.com)
+- Added progress dots (stefano.marra1987@gmail.com)
+- Added prettier config (stefano.marra1987@gmail.com)
+- Added prettier (stefano.marra1987@gmail.com)
+- Updated readme (stefano.marra1987@gmail.com)
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.2.1 (Mon Apr 27 2020)
 
 #### ⚠️  Pushed to `master`
