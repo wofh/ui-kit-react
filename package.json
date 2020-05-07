@@ -35,7 +35,7 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.5",
-    "auto": "^9.30.2",
+    "auto": "^9.31.1",
     "cross-env": "^7.0.2",
     "husky": ">=4",
     "lint-staged": ">=10",
