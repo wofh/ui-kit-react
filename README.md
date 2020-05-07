@@ -40,3 +40,34 @@ Clone the [Emojics UI Kit GitHub project](https://github.com/emojics/ui-kit-reac
 or
 
 `yarn && yarn storybook`
+
+### **Deploy Emojics UI Kit on Github Pages**
+
+Deploy [Emojics UI Kit on Github Pages](https://emojics.github.io/ui-kit-react) with the following command:
+
+`npm run deploy-storybook`
+
+or
+
+`yarn deploy-storybook`
+
+### **Release/Publish Emojics UI Kit**
+
+Create a release on Github and publish Emojics UI Kit on npm with the following command:
+
+`npm run release`
+
+or
+
+`yarn release`
+
+You must configure some environment variables for publishing and releasing to work properly.
+
+-  GH_TOKEN - Used for publishing the GitHub release (needs `repo` permission)
+-  NPM_TOKEN - Used to publish to npm
+
+Place these variables in your `.env` file in root. Make sure to add `.env` in `.gitignore`
+
+### **Helpful Resources**
+
+-  https://intuit.github.io/auto/pages/getting-started.html

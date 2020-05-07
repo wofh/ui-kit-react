@@ -49,8 +49,8 @@
     "react-dom": "^16.0.0"
   },
   "scripts": {
+    "release": "npm run build && ./scripts/release.sh && npm run deploy-storybook",
     "build": "rimraf dist && babel src -d dist",
-    "release": "npm run build && ./scripts/release.sh",
     "storybook": "start-storybook -p 9009 --docs",
     "build-storybook": "build-storybook --docs",
     "deploy-storybook": "storybook-to-ghpages"
