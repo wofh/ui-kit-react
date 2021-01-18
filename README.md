@@ -1,24 +1,24 @@
 # Get started
 
-Emojics UI Kit is a reusable component library that helps Emojics contributors build UIs faster. The goal is to make building durable UIs more productive and satisfying.
+WOFH UI Kit is a reusable component library that helps WOFH contributors build UIs faster. The goal is to make building durable UIs more productive and satisfying.
 
 ## Install
 
-Emojics UI Kit components are written in React. It requires Storybook version 5.3.18 and up.
+WOFH UI Kit components are written in React. It requires Storybook version 5.3.18 and up.
 
-Add Emojics UI Kit to your project.
+Add WOFH UI Kit to your project.
 
-`npm install --save @emojics/ui-kit-react`
+`npm install --save @wofh/ui-kit-react`
 
 or
 
-`yarn add --dev @emojics/ui-kit-react`
+`yarn add --dev @wofh/ui-kit-react`
 
 ### **Use**
 
 Import components you want into your UI
 
-`import { Button, Avatar } from ‘@emojics/ui-kit-react’;`
+`import { Button, Avatar } from ‘@wofh/ui-kit-react’;`
 
 and use them like so
 
@@ -31,9 +31,9 @@ and use them like so
   )
 ```
 
-### **Run and develop Emojics UI Kit locally**
+### **Run and develop WOFH UI Kit locally**
 
-Clone the [Emojics UI Kit GitHub project](https://github.com/emojics/ui-kit-react) then start Storybook.
+Clone the [WOFH UI Kit GitHub project](https://github.com/wofh/ui-kit-react) then start Storybook.
 
 `npm install && npm run storybook`
 
@@ -41,9 +41,9 @@ or
 
 `yarn && yarn storybook`
 
-### **Deploy Emojics UI Kit on Github Pages**
+### **Deploy WOFH UI Kit on Github Pages**
 
-Deploy [Emojics UI Kit on Github Pages](https://emojics.github.io/ui-kit-react) with the following command:
+Deploy [WOFH UI Kit on Github Pages](https://wofh.github.io/ui-kit-react) with the following command:
 
 `npm run deploy-storybook`
 
@@ -51,9 +51,9 @@ or
 
 `yarn deploy-storybook`
 
-### **Release/Publish Emojics UI Kit**
+### **Release/Publish WOFH UI Kit**
 
-Create a release on Github and publish Emojics UI Kit on npm with the following command:
+Create a release on Github and publish WOFH UI Kit on npm with the following command:
 
 `npm run release`
 

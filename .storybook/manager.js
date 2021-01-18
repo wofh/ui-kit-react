@@ -1,6 +1,6 @@
 import { addons } from '@storybook/addons';
-import emojicsTheme from './emojicsTheme';
+import theme from './theme';
 
 addons.setConfig({
-  theme: emojicsTheme,
+  theme: theme,
 });
