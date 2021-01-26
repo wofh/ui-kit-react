@@ -34,7 +34,7 @@ const ButtonLabel = styled.span`
    display: inline-block;
 `;
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
    outline: none;
    border: none;
    color: #fff;
@@ -44,7 +44,7 @@ const StyledButton = styled.button`
    padding: 0 ${(props) => padding[props.size]}px;
    font-size: ${(props) => sizes[props.size]}px;
    line-height: ${(props) => padding[props.size] * 2}px;
-   font-weight: ${(props) => props.theme.typography.weight.semibold};
+   font-weight: ${(props) => props.theme.typography.weight.medium};
 
    ${(props) =>
       props.fullWidth &&

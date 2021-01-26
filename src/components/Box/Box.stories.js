@@ -17,6 +17,9 @@ export const Default = () => (
 export const Padding = () => (
 	<div>
 		<Box pad={'xsmall'}>
+			<Box pad={'none'} background={'#EEE'}>None Padding</Box>
+		</Box>
+		<Box pad={'xsmall'}>
 			<Box pad={'xsmall'} background={'#EEE'}>Extra Small Padding</Box>
 		</Box>
 		<Box pad={'xsmall'}>
@@ -27,17 +30,6 @@ export const Padding = () => (
 		</Box>
 		<Box pad={'xsmall'}>
 			<Box pad={'large'} background={'#EEE'}>Large Padding</Box>
-		</Box>
-	</div>
-);
-
-export const Height = () => (
-	<div>
-		<Box pad={'xsmall'}>
-			<Box height={'100px'} background={'#EEE'}>Height 100px</Box>
-		</Box>
-		<Box pad={'xsmall'}>
-			<Box height={{min: '150px', max: '250px'}} background={'#EEE'}>Min/Max Height Object</Box>
 		</Box>
 	</div>
 );

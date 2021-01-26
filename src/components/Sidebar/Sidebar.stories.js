@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '../Box';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Avatar } from '../Avatar';
 import { Sidebar } from './Sidebar'
@@ -14,22 +15,38 @@ const SidebarHeader = () => (
 );
 
 const SidebarFooter = () => (
-	<Box>
-		<Icon icon={'support'} />
-	</Box>
+	<>
+		<Button><Icon icon={'cog'} /></Button>
+		<Button><Icon icon={'support'} /></Button>
+	</>
 );
 
-const MainNavigation = () => (
-	<Box>
-		<Icon icon={'grid'} />
-	</Box>
+const SidebarLabeledFooter = () => (
+	<>
+		<Button iconLeft={'cog'} label={'Settings'} />
+		<Button iconLeft={'support'} label={'Support'} />
+	</>
 );
 
-export const Default = () => (
+export const IconExample = () => (
 	<div>
-		<Box pad={'xsmall'} height={'500px'}>
+		<Box pad={'xsmall'} style={{height: '500px'}}>
 			<Sidebar header={<SidebarHeader />} footer={<SidebarFooter />}>
-				<MainNavigation />
+				<Button><Icon icon={'dashboard'} /></Button>
+				<Button><Icon icon={'grid'} /></Button>
+				<Button><Icon icon={'comment'} /></Button>
+			</Sidebar>
+		</Box>
+	</div>
+);
+
+export const LabelExample = () => (
+	<div>
+		<Box pad={'xsmall'} style={{height: '500px'}}>
+			<Sidebar header={<SidebarHeader />} footer={<SidebarLabeledFooter />}>
+				<Button iconLeft={'dashboard'} label={'Dashboard'} />
+				<Button iconLeft={'grid'} label={'Widget'} />
+				<Button iconLeft={'comment'} label={'Comments'} />
 			</Sidebar>
 		</Box>
 	</div>

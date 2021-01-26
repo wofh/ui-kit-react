@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box } from '../Box';
-import { spacing, color } from '../../shared/styles';
+import { StyledButton } from '../Button';
+import { spacing, color, typography } from '../../shared/styles';
+import { useTheme } from '../hooks';
+
+const getBackgroundColor = (props) => {
+   return props.background || props.theme.color.mediumlight;
+};
 
 const StyledSidebarHeader = styled.div`
    flex: 0 0 auto;
@@ -23,7 +28,7 @@ const StyledSidebar = styled.div`
    max-width: 100%;
    min-height: 100%;
    padding: ${spacing.padding.small}px;
-   background-color: ${color.mediumlight};
+   background-color: ${props => getBackgroundColor(props)};
 `;
 
 const StyledSidebarWrapper = styled.div`
@@ -31,12 +36,28 @@ const StyledSidebarWrapper = styled.div`
    flex-direction: row;
    max-width: 100%;
    min-height: 100%;
+
+   ${StyledButton} {
+      display: block;
+      background-color: transparent;
+      color: ${color.darkest};
+      padding-left: ${spacing.padding.small}px;
+      padding-right: ${spacing.padding.small}px;
+
+      svg {
+         width: ${typography.size.m2}px;
+         height: ${typography.size.m2}px;
+      }
+   }
 `;
 
-export const Sidebar = ({ children, header, footer, ...rest }) => {
+export const Sidebar = ({ children, header, footer, ...props }) => {
+   const theme = useTheme();
+   const propsWithTheme = { theme, ...props };
+
    return (
       <StyledSidebarWrapper>
-         <StyledSidebar pad={'medium'} {...rest}>
+         <StyledSidebar pad={'medium'} {...propsWithTheme}>
             <StyledSidebarHeader>{header}</StyledSidebarHeader>
             <StyledSidebarChildren>{children}</StyledSidebarChildren>
             <StyledSidebarFooter>{footer}</StyledSidebarFooter>
