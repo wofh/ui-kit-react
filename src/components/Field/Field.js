@@ -15,9 +15,7 @@ const Input = styled.input`
    &::-webkit-input-placeholder {
       color:${props => colorByStates[props.state]};
    }
-`
-
-
+   `
 const colorByStates = {
    normal: color.medium,
    active: color.primary,
