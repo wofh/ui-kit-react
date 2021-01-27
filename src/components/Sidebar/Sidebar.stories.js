@@ -22,39 +22,39 @@ export const Default = () => {
 		{
 			icon: 'calendar',
 			label: 'Calendar',
-			onClick: () => {},
+			onClick: () => { },
 			items: [
 				{
 					icon: null,
 					label: 'All Classes',
-					onClick: () => {},
+					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Group Lessons',
-					onClick: () => {},
+					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Bookings',
-					onClick: () => {},
+					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Workshops',
-					onClick: () => {},
+					onClick: () => { },
 				},
 			]
 		},
 		{
 			icon: 'repository',
 			label: 'Classes',
-			onClick: () => {}
+			onClick: () => { }
 		},
 		{
 			icon: 'users',
 			label: 'Users',
-			onClick: () => {}
+			onClick: () => { }
 		},
 		{
 			icon: 'book',
@@ -64,27 +64,22 @@ export const Default = () => {
 		{
 			icon: 'cog',
 			label: 'Settings',
-			onClick: () => {},
+			onClick: () => { },
 			items: [
 				{
 					icon: null,
 					label: 'General',
-					onClick: () => {},
-				},
-				{
-					icon: null,
-					label: 'Integrations',
-					onClick: () => {},
+					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Team',
-					onClick: () => {},
+					onClick: () => { },
 				},
 				{
 					icon: null,
-					label: 'Email',
-					onClick: () => {},
+					label: 'Integrations',
+					onClick: () => { },
 				},
 			]
 		},
@@ -94,14 +89,66 @@ export const Default = () => {
 		{
 			icon: 'support',
 			label: 'Support',
-			onClick: () => {},
+			onClick: () => { },
 			items: []
 		},
 	]
 
 	return (
-		<Box pad={'xsmall'} style={{ height: '600px' }}>
+		<Box pad={'xsmall'} style={{ height: '640px' }}>
 			<Sidebar header={<Avatar />} items={items} footer={footerItems} />
+		</Box>
+	);
+}
+
+export const Collapsed = () => {
+
+	const items = [
+		{
+			icon: 'dashboard',
+			label: 'Dashboard',
+			onClick: (item) => console.log(item),
+			items: []
+		},
+		{
+			icon: 'calendar',
+			label: 'Calendar',
+			onClick: () => { },
+		},
+		{
+			icon: 'repository',
+			label: 'Classes',
+			onClick: () => { }
+		},
+		{
+			icon: 'users',
+			label: 'Users',
+			onClick: () => { }
+		},
+		{
+			icon: 'book',
+			label: 'Payments',
+			onClick: () => { }
+		},
+		{
+			icon: 'cog',
+			label: 'Settings',
+			onClick: () => { }
+		},
+	]
+
+	const footerItems = [
+		{
+			icon: 'support',
+			label: 'Support',
+			onClick: () => { },
+			items: []
+		},
+	]
+
+	return (
+		<Box pad={'xsmall'} style={{ height: '640px' }}>
+			<Sidebar header={<Avatar />} items={items} footer={footerItems} collapsed />
 		</Box>
 	);
 }

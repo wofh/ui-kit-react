@@ -9,36 +9,6 @@ const getBackgroundColor = (props) => {
    return props.background || props.theme.color.lighter;
 };
 
-const StyledSidebarHeader = styled.div`
-   flex: 0 0 auto;
-`;
-
-const StyledSidebarFooter = styled.div`
-   flex: 0 0 auto;
-`;
-
-const StyledSidebarChildren = styled.div`
-   flex: 1 1 0%;
-   margin: ${spacing.margin.medium}px 0;
-`;
-
-const StyledSidebar = styled.div`
-   display: flex;
-   flex-direction: column;
-   max-width: 100%;
-   min-width: 250px;
-   min-height: 100%;
-   padding: ${spacing.padding.medium}px;
-   background-color: ${props => getBackgroundColor(props)};
-`;
-
-const StyledSidebarWrapper = styled.div`
-   display: flex;
-   flex-direction: row;
-   max-width: 100%;
-   min-height: 100%;
-`;
-
 const StyledItemIcon = styled.span`
    position: relative;
    width: ${spacing.padding.medium * 2}px;
@@ -106,6 +76,40 @@ const StyledItem = styled.button`
    }
 `;
 
+const StyledSidebarHeader = styled.div`
+   flex: 0 0 auto;
+`;
+
+const StyledSidebarFooter = styled.div`
+   flex: 0 0 auto;
+`;
+
+const StyledSidebarChildren = styled.div`
+   flex: 1 1 0%;
+   margin: ${spacing.margin.medium}px 0;
+`;
+
+const StyledSidebar = styled.div`
+   display: flex;
+   flex-direction: column;
+   max-width: 100%;
+   ${props => !props.collapsed && 'min-width: 250px;'}
+   min-height: 100%;
+   padding: ${spacing.padding.medium}px;
+   background-color: ${props => getBackgroundColor(props)};
+
+   ${StyledItem} {
+      ${props => props.collapsed && 'text-align: center;'}
+   }
+`;
+
+const StyledSidebarWrapper = styled.div`
+   display: flex;
+   flex-direction: row;
+   max-width: 100%;
+   min-height: 100%;
+`;
+
 /**
  * A sidebar is tipically used for navigations.
  * Props `items` and `footer` accepts either a node element or an array of "item" objects. An "item" object can be defined as following:
@@ -121,7 +125,7 @@ const StyledItem = styled.button`
  *
  * An item object can have a sub set of items defined in with the key `items`.
  */
-export const Sidebar = ({ items, footer, children, header, ...props }) => {
+export const Sidebar = ({ items, footer, children, header, collapsed, ...props }) => {
    const theme = useTheme()
    const propsWithTheme = { theme, ...props }
    const [activeItem, setActiveItem] = useState(null)
@@ -167,8 +171,8 @@ export const Sidebar = ({ items, footer, children, header, ...props }) => {
          <div key={index}>
             <StyledItem active={activeItem === item || activeParentItem === item} onClick={() => handleClick(item, parentItem)}>
                {getItemIcon(item.icon||null)}
-               {getItemLabel(item.label||null)}
-               {getItemIconArrow(item)}
+               {!collapsed && getItemLabel(item.label||null)}
+               {!collapsed && getItemIconArrow(item)}
             </StyledItem>
             {item.items ? <StyledSubItem>{getItems(item.items, item)}</StyledSubItem>:null}
          </div>
@@ -183,7 +187,7 @@ export const Sidebar = ({ items, footer, children, header, ...props }) => {
 
    return (
       <StyledSidebarWrapper>
-         <StyledSidebar {...propsWithTheme}>
+         <StyledSidebar {...propsWithTheme} collapsed={collapsed}>
             {header && <StyledSidebarHeader>{header}</StyledSidebarHeader>}
             <StyledSidebarChildren>{Array.isArray(items) ? getItems(items) : null}{children}</StyledSidebarChildren>
             {footer && <StyledSidebarFooter>{Array.isArray(footer) ? getItems(footer) : footer}</StyledSidebarFooter>}
@@ -240,6 +244,11 @@ Sidebar.propTypes = {
     * The background of the sidebar
     */
    background: PropTypes.string,
+
+   /**
+    * If `true` the sidebar will display only the icons of the items
+    */
+   collapsed: PropTypes.bool,
 
    children: PropTypes.node
 };
