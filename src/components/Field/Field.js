@@ -17,6 +17,7 @@ const Input = styled.input`
    }
 `
 
+
 const colorByStates = {
    normal: color.medium,
    active: color.primary,
