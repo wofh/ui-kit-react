@@ -10,44 +10,98 @@ export default {
 	component: Sidebar,
 };
 
-const SidebarHeader = () => (
-	<Avatar />
-);
+export const Default = () => {
 
-const SidebarFooter = () => (
-	<>
-		<Button><Icon icon={'cog'} /></Button>
-		<Button><Icon icon={'support'} /></Button>
-	</>
-);
+	const items = [
+		{
+			icon: 'dashboard',
+			label: 'Dashboard',
+			onClick: (item) => console.log(item),
+			items: []
+		},
+		{
+			icon: 'calendar',
+			label: 'Calendar',
+			onClick: () => {},
+			items: [
+				{
+					icon: null,
+					label: 'All Classes',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Group Lessons',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Bookings',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Workshops',
+					onClick: () => {},
+				},
+			]
+		},
+		{
+			icon: 'repository',
+			label: 'Classes',
+			onClick: () => {}
+		},
+		{
+			icon: 'users',
+			label: 'Users',
+			onClick: () => {}
+		},
+		{
+			icon: 'book',
+			label: 'Payments',
+			onClick: () => { }
+		},
+		{
+			icon: 'cog',
+			label: 'Settings',
+			onClick: () => {},
+			items: [
+				{
+					icon: null,
+					label: 'General',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Integrations',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Team',
+					onClick: () => {},
+				},
+				{
+					icon: null,
+					label: 'Email',
+					onClick: () => {},
+				},
+			]
+		},
+	]
 
-const SidebarLabeledFooter = () => (
-	<>
-		<Button iconLeft={'cog'} label={'Settings'} />
-		<Button iconLeft={'support'} label={'Support'} />
-	</>
-);
+	const footerItems = [
+		{
+			icon: 'support',
+			label: 'Support',
+			onClick: () => {},
+			items: []
+		},
+	]
 
-export const IconExample = () => (
-	<div>
-		<Box pad={'xsmall'} style={{height: '500px'}}>
-			<Sidebar header={<SidebarHeader />} footer={<SidebarFooter />}>
-				<Button><Icon icon={'dashboard'} /></Button>
-				<Button><Icon icon={'grid'} /></Button>
-				<Button><Icon icon={'comment'} /></Button>
-			</Sidebar>
+	return (
+		<Box pad={'xsmall'} style={{ height: '600px' }}>
+			<Sidebar header={<Avatar />} items={items} footer={footerItems} />
 		</Box>
-	</div>
-);
-
-export const LabelExample = () => (
-	<div>
-		<Box pad={'xsmall'} style={{height: '500px'}}>
-			<Sidebar header={<SidebarHeader />} footer={<SidebarLabeledFooter />}>
-				<Button iconLeft={'dashboard'} label={'Dashboard'} />
-				<Button iconLeft={'grid'} label={'Widget'} />
-				<Button iconLeft={'comment'} label={'Comments'} />
-			</Sidebar>
-		</Box>
-	</div>
-);
+	);
+}
