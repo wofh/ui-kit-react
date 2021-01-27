@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { spacing, color } from '../../shared/styles';
 
 const padding = {
+   none: 0,
    xsmall: spacing.padding.xsmall + 'px',
    small: spacing.padding.small + 'px',
    medium: spacing.padding.medium + 'px',

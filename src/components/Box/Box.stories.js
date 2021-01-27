@@ -17,6 +17,9 @@ export const Default = () => (
 export const Padding = () => (
 	<div>
 		<Box pad={'xsmall'}>
+			<Box pad={'none'} background={'#EEE'}>None Padding</Box>
+		</Box>
+		<Box pad={'xsmall'}>
 			<Box pad={'xsmall'} background={'#EEE'}>Extra Small Padding</Box>
 		</Box>
 		<Box pad={'xsmall'}>

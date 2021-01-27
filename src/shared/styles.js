@@ -1,7 +1,7 @@
 export const color = {
    // Palette
    primary: '#0062FF',
-   secondary: '#3DD598',
+   secondary: '#FFC542',
    tertiary: '#92929D',
 
    // Monochrome
@@ -63,6 +63,7 @@ export const spacing = {
       large: 30,
    },
    borderRadius: {
+      xsmall: 4,
       small: 6,
       default: 10,
       large: 14,
