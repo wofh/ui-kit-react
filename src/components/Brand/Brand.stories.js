@@ -4,7 +4,7 @@ import { Box } from '../Box'
 import { Brand } from './Brand'
 
 export default {
-	title: 'Brand',
+	title: 'Components/Brand',
 	component: Brand,
 };
 

@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { ProgressDots } from './ProgressDots';
 
 export default {
-  title: 'ProgressDots',
+  title: 'Components/ProgressDots',
   component: ProgressDots,
 };
 
