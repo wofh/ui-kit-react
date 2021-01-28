@@ -6,7 +6,7 @@ import { Avatar } from '../Avatar';
 import { Sidebar } from './Sidebar'
 
 export default {
-	title: 'Sidebar',
+	title: 'Components/Sidebar',
 	component: Sidebar,
 };
 

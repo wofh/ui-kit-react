@@ -32,7 +32,7 @@ const Meta = styled.div`
 `;
 
 export default {
-	title: 'Icon',
+	title: 'Components/Icon',
 	component: Icon,
 };
 

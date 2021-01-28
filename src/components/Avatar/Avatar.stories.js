@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { Avatar } from './Avatar';
 
 export default {
-   title: 'Avatar',
+   title: 'Components/Avatar/Avatar',
    component: Avatar,
 };
 

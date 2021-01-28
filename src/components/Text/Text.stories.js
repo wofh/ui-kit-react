@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { Text } from './Text';
 
 export default {
-   title: 'Text',
+   title: 'Components/Text',
    component: Text,
 };
 
