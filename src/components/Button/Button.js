@@ -145,4 +145,6 @@ Button.defaultProps = {
    isLoading: false,
    loadingText: 'Loading...',
    fullWidth: false,
+   iconLeft: undefined,
+   iconRight: undefined
 };

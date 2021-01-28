@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { spacing, color } from '../../shared/styles';
 
-const padding = {
+export const padding = {
    none: 0,
    xsmall: spacing.padding.xsmall + 'px',
    small: spacing.padding.small + 'px',
@@ -13,9 +13,9 @@ const padding = {
 
 const StyledBox = styled.div`
    padding: ${(props) => padding[props.pad]};
-   ${(props) => props.align && 'text-align: ' + props.align}
+   ${(props) => props.align && 'text-align: ' + props.align};
    ${(props) =>
-      props.background && 'background-color: ' + (color[props.background] || props.background)}
+      props.background && 'background-color: ' + (color[props.background] || props.background)};
 `;
 
 export const Box = (props) => <StyledBox {...props} />;
