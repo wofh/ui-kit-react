@@ -30,6 +30,7 @@ const StyledDropdownContent = styled(Box)`
 
    ${props => props.open && css`
       display: block;
+      z-index: 1000;
    `}
 
    position: absolute;
