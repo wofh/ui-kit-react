@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { spacing, color } from '../../shared/styles';
 
 export const padding = {
@@ -16,6 +16,14 @@ const StyledBox = styled.div`
    ${(props) => props.align && 'text-align: ' + props.align};
    ${(props) =>
       props.background && 'background-color: ' + (color[props.background] || props.background)};
+
+   ${props => props.w && css`
+      width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
+   `}
+
+   ${props => props.h && css`
+      height: ${(typeof props.h == 'number') ? (props.h + 'px') : props.h};
+   `}
 `;
 
 export const Box = (props) => <StyledBox {...props} />;
@@ -24,8 +32,12 @@ Box.propTypes = {
    pad: PropTypes.oneOf(Object.keys(padding)),
    align: PropTypes.oneOf(['left', 'center', 'right']),
    background: PropTypes.string,
+   h: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+   w: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 Box.defaultProps = {
    pad: 'small',
+   h: null,
+   w: null,
 };
