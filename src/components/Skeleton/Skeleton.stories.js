@@ -11,7 +11,7 @@ export default {
 export const Default = () => (
    <Box pad={'xsmall'}>
       <Box pad={'xsmall'}>
-         <Skeleton circle={true} width={100} height={100} />
+         <Skeleton circle={true} w={100} h={100} />
       </Box>
       <Box pad={'xsmall'}>
          <Heading size={'xxlarge'}><Skeleton /></Heading>
@@ -36,13 +36,13 @@ export const MultipleLines = () => (
 
 export const Circle = () => (
    <Box pad={'xsmall'}>
-      <Skeleton circle={true} width={150} height={150} />
+      <Skeleton circle={true} w={150} h={150} />
    </Box>
 );
 
 export const Rectangle = () => (
    <Box pad={'xsmall'}>
-      <Skeleton width={150} height={200} />
+      <Skeleton w={150} h={200} />
    </Box>
 );
 
