@@ -32,15 +32,15 @@ export const skeletonStyles = css`
    line-height: 1;
    width: 100%;
 
-   ${props => props.width && css`
-      width: ${(typeof props.width == 'number') ? (props.width + 'px') : props.width};
+   ${props => props.w && css`
+      width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
    `}
 
-   ${props => props.height && css`
-      height: ${(typeof props.height == 'number') ? (props.height + 'px') : props.height};
+   ${props => props.h && css`
+      height: ${(typeof props.h == 'number') ? (props.h + 'px') : props.h};
    `}
 
-   ${props => (props.circle && props.height && props.width) && css`
+   ${props => (props.circle && props.h && props.w) && css`
       border-radius: 50%;
    `}
 `;
@@ -84,12 +84,12 @@ Skeleton.propTypes = {
    /**
     * Width of the skeleton
     */
-   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+   w: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
    /**
     * Height of the skeleton
     */
-   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+   h: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
    /**
     * If `true` makes the skeleton look like a circle based on the given width and height
@@ -101,6 +101,6 @@ Skeleton.defaultProps = {
    count: 1,
    duration: 1.2,
    circle: false,
-   width: null,
-   height: null,
+   w: null,
+   h: null,
 };
