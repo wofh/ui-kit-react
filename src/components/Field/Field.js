@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import PropTypes, { string } from 'prop-types';
+import styled, {css} from 'styled-components';
 import { color } from '../../shared/styles';
 
 const Input = styled.input`
@@ -10,31 +10,46 @@ const Input = styled.input`
    border:solid 1px;
    border-radius:8px;
    text-indent:12px;
-   border: 1px solid ${props => colorByStates[props.state]};
-   color:${props => colorByStates[props.state]};
-   &::-webkit-input-placeholder {
-      color:${props => colorByStates[props.state]};
-   }
+   border: 1px solid lightgrey;
+   ${(props) =>
+      props.type == 'text' &&
+      css`
+      &:focus {
+         box-shadow: 1px 1px 5px ${color.primary};
+      }
+      `}
+   ${(props) =>
+      props.error  &&
+      css`
+      color: ${color.danger};
+      border: 1px solid ${color.danger};
+      &:focus {
+         box-shadow: 1px 1px 5px ${color.danger};
+      }
+      &::-webkit-input-placeholder {
+         color: ${color.danger};
+      };
+      `}
+      ${(props) =>
+      props.success &&
+      css`
+      color: ${color.success};
+      border: 1px solid ${color.success};
+      &:focus {
+         box-shadow: 1px 1px 5px ${color.success}; }
+      &::-webkit-input-placeholder {
+         color: ${color.success};
+      };
+      `}
    `
-const colorByStates = {
-   normal: color.medium,
-   active: color.primary,
-   error: color.danger,
-   success: color.success,
-   medium: color.medium
-}
-
 const Textarea = styled.textarea`
    width:100%;
    display:block;
    border-radius: 8px;
    resize: none;
    text-indent: 12px;
-   border: 1px solid ${props => colorByStates[props.state]};
-   &::-webkit-input-placeholder {
-      line-height: 27px;
-      color:black;
-   };
+   border: 1px solid ${color.primary};
+   padding-top: 5px;
 `
 
 const InputBox = styled.div`
@@ -65,33 +80,45 @@ const Error = styled.div`
    margin-top: 7px;
 `
 
-
-
-export const Field = (props) => {  
+export const Field = (props) => { 
+   let FieldType;
+   switch(props.type){
+      case 'text':
+      case 'password':
+      case 'email':
+         FieldType = <Input type={props.type} placeholder={props.placeholder} defaultValue={props.value} onChange={props.onChange} {...props} />;
+         break; 
+      case 'textarea':
+         FieldType = <Textarea rows='5'  {...props}/>;
+         break;
+   } 
    return (
-      <InputBox >
-         <Title>{ props.label }</Title>
-         <Description>{ props.description }</Description>
-         { props.type === 'textarea' ? <Textarea rows='5'  {...props}/> : <Input type={props.type} placeholder={props.placeholder} defaultValue={props.value} onChange={props.onChange} {...props} />}
-         <Error>{ props.error }</Error>
-      </InputBox>
+         <InputBox>
+         { props.label ? <Title>{props.label}</Title> : null}
+         <Description>{ props.description ? props.description : '' }</Description>
+         {FieldType}
+         {/* { props.type === 'textarea' ? <Textarea rows='5'  {...props}/> : <Input type={props.type} placeholder={props.placeholder} defaultValue={props.value} onChange={props.onChange} {...props} />} */}
+         <Error>{ props.error ? props.errorMessage : '' }</Error>      
+      </InputBox>   
    )
 };
 
 Field.propTypes = {
-   type : PropTypes.oneOf(['text', 'textarea', 'password', 'email']),
-   label : PropTypes.string,
-   description : PropTypes.string,
-   error : PropTypes.string,
+   type : PropTypes.oneOf(['text', 'textarea', 'password', 'email']).isRequired,
+   label : PropTypes.string.isRequired,
+   description : PropTypes.string.isRequired,
+   error : PropTypes.bool,
+   errorMessage: string,
    placeholder : PropTypes.string,
    onChange : PropTypes.func,
    value : PropTypes.string,
-   state : PropTypes.oneOf(['normal', 'active', 'error', 'success']),
+   success : PropTypes.bool,
 };
 
 Field.defaultProps = {
    type : 'text',
-   state : 'normal',
+   error : false,
+   success : false
 };
 
 
