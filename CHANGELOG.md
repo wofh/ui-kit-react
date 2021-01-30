@@ -1,3 +1,22 @@
+# v0.6.6 (Sat Jan 30 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Bump version ([@stefanomarra](https://github.com/stefanomarra))
+- Fixed minor issues ([@stefanomarra](https://github.com/stefanomarra))
+- Update Row bottomGutter ([@stefanomarra](https://github.com/stefanomarra))
+- Merge branch 'develop' ([@stefanomarra](https://github.com/stefanomarra))
+- Merge branch 'ui/grid' into develop ([@stefanomarra](https://github.com/stefanomarra))
+- Added grid system ([@stefanomarra](https://github.com/stefanomarra))
+- Merge branch 'master' into develop ([@stefanomarra](https://github.com/stefanomarra))
+- Update skeleton props naming for coherence ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.6.5 (Fri Jan 29 2021)
 
 #### 🐛 Bug Fix
