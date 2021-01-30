@@ -1,4 +1,5 @@
 import React from 'react';
+import { Row, Col } from '../Grid';
 import { Box } from '../Box';
 import { Button } from '../Button';
 import { Dropdown } from './Dropdown';
@@ -32,6 +33,11 @@ export const Position = () => (
          </Box>
          <Box style={{ display: 'inline-flex' }}>
             <Dropdown trigger={<Button label={'Right'} />} position={'right'}>{dropdownContent}</Dropdown>
+         </Box>
+         <Box style={{ display: 'inline-flex' }}>
+            <Dropdown trigger={<Button label={'Custom Position'} />} background={'lighter'} position={{ top: 'bottom', right: 'left' }}>
+               The top side of the dropdown content is paired with the bottom side of the trigger element and the right side of the dropdown content is paired with the left side of the trigger element
+            </Dropdown>
          </Box>
       </Box>
    </Box>

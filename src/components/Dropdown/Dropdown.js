@@ -18,24 +18,56 @@ const StyledDropdownContent = styled(Box)`
 
    position: absolute;
 
-   ${props => (props.position === 'bottom') && css`
+   ${props => (props.position === 'bottom-right' || props.position === 'bottom') && css`
       top: 100%;
       right: 0;
    `}
 
-   ${props => (props.position === 'top') && css`
+   ${props => (props.position === 'bottom-left') && css`
+      top: 100%;
+      left: 0;
+   `}
+
+   ${props => (props.position === 'top-right' || props.position === 'top') && css`
       bottom: 100%;
       right: 0;
    `}
 
-   ${props => (props.position === 'left') && css`
+   ${props => (props.position === 'top-left') && css`
+      bottom: 100%;
+      left: 0;
+   `}
+
+   ${props => (props.position === 'left-top' || props.position === 'left') && css`
       right: 100%;
       top: 0;
    `}
 
-   ${props => (props.position === 'right') && css`
+   ${props => (props.position === 'left-bottom') && css`
+      right: 100%;
+      top: 100%;
+   `}
+
+   ${props => (props.position === 'right-top' || props.position === 'right') && css`
       left: 100%;
       top: 0;
+   `}
+
+   ${props => (props.position === 'right-bottom') && css`
+      left: 100%;
+      top: 100%;
+   `}
+
+   ${props => (typeof props.position === 'object') && css`
+      ${props => props.position.top === 'top' && css`top: 0;`}
+      ${props => props.position.top === 'bottom' && css`top: 100%;`}
+      ${props => props.position.right === 'right' && css`right: 0;`}
+      ${props => props.position.right === 'left' && css`right: 100%;`}
+
+      ${props => props.position.bottom === 'bottom' && css`bottom: 0;`}
+      ${props => props.position.bottom === 'top' && css`bottom: 100%;`}
+      ${props => props.position.left === 'left' && css`left: 0;`}
+      ${props => props.position.left === 'right' && css`left: 100%;`}
    `}
 `;
 
@@ -109,9 +141,29 @@ Dropdown.propTypes = {
    background: PropTypes.string,
 
    /**
-    *
+    * The position of the dropdown content. It can be an object with the keys representing the side of the dropdown content you want to pair with the trigger element.
     */
-   position: PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+   position: PropTypes.oneOfType([
+      PropTypes.oneOf(['bottom', 'top', 'left', 'right']),
+      PropTypes.oneOfType([
+         PropTypes.shape({
+            top: PropTypes.oneOf(['top', 'bottom']),
+            left: PropTypes.oneOf(['left', 'right'])
+         }),
+         PropTypes.shape({
+            top: PropTypes.oneOf(['top', 'bottom']),
+            right: PropTypes.oneOf(['left', 'right'])
+         }),
+         PropTypes.shape({
+            bottom: PropTypes.oneOf(['top', 'bottom']),
+            left: PropTypes.oneOf(['left', 'right'])
+         }),
+         PropTypes.shape({
+            bottom: PropTypes.oneOf(['top', 'bottom']),
+            right: PropTypes.oneOf(['left', 'right'])
+         }),
+      ])
+   ]),
 
    /**
     * Width of the dropdown content. It can be an object with `min` and `max` keys to set accordingly min-width and max-width.
