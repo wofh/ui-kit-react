@@ -1,21 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css, keyframes } from 'styled-components'
+import styled, { css } from 'styled-components'
 import { color } from '../../shared/styles'
+import { skeletonGlow } from '../../shared/animation'
 
 export const skeletonColors = {
    base: color.light,
    highlight: color.lighter
 }
-
-export const skeletonKeyframes = keyframes`
-   0% {
-      background-position: -200px 0;
-   }
-   100% {
-      background-position: calc(200px + 100%) 0;
-   }
-`;
 
 export const skeletonStyles = css`
    background-color: ${skeletonColors.base};
@@ -47,7 +39,7 @@ export const skeletonStyles = css`
 
 const StyledSkeleton = styled.span`
    ${css`${skeletonStyles}`}
-   animation: ${skeletonKeyframes} ${props => props.duration}s ease-in-out infinite;
+   animation: ${skeletonGlow} ${props => props.duration}s ease-in-out infinite;
 `;
 
 /**

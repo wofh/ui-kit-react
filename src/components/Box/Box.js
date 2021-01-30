@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { spacing, color } from '../../shared/styles';
+import { width, height } from '../../shared/mixins';
 
 export const padding = {
    none: 0,
@@ -17,23 +18,52 @@ const StyledBox = styled.div`
    ${(props) =>
       props.background && 'background-color: ' + (color[props.background] || props.background)};
 
-   ${props => props.w && css`
-      width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
-   `}
-
-   ${props => props.h && css`
-      height: ${(typeof props.h == 'number') ? (props.h + 'px') : props.h};
-   `}
+   ${props => props.w && width(props.w)}
+   ${props => props.h && height(props.h)}
 `;
 
 export const Box = (props) => <StyledBox {...props} />;
 
 Box.propTypes = {
+
+   /**
+    * Padding
+    */
    pad: PropTypes.oneOf(Object.keys(padding)),
+
+   /**
+    * Text align
+    */
    align: PropTypes.oneOf(['left', 'center', 'right']),
+
+   /**
+    * Background color
+    */
    background: PropTypes.string,
-   h: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-   w: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+   /**
+    * Height of the box. It can be an object with `min` and `max` keys to set accordingly min-height and max-height.
+    */
+   h: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+         min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+         max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      })
+   ]),
+
+   /**
+    * Width of the box. It can be an object with `min` and `max` keys to set accordingly min-width and max-width.
+    */
+   w: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.shape({
+         min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+         max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+      })
+   ]),
 };
 
 Box.defaultProps = {
