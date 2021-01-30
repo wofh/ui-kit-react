@@ -11,23 +11,6 @@ const StyledDropdownContent = styled(Box)`
    display: none;
    border-radius: ${spacing.borderRadius.small}px;
 
-   ${props => props.w && css`
-
-      ${props => (typeof props.w === 'number') && css`
-         width: ${props.w}px;
-      `}
-
-      ${props => (typeof props.w === 'string') && css`
-         width: ${props.w};
-      `}
-
-      ${props => (typeof props.w === 'object') && css`
-         ${props => props.w.min && css`min-width: ${(typeof props.w.min === 'number') ? props.w.min + 'px' : props.w.min};`}
-         ${props => props.w.max && css`max-width: ${(typeof props.w.max === 'number') ? props.w.max + 'px' : props.w.max};`}
-      `}
-   `}
-
-
    ${props => props.open && css`
       display: block;
       z-index: 1000;
