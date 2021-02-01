@@ -154,18 +154,6 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
       return activeItem === item
    }
 
-   // const getActiveItem = (items) => {
-   //    if (!items) {
-   //       return null
-   //    }
-
-   //    if (activePath) {
-   //       return items.find(item => item.path && item.path === activePath)
-   //    }
-
-   //    return activeItem || null
-   // }
-
    const handleClick = (item, parentItem) => {
 
       if (!activePath) {
