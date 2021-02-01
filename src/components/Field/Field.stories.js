@@ -10,8 +10,8 @@ export default {
 
 const H1 = styled.h1`
    margin-left:15px;
-   margin-bottom:15px
-`
+   margin-bottom:15px;
+`;
 
 const type = [
    'text',
@@ -21,21 +21,48 @@ const type = [
 ]
 
 const placeholder = [
-   'Your Text'
+   'Your Text',
 ]
 
 const description = [
-   'Alicuam sed tortor a elementum'
+   'Alicuam sed tortor a elementum',
 ]
 
 export const Default = () => (
    <Box pad={'large'}  >
       <H1> Forms </H1>
       <Box >
-         <Field style={{ margin: '5px', width: 'calc(100% - 10px)' }} type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}/>
-         <Field style={{ margin: '5px', width: 'calc(100% - 10px)' }} type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]}/>
-         <Field style={{ margin: '5px', width: 'calc(100% - 10px)', marginTop:'22px'}} type={'password'} placeholder={placeholder[0]} description='' error label={'Password'} errorMessage={'Error message'}/>
-         <Field style={{ margin: '5px', width: 'calc(100% - 10px)' }} type={'email'} placeholder={placeholder[0]} label={'Email'} success description={description[0]}/>
+         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  autoFocus/>
+         <Field  type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]} />
+         <Field  type={'password'} placeholder={placeholder[0]}  error={'Error Message'} label={'Password'}/>
+         <Field  type={'email'} placeholder={placeholder[0]} label={'Email'} success description={description[0]}/>
       </Box>
    </Box>
 );
+
+export const PassiveInput = () => (
+   <Box pad={'xsmall'}>
+         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  />
+   </Box>
+)
+export const ActiveInput = () => (
+   <Box pad={'small'}>
+         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  autoFocus/>
+   </Box>
+)
+export const TextArea = () => (
+   <Box pad={'medium'}>
+          <Field  type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]} />
+   </Box>
+)
+
+export const PasswordInput = () => (
+   <Box pad={'large'}>
+         <Field  type={'password'} placeholder={placeholder[0]}  error={'Error Message'} label={'Password'}/>
+   </Box>
+)
+export const SuccesInput = () => (
+   <Box pad={'large'}>
+          <Field  type={'email'} placeholder={placeholder[0]} label={'Email'} success description={description[0]}/>
+   </Box>
+)
