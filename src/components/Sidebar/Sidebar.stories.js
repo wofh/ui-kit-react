@@ -152,3 +152,62 @@ export const Collapsed = () => {
 		</Box>
 	);
 }
+
+export const ActivePath = () => {
+
+	const items = [
+		{
+			icon: 'dashboard',
+			label: 'Dashboard',
+			path: '/dashboard',
+			onClick: (item) => console.log(item),
+			items: []
+		},
+		{
+			icon: 'calendar',
+			label: 'Calendar',
+			path: '/calendar',
+			onClick: () => { },
+		},
+		{
+			icon: 'repository',
+			label: 'Classes',
+			path: '/classes',
+			onClick: () => { }
+		},
+		{
+			icon: 'users',
+			label: 'Users',
+			path: '/users',
+			onClick: () => { }
+		},
+		{
+			icon: 'book',
+			label: 'Payments',
+			path: '/payments',
+			onClick: () => { }
+		},
+		{
+			icon: 'cog',
+			label: 'Settings',
+			path: '/settings',
+			onClick: () => { }
+		},
+	]
+
+	const footerItems = [
+		{
+			icon: 'support',
+			label: 'Support',
+			path: '/support',
+			onClick: () => { },
+			items: []
+		},
+	]
+
+	return (
+		<Box pad={'xsmall'} style={{ height: '640px' }}>
+			<Sidebar activePath={'/payments'} header={<Avatar />} items={items} footer={footerItems} />
+		</Box>
+	);
+}

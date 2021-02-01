@@ -13,7 +13,5 @@ const src = 'https://uploads-ssl.webflow.com/5fd784b39b6ceb5691ca7150/5ffd679d91
 export const Default = () => (
 	<Box pad={'xsmall'}>
 		<Brand src={src} />
-		<Brand src={src} w={200} />
-		<Brand src={src} w={{max: 100}} />
 	</Box>
 );

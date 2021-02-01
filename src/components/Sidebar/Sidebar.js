@@ -118,6 +118,7 @@ const StyledSidebarWrapper = styled.div`
  * {
  *    icon: 'cog',
  *    label: 'Label',
+ *    path: '/',
  *    onClick: (item) => console.log(item),
  *    items: []
  * }
@@ -125,10 +126,15 @@ const StyledSidebarWrapper = styled.div`
  *
  * An item object can have a sub set of items defined in with the key `items`.
  */
-export const Sidebar = ({ items, footer, children, header, collapsed, ...props }) => {
+export const Sidebar = ({ items, activePath, footer, children, header, collapsed, ...props }) => {
    const theme = useTheme()
    const propsWithTheme = { theme, ...props }
-   const [activeItem, setActiveItem] = useState(null)
+
+   const getActiveItem = () => {
+      return items.find(item => (item.path && item.path===activePath))
+   }
+
+   const [activeItem, setActiveItem] = useState(getActiveItem()||null)
    const [activeParentItem, setActiveParentItem] = useState(null)
 
    const handleClick = (item, parentItem) => {
@@ -145,7 +151,6 @@ export const Sidebar = ({ items, footer, children, header, collapsed, ...props }
             handleClick(item.items[0], item)
          }
       }
-
 
       if (item.onClick) item.onClick(item)
    }
@@ -209,6 +214,7 @@ Sidebar.propTypes = {
          PropTypes.shape({
             label: PropTypes.string.required,
             icon: PropTypes.string,
+            path: PropTypes.string,
             onClick: PropTypes.func,
             items: PropTypes.arrayOf(
                PropTypes.shape({
@@ -239,6 +245,11 @@ Sidebar.propTypes = {
          })
       )
    ]),
+
+   /**
+    * The current active path. If provided, the item with the same path will be activated
+    */
+   activePath: PropTypes.string,
 
    /**
     * The background of the sidebar
