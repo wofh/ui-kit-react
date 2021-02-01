@@ -130,29 +130,57 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
    const theme = useTheme()
    const propsWithTheme = { theme, ...props }
 
-   const getActiveItem = () => {
-      if (activePath) {
-         return items.find(item => (item.path && item.path===activePath))
+   const [activeItem, setActiveItem] = useState(null)
+   const [activeParentItem, setActiveParentItem] = useState(null)
+
+   const isActiveItemParent = (item) => {
+
+      if (item && item.items) {
+         return item.items.find(i => i.path && i.path === activePath) || item === activeParentItem
       }
 
-      return activeItem || null
+      if (item && item.path && activePath) {
+         return activePath === item.path
+      }
+
+      return activeParentItem === item
    }
 
-   const [activeItem, setActiveItem] = useState(getActiveItem()||null)
-   const [activeParentItem, setActiveParentItem] = useState(null)
+   const isActiveItem = (item) => {
+      if (item && item.path && activePath) {
+         return activePath === item.path
+      }
+
+      return activeItem === item
+   }
+
+   // const getActiveItem = (items) => {
+   //    if (!items) {
+   //       return null
+   //    }
+
+   //    if (activePath) {
+   //       return items.find(item => item.path && item.path === activePath)
+   //    }
+
+   //    return activeItem || null
+   // }
 
    const handleClick = (item, parentItem) => {
 
-      if (activeParentItem && activeParentItem.label === item.label) {
-         setActiveItem(null)
-         setActiveParentItem(null)
-      }
-      else {
-         setActiveItem(activeItem===item?null:item)
-         setActiveParentItem(parentItem?parentItem:null)
+      if (!activePath) {
 
-         if (item.items && item.items.length) {
-            handleClick(item.items[0], item)
+         if (activeParentItem && (activeParentItem.label === item.label)) {
+            setActiveItem(null)
+            setActiveParentItem(null)
+         }
+         else {
+            setActiveItem(activeItem===item?null:item)
+            setActiveParentItem(parentItem?parentItem:null)
+
+            if (item.items && item.items.length) {
+               handleClick(item.items[0], item)
+            }
          }
       }
 
@@ -178,7 +206,7 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
    const getItem = (item, index, parentItem = null) => {
       return (
          <div key={index}>
-            <StyledItem active={getActiveItem() === item || activeParentItem === item} onClick={() => handleClick(item, parentItem)}>
+            <StyledItem active={isActiveItem(item) || isActiveItemParent(item)} onClick={() => handleClick(item, parentItem)}>
                {getItemIcon(item.icon||null)}
                {!collapsed && getItemLabel(item.label||null)}
                {!collapsed && getItemIconArrow(item)}

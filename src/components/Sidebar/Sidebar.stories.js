@@ -196,16 +196,19 @@ export const ActivePath = () => {
 				{
 					icon: null,
 					label: 'General',
+					path: '/settings/general',
 					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Team',
+					path: '/settings/team',
 					onClick: () => { },
 				},
 				{
 					icon: null,
 					label: 'Integrations',
+					path: '/settings/integrations',
 					onClick: () => { },
 				},
 			]
@@ -224,7 +227,7 @@ export const ActivePath = () => {
 
 	return (
 		<Box pad={'xsmall'} style={{ height: '640px' }}>
-			<Sidebar activePath={'/payments'} header={<Avatar />} items={items} footer={footerItems} />
+			<Sidebar activePath={'/settings/team'} header={<Avatar />} items={items} footer={footerItems} />
 		</Box>
 	);
 }
