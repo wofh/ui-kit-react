@@ -131,7 +131,11 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
    const propsWithTheme = { theme, ...props }
 
    const getActiveItem = () => {
-      return items.find(item => (item.path && item.path===activePath))
+      if (activePath) {
+         return items.find(item => (item.path && item.path===activePath))
+      }
+
+      return activeItem || null
    }
 
    const [activeItem, setActiveItem] = useState(getActiveItem()||null)
@@ -174,7 +178,7 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
    const getItem = (item, index, parentItem = null) => {
       return (
          <div key={index}>
-            <StyledItem active={activeItem === item || activeParentItem === item} onClick={() => handleClick(item, parentItem)}>
+            <StyledItem active={getActiveItem() === item || activeParentItem === item} onClick={() => handleClick(item, parentItem)}>
                {getItemIcon(item.icon||null)}
                {!collapsed && getItemLabel(item.label||null)}
                {!collapsed && getItemIconArrow(item)}
@@ -247,7 +251,7 @@ Sidebar.propTypes = {
    ]),
 
    /**
-    * The current active path. If provided, the item with the same path will be activated
+    * The current active path. If provided, the item with the same path will be display activated
     */
    activePath: PropTypes.string,
 

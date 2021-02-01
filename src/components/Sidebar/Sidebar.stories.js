@@ -191,7 +191,24 @@ export const ActivePath = () => {
 			icon: 'cog',
 			label: 'Settings',
 			path: '/settings',
-			onClick: () => { }
+			onClick: () => { },
+			items: [
+				{
+					icon: null,
+					label: 'General',
+					onClick: () => { },
+				},
+				{
+					icon: null,
+					label: 'Team',
+					onClick: () => { },
+				},
+				{
+					icon: null,
+					label: 'Integrations',
+					onClick: () => { },
+				},
+			]
 		},
 	]
 
