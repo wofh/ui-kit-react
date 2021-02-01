@@ -1,3 +1,23 @@
+# v0.7.5 (Mon Feb 01 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Fix sidebar issue ([@stefanomarra](https://github.com/stefanomarra))
+- Update sidebar ([@stefanomarra](https://github.com/stefanomarra))
+- Added activePath prop to sidebar ([@stefanomarra](https://github.com/stefanomarra))
+- Added width prop to Brand component and Changed prop name bottomGutter to spaceAfter in Row component ([@stefanomarra](https://github.com/stefanomarra))
+- Fix minor issues ([@stefanomarra](https://github.com/stefanomarra))
+- Fix grid story example ([@stefanomarra](https://github.com/stefanomarra))
+- Merge branch 'develop' ([@stefanomarra](https://github.com/stefanomarra))
+- Added custom positioning to Dropdown component ([@stefanomarra](https://github.com/stefanomarra))
+- Merge branch 'master' into develop ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.6.6 (Sat Jan 30 2021)
 
 #### ⚠️ Pushed to `master`
