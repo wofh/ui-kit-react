@@ -21,6 +21,7 @@
   "homepage": "https://github.com/wofh/ui-kit-react#readme",
   "dependencies": {
     "prop-types": "^15.5.4",
+    "react-datepicker": "^3.4.1",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
