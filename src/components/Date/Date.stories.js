@@ -1,14 +1,16 @@
 import React from 'react';
-import { DatePickerr } from './Date';
-
+import { DatePick } from './Date';
 
 export default {
     title: 'Date',
-    component: DatePickerr,
+    component: DatePick
  };
 
-
-
- export const Default = (props) => (
-     <DatePickerr/>
+ export const Default = () => (
+     <div style = {{display: "flex"}}>
+        <DatePick/>
+        <DatePick/>
+        <DatePick/>
+        <DatePick/>
+    </div>
  )

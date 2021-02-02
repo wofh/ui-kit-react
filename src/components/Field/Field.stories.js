@@ -40,16 +40,14 @@ export const Default = () => (
    </Box>
 );
 
-export const PassiveInput = () => (
+export const Inputs = () => (
    <Box pad={'xsmall'}>
          <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  />
+      <Field type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]} autoFocus />
+
    </Box>
 )
-export const ActiveInput = () => (
-   <Box pad={'small'}>
-         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  autoFocus/>
-   </Box>
-)
+
 export const TextArea = () => (
    <Box pad={'medium'}>
           <Field  type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]} />
