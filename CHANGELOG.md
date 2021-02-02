@@ -1,3 +1,15 @@
+# v0.7.13 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Add weight and color props to Text component ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.7.12 (Tue Feb 02 2021)
 
 #### ⚠️ Pushed to `master`
