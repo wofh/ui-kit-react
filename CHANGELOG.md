@@ -1,3 +1,16 @@
+# v0.7.10 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Fixed minor grid issue and added grow prop to Col component ([@stefanomarra](https://github.com/stefanomarra))
+- Update sidebar ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.7.5 (Mon Feb 01 2021)
 
 #### ⚠️ Pushed to `master`
