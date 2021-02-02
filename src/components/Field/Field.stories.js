@@ -50,6 +50,15 @@ export const FieldState = () => (
    </>
 )
 
+export const WithIcons = () => (
+   <>
+      <Box>
+         <Field spaceAfter={20} type={'text'} placeholder={placeholder} label={'Search'} iconLeft={'search'} />
+         <Field spaceAfter={20} type={'text'} placeholder={placeholder} error iconRight={'alert'} />
+      </Box>
+   </>
+)
+
 export const Autofocus = () => (
    <>
       <Box>

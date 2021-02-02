@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { color, spacing, typography } from '../../shared/styles';
 
-const StyledTextarea = styled.textarea`
+const StyledBase = styled.textarea`
    display: block;
    width: 100%;
    min-height: 36px;
@@ -39,5 +39,5 @@ const StyledTextarea = styled.textarea`
 `;
 
 export const Textarea = (props) => {
-   return <StyledTextarea {...props} />
+   return <StyledBase {...props} />
 }

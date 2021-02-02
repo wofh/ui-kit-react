@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Icon } from '../Icon';
 import { color, spacing, typography } from '../../shared/styles';
 
-const StyledInput = styled.input`
+export const StyledBase = styled.input`
    display: block;
    width: 100%;
    border: none;
@@ -36,6 +37,70 @@ const StyledInput = styled.input`
    `}
 `;
 
+const StyledIcon = styled.span`
+   position: absolute;
+`
+
+const StyledInputWrapper = styled.div`
+   position: relative;
+
+   ${StyledIcon} {
+      line-height: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      text-align: center;
+      color: ${color.mediumdark};
+
+      &:first-child {
+         left: 0;
+      }
+
+      &:last-child {
+         right: 0;
+      }
+
+      ${(props) => props.error && css`
+         color: ${color.danger};
+      `}
+
+      ${(props) => props.success && css`
+         color: ${color.success};
+      `}
+   }
+
+   ${StyledBase} {
+      ${props => props.iconLeft && css`
+         padding-left: 36px;
+      `}
+
+      ${props => props.iconRight && css`
+         padding-right: 36px;
+      `}
+   }
+`
+
 export const Input = (props) => {
-   return <StyledInput {...props} defaultValue={props.value} />
+
+   const getIconLeft = () =>
+      props.iconLeft ? (
+         <StyledIcon>
+            <Icon icon={props.iconLeft} />
+         </StyledIcon>
+      ) : null;
+
+   const getIconRight = () =>
+      props.iconRight ? (
+         <StyledIcon>
+            <Icon icon={props.iconRight} />
+         </StyledIcon>
+      ) : null;
+
+   return (
+      <StyledInputWrapper {...props}>
+         {getIconLeft()}
+         <StyledBase {...props} defaultValue={props.value} />
+         {getIconRight()}
+      </StyledInputWrapper>
+   )
 }

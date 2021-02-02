@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Input } from './Input';
+import { Password } from './Password';
 import { Textarea } from './Textarea';
 import { color, spacing, typography } from '../../shared/styles';
 
@@ -43,8 +44,10 @@ export const Field = (props) => {
          case 'textarea':
             return <Textarea {...props} />;
 
-         case 'text':
          case 'password':
+            return <Password {...props} />;
+
+         case 'text':
          case 'email':
             return <Input {...props} />;
 
@@ -54,7 +57,7 @@ export const Field = (props) => {
    }
 
    const getError = () => {
-      return props.error ? <StyledError>{props.error}</StyledError> : null
+      return (typeof props.error === 'string') ? <StyledError>{props.error}</StyledError> : null
    }
 
    const getDescription = () => {
@@ -95,7 +98,7 @@ Field.propTypes = {
    /**
     * Description here
     */
-   error : PropTypes.string,
+   error : PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
 
    /**
     * Description here
@@ -125,7 +128,17 @@ Field.propTypes = {
    /**
     * Autofocus
     */
-   autoFocus: PropTypes.bool
+   autoFocus: PropTypes.bool,
+
+   /**
+    * The icon to show on the left side
+    */
+   iconLeft: PropTypes.string,
+
+   /**
+    * The icon to show on the right side
+    */
+   iconRight: PropTypes.string,
 };
 
 Field.defaultProps = {
