@@ -42,6 +42,9 @@ export const Sizes = () => (
          <Button size={'small'} label={'Small'} />
       </Box>
       <Box pad={'xsmall'}>
+         <Button size={'default'} label={'Default'} />
+      </Box>
+      <Box pad={'xsmall'}>
          <Button size={'medium'} label={'Medium'} />
       </Box>
       <Box pad={'xsmall'}>

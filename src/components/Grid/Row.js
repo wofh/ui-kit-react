@@ -14,7 +14,7 @@ const StyledRow = styled.div`
       margin-right: ${props.gutter / -2}px;
       margin-bottom: ${props.gutter}px;
 
-      ${(typeof props.bottomGutter !== 'undefined') && css`margin-bottom: ${props.bottomGutter}px;`}
+      ${(typeof props.spaceAfter !== 'undefined') && css`margin-bottom: ${props.spaceAfter}px;`}
    `}
 
    ${props => (props.align === 'top') && 'align-items: flex-start;'}
@@ -69,9 +69,9 @@ Row.propTypes = {
    gutter: PropTypes.number,
 
    /**
-    * Define a bottom gutter spacing. By default gets the value of `gutter`
+    * Defines a custom bottom spacing. By default gets the value of `gutter` if no value is passed
     */
-   bottomGutter: PropTypes.number,
+   spaceAfter: PropTypes.number,
 
    /**
     * Horizontal arrangement of the layout of flex
@@ -86,7 +86,7 @@ Row.propTypes = {
 
 Row.defaultProps = {
    gutter: 0,
-   bottomGutter: undefined,
+   spaceAfter: undefined,
    justify: 'start',
    align: 'top'
 };

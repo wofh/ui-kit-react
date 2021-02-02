@@ -11,84 +11,84 @@ export const Default = () => (
 	<Box>
 		<Row gutter={20}>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={1}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
 		<Row gutter={20}>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={2}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
 		<Row gutter={20}>
 			<Col span={4}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={4}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={4}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
 		<Row gutter={20}>
 			<Col span={6}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 			<Col span={6}>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
 		<Row gutter={20}>
 			<Col>
-				<Box background={'secondary'} h={30} />
+				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
 	</Box>
@@ -214,6 +214,22 @@ export const ExoticResponsive = () => (
 			</Col>
 			<Col span={4} lg={{ span: 3, offset: 1 }}>
 				<Box background={'#00c5e6'} pad={'medium'} />
+			</Col>
+		</Row>
+	</Box>
+);
+
+export const Grow = () => (
+	<Box>
+		<Row gutter={20}>
+			<Col span={2}>
+				<Box background={'#00c5e6'} pad={'medium'} />
+			</Col>
+			<Col grow>
+				<Box background={'#17dfae'} pad={'medium'} />
+			</Col>
+			<Col>
+				<Box background={'#00c5e6'} pad={'medium'} w={300} />
 			</Col>
 		</Row>
 	</Box>

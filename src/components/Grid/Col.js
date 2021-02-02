@@ -7,6 +7,8 @@ import { styles } from '../../shared';
 const grid_columns = styles.responsive.columns;
 
 const span = (span) => {
+   if (isNaN(span)) return css``
+   if (!span) return css``
    return css`
       display: block;
       width: ${(span / grid_columns) * 100}%;
@@ -38,7 +40,7 @@ const StyledCol = styled.div`
       padding-right: ${props.gutter / 2}px;
    `}
 
-   ${props => span(props.span || grid_columns)}
+   ${props => span(props.span)}
    ${props => offset(props.offset || 0)}
    ${props => order(props.order)}
 
@@ -60,6 +62,9 @@ const StyledCol = styled.div`
    ${props => props.lg && breakpoint('lg', 'xl')(order(props.lg.order))}
    ${props => props.xl && breakpoint('xl')(order(props.xl.order))}
 
+   ${props => props.grow && css`
+      flex-grow: ${props.grow === true ? 1 : props.grow};
+   `}
 `;
 
 export const Col = ({ children, ...props }) => {
@@ -68,7 +73,7 @@ export const Col = ({ children, ...props }) => {
    let lastSizeProps = {};
    ['xs', 'sm', 'md', 'lg', 'xl'].forEach((size) => {
       let sizeProps = {
-         span: 12,
+         span: null,
          offset: 0,
          order: null
       }
@@ -110,6 +115,11 @@ Col.propTypes = {
     * `col` number in row
     */
    order: PropTypes.number,
+
+   /**
+    * If `true` or positive value, sets the flex-grow rule
+    */
+   grow: PropTypes.bool,
 
    /**
     * <576px, could be a `span` value or a object contain above props
@@ -158,6 +168,7 @@ Col.propTypes = {
 };
 
 Col.defaultProps = {
-   span: 12,
-   offset: 0
+   span: null,
+   offset: 0,
+   grow: false
 };

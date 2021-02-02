@@ -118,6 +118,7 @@ const StyledSidebarWrapper = styled.div`
  * {
  *    icon: 'cog',
  *    label: 'Label',
+ *    path: '/',
  *    onClick: (item) => console.log(item),
  *    items: []
  * }
@@ -125,27 +126,51 @@ const StyledSidebarWrapper = styled.div`
  *
  * An item object can have a sub set of items defined in with the key `items`.
  */
-export const Sidebar = ({ items, footer, children, header, collapsed, ...props }) => {
+export const Sidebar = ({ items, activePath, footer, children, header, collapsed, ...props }) => {
    const theme = useTheme()
    const propsWithTheme = { theme, ...props }
+
    const [activeItem, setActiveItem] = useState(null)
    const [activeParentItem, setActiveParentItem] = useState(null)
 
+   const isActiveItemParent = (item) => {
+
+      if (item && item.items) {
+         return item.items.find(i => i.path && i.path === activePath) || item === activeParentItem
+      }
+
+      if (item && item.path && activePath) {
+         return activePath === item.path
+      }
+
+      return activeParentItem === item
+   }
+
+   const isActiveItem = (item) => {
+      if (item && item.path && activePath) {
+         return activePath === item.path
+      }
+
+      return activeItem === item
+   }
+
    const handleClick = (item, parentItem) => {
 
-      if (activeParentItem && activeParentItem.label === item.label) {
-         setActiveItem(null)
-         setActiveParentItem(null)
-      }
-      else {
-         setActiveItem(activeItem===item?null:item)
-         setActiveParentItem(parentItem?parentItem:null)
+      if (!activePath) {
 
-         if (item.items && item.items.length) {
-            handleClick(item.items[0], item)
+         if (activeParentItem && (activeParentItem.label === item.label)) {
+            setActiveItem(null)
+            setActiveParentItem(null)
+         }
+         else {
+            setActiveItem(activeItem===item?null:item)
+            setActiveParentItem(parentItem?parentItem:null)
+
+            if (item.items && item.items.length) {
+               handleClick(item.items[0], item)
+            }
          }
       }
-
 
       if (item.onClick) item.onClick(item)
    }
@@ -169,7 +194,7 @@ export const Sidebar = ({ items, footer, children, header, collapsed, ...props }
    const getItem = (item, index, parentItem = null) => {
       return (
          <div key={index}>
-            <StyledItem active={activeItem === item || activeParentItem === item} onClick={() => handleClick(item, parentItem)}>
+            <StyledItem active={isActiveItem(item) || isActiveItemParent(item)} onClick={() => handleClick(item, parentItem)}>
                {getItemIcon(item.icon||null)}
                {!collapsed && getItemLabel(item.label||null)}
                {!collapsed && getItemIconArrow(item)}
@@ -209,6 +234,7 @@ Sidebar.propTypes = {
          PropTypes.shape({
             label: PropTypes.string.required,
             icon: PropTypes.string,
+            path: PropTypes.string,
             onClick: PropTypes.func,
             items: PropTypes.arrayOf(
                PropTypes.shape({
@@ -239,6 +265,11 @@ Sidebar.propTypes = {
          })
       )
    ]),
+
+   /**
+    * The current active path. If provided, the item with the same path will be display activated
+    */
+   activePath: PropTypes.string,
 
    /**
     * The background of the sidebar

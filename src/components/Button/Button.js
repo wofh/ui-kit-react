@@ -9,13 +9,15 @@ import { useTheme } from '../hooks';
 const sizes = {
    large: typography.size.m1,
    medium: typography.size.s3,
+   default: typography.size.s2,
    small: typography.size.s2,
    tiny: typography.size.s1,
 };
 
 const padding = {
    large: typography.size.m2,
-   medium: typography.size.m1,
+   medium: typography.size.m2,
+   default: typography.size.m2,
    small: typography.size.m1,
    tiny: typography.size.s1,
 };
@@ -39,9 +41,9 @@ export const StyledButton = styled.button`
    border: none;
    color: #fff;
    cursor: pointer;
-   border-radius: ${(props) => props.theme.spacing.borderRadius.large}px;
+   border-radius: ${(props) => props.theme.spacing.borderRadius.default}px;
    background-color: ${(props) => getBackgroundColor(props)};
-   padding: 0 ${(props) => padding[props.size]}px;
+   padding: 0 ${(props) => padding[props.size] * 1.5}px;
    font-size: ${(props) => sizes[props.size]}px;
    line-height: ${(props) => padding[props.size] * 2}px;
    font-weight: ${(props) => props.theme.typography.weight.medium};
@@ -63,8 +65,8 @@ export const StyledButton = styled.button`
       }
 
       & > svg {
-         width: ${(props) => sizes[props.size]}px;
-         height: ${(props) => sizes[props.size]}px;
+         width: ${(props) => sizes[props.size] * 1.2}px;
+         height: ${(props) => sizes[props.size] * 1.2}px;
       }
    }
 
@@ -140,7 +142,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
    label: '',
-   size: 'medium',
+   size: 'default',
    use: 'tertiary',
    isLoading: false,
    loadingText: 'Loading...',
