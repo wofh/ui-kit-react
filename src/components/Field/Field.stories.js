@@ -3,7 +3,7 @@ import { Box } from '../Box';
 import { Field } from './Field';
 
 export default {
-   title: 'Field',
+   title: 'Components/Field',
    component: Field,
 };
 

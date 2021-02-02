@@ -4,6 +4,7 @@ export * from './Box';
 export * from './Brand';
 export * from './Button';
 export * from './Dropdown';
+export * from './Field';
 export * from './Grid';
 export * from './Heading';
 export * from './hooks';
