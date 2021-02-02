@@ -143,7 +143,7 @@ Field.propTypes = {
 
 Field.defaultProps = {
    type : 'text',
-   error : '',
+   error : false,
    success : false,
    spaceAfter: undefined
 };
