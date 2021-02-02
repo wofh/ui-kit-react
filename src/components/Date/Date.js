@@ -74,7 +74,7 @@ export const DatePick = (props) => {
             <DatePicker
                 selected={selectedDate}
                 onChange={date => setSelectedDate(date)}
-                value={props.value || selectedDate}
+                value={selectedDate ? selectedDate : props.value  }
                 placeholderText={'Select a date'}
                 scrollableYearDropdown
                 dateFormat="dd MMMM yyyy"
