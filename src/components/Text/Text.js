@@ -5,7 +5,8 @@ import { typography } from '../../shared/styles';
 
 const sizes = {
    xsmall: typography.size.s1,
-   small: typography.size.s3,
+   small: typography.size.s2,
+   default: typography.size.s3,
    medium: typography.size.m1,
    large: typography.size.l1,
    xlarge: typography.size.l2,
@@ -13,7 +14,7 @@ const sizes = {
 };
 
 const StyledText = styled.span`
-   font-size: ${(props) => sizes[props.size || 'small']}px;
+   font-size: ${(props) => sizes[props.size || 'default']}px;
    line-height: 1.2;
 `;
 
@@ -24,5 +25,5 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
-   size: 'small',
+   size: 'default',
 };
