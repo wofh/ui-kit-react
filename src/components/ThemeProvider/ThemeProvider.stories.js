@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { ThemeProvider } from './ThemeProvider';
 
 export default {
-  title: 'ThemeProvider',
+  title: 'Others/ThemeProvider',
   component: ThemeProvider,
 };
 

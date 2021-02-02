@@ -2,24 +2,38 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Image } from '../Image'
+import { width } from '../../shared/mixins'
 
-const BrandContainer = styled.div`
+const StyledBrand = styled.div`
 	max-width: 300px;
+	${props => props.w && width(props.w)}
 `
-const BrandImage = styled(Image)`
+const StyledBrandImage = styled(Image)`
 	width: 100%;
 `
 
 export const Brand = ({ src, ...props }) => {
 	return (
-		<BrandContainer {...props}>
-			<BrandImage src={src} />
-		</BrandContainer>
+		<StyledBrand {...props}>
+			<StyledBrandImage src={src} />
+		</StyledBrand>
 	);
 }
 
 Brand.propTypes = {
-	src: PropTypes.string
+	src: PropTypes.string,
+
+	/**
+	 * Width of the brand. It can be an object with `min` and `max` keys to set accordingly min-width and max-width.
+	 */
+	w: PropTypes.oneOfType([
+		PropTypes.number,
+		PropTypes.string,
+		PropTypes.shape({
+			min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+			max: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+		})
+	]),
 }
 
 Brand.defaultProps = {

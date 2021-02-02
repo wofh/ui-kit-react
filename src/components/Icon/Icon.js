@@ -22,6 +22,7 @@ const Path = styled.path`
  * - *non-decorative*: it means that it delivers information. For example, an icon as only child in a button. The meaning can be obvious visually, but it must have a proper text alternative via `aria-label` for screen readers. (ex: `<Icon icon="print" aria-label="Print this document" />`)
  */
 export const Icon = ({ icon, block, ...props }) => {
+	if (!icon) return null
 	return (
 		<Svg viewBox="0 0 1024 1024" width="20px" height="20px" block={block} {...props}>
 			<Path d={icons[icon]} />
@@ -30,10 +31,11 @@ export const Icon = ({ icon, block, ...props }) => {
 }
 
 Icon.propTypes = {
-	icon: PropTypes.string.isRequired,
+	icon: PropTypes.string,
 	block: PropTypes.bool,
 };
 
 Icon.defaultProps = {
-	block: false,
+	icon: null,
+	block: false
 };

@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { Button } from './Button';
 
 export default {
-   title: 'Button',
+   title: 'Components/Button',
    component: Button,
 };
 
@@ -40,6 +40,9 @@ export const Sizes = () => (
       </Box>
       <Box pad={'xsmall'}>
          <Button size={'small'} label={'Small'} />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button size={'default'} label={'Default'} />
       </Box>
       <Box pad={'xsmall'}>
          <Button size={'medium'} label={'Medium'} />

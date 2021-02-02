@@ -4,7 +4,7 @@ import { Box } from '../Box';
 import { Heading } from './Heading';
 
 export default {
-   title: 'Heading',
+   title: 'Components/Heading',
    component: Heading,
 };
 

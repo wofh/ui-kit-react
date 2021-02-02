@@ -3,7 +3,7 @@ import { Box } from '../Box'
 import { Image } from './Image'
 
 export default {
-	title: 'Image',
+	title: 'Components/Image',
 	component: Image,
 };
 
