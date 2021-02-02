@@ -43,7 +43,11 @@ export const Default = () => (
 export const Inputs = () => (
    <Box pad={'xsmall'}>
          <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  />
+<<<<<<< HEAD
          <Field type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]} autoFocus />
+=======
+         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  autoFocus/>
+>>>>>>> 62059ab13dfbd26e3a3f062a3181f106e854b3d1
    </Box>
 )
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import { color } from '../../shared/styles';
 import {StyledInput , StyledInputBox} from './Input';
 import { StyledTextarea } from './Textarea';
