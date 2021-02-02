@@ -1,3 +1,21 @@
+# v0.7.11 (Tue Feb 02 2021)
+
+#### 🐛 Bug Fix
+
+- Update Fields [#2](https://github.com/wofh/ui-kit-react/pull/2) ([@GeghamG](https://github.com/GeghamG) [@stefanomarra](https://github.com/stefanomarra))
+
+#### ⚠️ Pushed to `master`
+
+- Added Field component to storybook ([@stefanomarra](https://github.com/stefanomarra))
+- Added default size to Text component ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 2
+
+- Gegham Gasparyan ([@GeghamG](https://github.com/GeghamG))
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.7.10 (Tue Feb 02 2021)
 
 #### ⚠️ Pushed to `master`
