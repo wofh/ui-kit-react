@@ -1,45 +1,41 @@
-import styled, {css} from 'styled-components';
-import { color } from '../../shared/styles';
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { color, spacing, typography } from '../../shared/styles';
 
-export const StyledInput = styled.input`
-width: calc(100% - 10px);
-margin: 5px;
-height:32px;
-display:block;
-border:none;
-box-shadow: 0 0 0 1px ${color.medium};
-border-radius:8px;
-text-indent:12px;
-${(props) =>
-   props.type == 'text' &&
-   css`
-   &:focus {
-      box-shadow: 0px 0px 5px ${color.primary};
-   }
+const StyledInput = styled.input`
+   display: block;
+   width: 100%;
+   border: none;
+
+   padding: 0 ${typography.size.m1}px;
+   font-size: ${typography.size.s2}px;
+   line-height: ${typography.size.m1 * 2}px;
+   box-shadow: 0 0 0 1px ${color.medium};
+   border-radius: ${spacing.borderRadius.default}px;
+
+   ${(props) => (!props.error && !props.success) && css`
+      &:focus {
+         box-shadow: 0 0 0 1px ${color.primary};
+      }
    `}
-${(props) =>
-   props.error && 
-   css`
-   color: ${color.danger};
-   box-shadow: 0 0 5px ${color.danger};
-   &::-webkit-input-placeholder {
+
+   ${(props) => props.error && css`
       color: ${color.danger};
-   };
+      box-shadow: 0 0 0 1px ${color.danger};
+      &::-webkit-input-placeholder {
+         color: ${color.danger};
+      };
    `}
-   ${(props) =>
-   props.success &&
-   css`
-   color: ${color.success};
-   box-shadow: 0 0 5px ${color.success};
-   &::-webkit-input-placeholder {
+
+   ${(props) => props.success && css`
       color: ${color.success};
-   };
+      box-shadow: 0 0 0 1px ${color.success};
+      &::-webkit-input-placeholder {
+         color: ${color.success};
+      };
    `}
 `;
 
-
-export const StyledInputBox = styled.div`
-   width:25%;
-   float: left;
-   padding:5px;
-`;
+export const Input = (props) => {
+   return <StyledInput {...props} />
+}

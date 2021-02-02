@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Box } from '../Box';
 import { Field } from './Field';
 
@@ -8,58 +7,53 @@ export default {
    component: Field,
 };
 
-const H1 = styled.h1`
-   margin-left:15px;
-   margin-bottom:15px;
-`;
-
-const type = [
-   'text',
-   'textarea',
-   'password',
-   'email'
-]
-
-const placeholder = [
-   'Your Text',
-]
-
-const description = [
-   'Alicuam sed tortor a elementum',
-]
+const placeholder = 'Placeholder text'
+const description = 'Field description text'
 
 export const Default = () => (
-   <Box pad={'large'}  >
-      <H1> Forms </H1>
+   <Box pad={'xsmall'}  >
       <Box >
-         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  autoFocus/>
-         <Field  type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]} />
-         <Field  type={'password'} placeholder={placeholder[0]}  error={'Error Message'} label={'Password'}/>
-         <Field  type={'email'} placeholder={placeholder[0]} label={'Email'} success description={description[0]}/>
+         <Field spaceAfter={20} type={'text'} placeholder={placeholder} label={'Text'} description={description}/>
+         <Field spaceAfter={20} type={'textarea'} placeholder={placeholder} label={'Textarea'} description={description} />
+         <Field spaceAfter={20} type={'password'} placeholder={placeholder} error={'Error Message'} label={'Password'}/>
+         <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Email'} success description={description}/>
       </Box>
    </Box>
 );
 
-export const Inputs = () => (
+export const FieldType = () => (
    <Box pad={'xsmall'}>
-         <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  />
-         <Field type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]} autoFocus />
+      <Field spaceAfter={20} type={'text'} placeholder={placeholder} label={'Text'} description={description} />
+      <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Email'} description={description} />
+      <Field spaceAfter={20} type={'textarea'} placeholder={placeholder} label={'Textarea'} description={description} />
+      <Field spaceAfter={20} type={'password'} placeholder={placeholder} label={'Password'} description={description} />
    </Box>
 )
 
-export const TextArea = () => (
-   <Box pad={'medium'}>
-          <Field  type={'textarea'} placeholder={placeholder[0]} label={'Textarea'} description={description[0]} />
+export const OnlyField = () => (
+   <Box>
+      <Field spaceAfter={20} type={'text'} placeholder={'Text'} />
+      <Field spaceAfter={20} type={'email'} placeholder={'Email'} />
+      <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
+      <Field spaceAfter={20} type={'password'} placeholder={'Password'} />
    </Box>
 )
 
-export const PasswordInput = () => (
-   <Box pad={'large'}>
-         <Field  type={'password'} placeholder={placeholder[0]}  error={'Error Message'} label={'Password'}/>
-   </Box>
+export const FieldState = () => (
+   <>
+      <Box>
+         <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Success'} description={description} success />
+      </Box>
+      <Box>
+         <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Error'} description={description} error={'This field has some error'} />
+      </Box>
+   </>
 )
-export const SuccesInput = () => (
-   <Box pad={'large'}>
-          <Field  type={'email'} placeholder={placeholder[0]} label={'Email'} success description={description[0]}/>
-   </Box>
+
+export const Autofocus = () => (
+   <>
+      <Box>
+         <Field type={'text'} placeholder={placeholder} label={'Autofocus'} autoFocus />
+      </Box>
+   </>
 )

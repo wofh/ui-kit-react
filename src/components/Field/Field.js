@@ -1,79 +1,136 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
-import { color } from '../../shared/styles';
-import {StyledInput , StyledInputBox} from './Input';
-import { StyledTextarea } from './Textarea';
+import styled, { css } from 'styled-components';
+import { Input } from './Input';
+import { Textarea } from './Textarea';
+import { color, spacing, typography } from '../../shared/styles';
 
+const StyledLabel = styled.label`
+   display: block;
+   width: 100%;
+   font-size: ${typography.size.s3}px;
+   line-height: 1.5;
+   margin-bottom: ${spacing.margin.small}px;
+`;
 
-
-const StyledDescription = styled.p`
-   font-size: 10px;
-   padding: 3px 0 4px 5px;
+const StyledDescription = styled.div`
    color: ${ color.mediumdark };
+   font-size: ${typography.size.s2}px;
+   line-height: 1.5;
+   margin-bottom: ${spacing.margin.small}px;
 `;
 
-const StyledLabel = styled.p`
-   padding-left:5px;
-   margin:3px 0 5px 0;
-   
-`;
-
-const StyledError = styled.p`
-   width:auto;
-   height:auto;
-   color:${color.danger};
-   font-size: 12px;
-   padding-left:7px;
-   margin-top: 7px;
+const StyledError = styled.div`
+   color: ${color.danger};
+   font-size: ${typography.size.s2}px;
+   line-height: 1.5;
+   margin-top: ${spacing.margin.small}px;
 `;
 
 
-const GetField = (props) => {
-   let FieldType;
-   switch(props.type){
-      case 'text':
-      case 'password':
-      case 'email':
-         FieldType = <StyledInput  type={props.type} placeholder={props.placeholder} defaultValue={props.value} onChange={props.onChange} {...props} />;
-         break; 
-      case 'textarea':
-         FieldType = <StyledTextarea rows='5'  {...props}/>;
-         break;
+const StyledField = styled.div`
+   display: block;
+
+   ${props => (typeof props.spaceAfter !== 'undefined') && css`
+      margin-bottom: ${props.spaceAfter}px;
+   `}
+`;
+
+export const Field = (props) => {
+
+   const getField = () => {
+      switch (props.type) {
+         case 'textarea':
+            return <Textarea {...props} />;
+
+         case 'text':
+         case 'password':
+         case 'email':
+            return <Input {...props} defaultValue={props.value} />;
+
+         default:
+            return <Input {...props} defaultValue={props.value} />;
+      }
    }
-   return ( FieldType );
-}
-const Error = (props) => {
-   if(!props.error) return null;
-   return <StyledError> {props.error} </StyledError>
-}
 
+   const getError = () => {
+      return props.error ? <StyledError>{props.error}</StyledError> : null
+   }
 
-export const Field = (props) => { 
-   
+   const getDescription = () => {
+      return props.description ? <StyledDescription>{props.description}</StyledDescription> : null
+   }
+
+   const getLabel = () => {
+      return props.label ? <StyledLabel>{props.label}</StyledLabel> : null
+   }
+
    return (
-         <StyledInputBox>
-            { props.label ? <StyledLabel>{props.label}</StyledLabel> : null}
-            <StyledDescription >{ props.description ? props.description : '' }</StyledDescription>
-            <GetField  {...props} />
-            <Error  {...props}/> 
-         </StyledInputBox>   
+      <StyledField {...props}>
+         {getLabel()}
+         {getDescription()}
+         {getField()}
+         {getError()}
+      </StyledField>
    )
 };
 
 Field.propTypes = {
+
+   /**
+    * Add some description here to describe the field prop, this will be displayed in storybook
+    */
    type : PropTypes.oneOf(['text', 'textarea', 'password', 'email']).isRequired,
+
+   /**
+    * Description here
+    */
    label : PropTypes.string,
+
+   /**
+    * Description here
+    */
    description : PropTypes.string,
+
+   /**
+    * Description here
+    */
    error : PropTypes.string,
+
+   /**
+    * Description here
+    */
    placeholder : PropTypes.string,
+
+   /**
+    * Description here
+    */
    onChange : PropTypes.func,
+
+   /**
+    * Description here
+    */
    value : PropTypes.string,
+
+   /**
+    * Description here
+    */
    success : PropTypes.bool,
+
+   /**
+    * Additional `margin-bottom` after component
+    */
+   spaceAfter: PropTypes.number,
+
+   /**
+    * Autofocus
+    */
+   autoFocus: PropTypes.bool
 };
 
 Field.defaultProps = {
    type : 'text',
    error : '',
-   success : false
+   success : false,
+   spaceAfter: undefined
 };
