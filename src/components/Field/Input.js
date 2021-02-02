@@ -7,11 +7,12 @@ export const StyledBase = styled.input`
    display: block;
    width: 100%;
    border: none;
+   outline: none;
 
    padding: 0 ${typography.size.m1}px;
    font-size: ${typography.size.s2}px;
    line-height: ${typography.size.m1 * 2}px;
-   box-shadow: 0 0 0 1px ${color.medium};
+   box-shadow: inset 0 0 0 1px ${color.medium};
    border-radius: ${spacing.borderRadius.default}px;
 
    ${(props) => (!props.error && !props.success) && css`
