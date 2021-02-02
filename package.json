@@ -51,7 +51,7 @@
     "react-dom": "^16.0.0"
   },
   "scripts": {
-    "release": "dotenv release-it --",
+    "release": "npm run build && dotenv release-it && npm run deploy-storybook",
     "build": "rimraf dist && babel src -d dist",
     "storybook": "start-storybook -p 9009 --docs",
     "build-storybook": "build-storybook --docs",
@@ -71,7 +71,8 @@
       "tokenRef": "GH_TOKEN"
     },
     "npm": {
-      "publish": true
+      "publish": true,
+      "publishPath": "dist"
     }
   }
 }
