@@ -1,2 +1,2 @@
-export { Field, sizes } from './Field'
+export { Field } from './Field'
 
