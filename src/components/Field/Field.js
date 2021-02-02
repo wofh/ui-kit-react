@@ -56,7 +56,6 @@ export const Field = (props) => {
             { props.label ? <StyledLabel>{props.label}</StyledLabel> : null}
             <StyledDescription >{ props.description ? props.description : '' }</StyledDescription>
             <GetField  {...props} />
-           {console.log(<GetField  {...props} />)}
             <Error  {...props}/> 
          </StyledInputBox>   
    )
