@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
-import { color } from '../../shared/styles';
+import { color, typography } from '../../shared/styles';
 import { StyledBase } from './Input';
 
 const StyledIcon = styled.span`
    position: absolute;
    line-height: 0;
-   width: 36px;
+   width: ${typography.size.m2 * 2}px;
    text-align: center;
    color: ${color.mediumdark};
 
@@ -34,11 +34,11 @@ const StyledInputWrapper = styled.div`
 
    ${StyledBase} {
       ${props => props.iconLeft && css`
-         padding-left: 36px;
+         padding-left: ${typography.size.m2 * 2}px;
       `}
 
       ${props => props.iconRight && css`
-         padding-right: 36px;
+         padding-right: ${typography.size.m2 * 2}px;
       `}
    }
 `
