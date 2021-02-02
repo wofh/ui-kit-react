@@ -2,6 +2,20 @@
 
 #### ⚠️ Pushed to `master`
 
+- Update textare component ([@stefanomarra](https://github.com/stefanomarra))
+- Fixed minor issues ([@stefanomarra](https://github.com/stefanomarra))
+- Fix minor issue ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
+# v0.7.12 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
 - Fixed minor issues ([@stefanomarra](https://github.com/stefanomarra))
 - Fix minor issue ([@stefanomarra](https://github.com/stefanomarra))
 
