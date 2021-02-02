@@ -71,8 +71,7 @@
       "tokenRef": "GH_TOKEN"
     },
     "npm": {
-      "publish": true,
-      "publishPath": "dist"
+      "publish": true
     }
   }
 }
