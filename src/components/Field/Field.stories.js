@@ -43,8 +43,7 @@ export const Default = () => (
 export const Inputs = () => (
    <Box pad={'xsmall'}>
          <Field  type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]}  />
-      <Field type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]} autoFocus />
-
+         <Field type={'text'} placeholder={placeholder[0]} label={'Text'} description={description[0]} autoFocus />
    </Box>
 )
 
