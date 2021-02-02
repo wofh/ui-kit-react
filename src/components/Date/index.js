@@ -1,1 +1,0 @@
-export { Date, sizes } from './Date'
