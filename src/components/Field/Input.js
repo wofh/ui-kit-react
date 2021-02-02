@@ -37,5 +37,5 @@ const StyledInput = styled.input`
 `;
 
 export const Input = (props) => {
-   return <StyledInput {...props} />
+   return <StyledInput {...props} defaultValue={props.value} />
 }

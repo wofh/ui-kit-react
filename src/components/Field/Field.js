@@ -46,10 +46,10 @@ export const Field = (props) => {
          case 'text':
          case 'password':
          case 'email':
-            return <Input {...props} defaultValue={props.value} />;
+            return <Input {...props} />;
 
          default:
-            return <Input {...props} defaultValue={props.value} />;
+            return <Input {...props} />;
       }
    }
 
