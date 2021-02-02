@@ -61,13 +61,11 @@ or
 
 `yarn release`
 
-You must configure some environment variables for publishing and releasing to work properly.
+You must configure GITHUB_TOKEN environment variable for publishing and releasing to work properly.
+Obtain a personal github access token (needs `repo` permission) and make sure the token is available as an environment variable .
 
--  GH_TOKEN - Used for publishing the GitHub release (needs `repo` permission)
--  NPM_TOKEN - Used to publish to npm
+```
+export GITHUB_TOKEN="f941e0..."
+```
 
-Place these variables in your `.env` file in root. Make sure to add `.env` in `.gitignore`
-
-### **Helpful Resources**
-
--  https://intuit.github.io/auto/pages/getting-started.html
+In macOS or Linux, this can be added to e.g. `~/.profile`, so it's available everytime the shell is used.

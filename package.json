@@ -37,7 +37,6 @@
     "@storybook/storybook-deployer": "^2.8.5",
     "auto": "^9.31.1",
     "cross-env": "^7.0.2",
-    "dotenv-cli": "^4.0.0",
     "husky": ">=4",
     "lint-staged": ">=10",
     "prettier": "2.0.5",
@@ -51,7 +50,7 @@
     "react-dom": "^16.0.0"
   },
   "scripts": {
-    "release": "npm run build && dotenv release-it && npm run deploy-storybook",
+    "release": "npm run build && release-it && npm run deploy-storybook",
     "build": "rimraf dist && babel src -d dist",
     "storybook": "start-storybook -p 9009 --docs",
     "build-storybook": "build-storybook --docs",
@@ -68,7 +67,7 @@
   "release-it": {
     "github": {
       "release": true,
-      "tokenRef": "GH_TOKEN"
+      "tokenRef": "GITHUB_TOKEN"
     },
     "npm": {
       "publish": true
