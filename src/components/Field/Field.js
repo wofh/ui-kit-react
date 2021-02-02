@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, {css} from 'styled-components';
+import styled from 'styled-components';
 import { color } from '../../shared/styles';
 import {StyledInput , StyledInputBox} from './Input';
 import { StyledTextarea } from './Textarea';
@@ -56,7 +56,6 @@ export const Field = (props) => {
             { props.label ? <StyledLabel>{props.label}</StyledLabel> : null}
             <StyledDescription >{ props.description ? props.description : '' }</StyledDescription>
             <GetField  {...props} />
-           {console.log(<GetField  {...props} />)}
             <Error  {...props}/> 
          </StyledInputBox>   
    )

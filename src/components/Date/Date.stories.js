@@ -1,14 +1,18 @@
 import React from 'react';
-import { DatePickerr } from './Date';
+import { DatePick } from './Date';
+import { Box } from '../Box';
 
 
 export default {
     title: 'Date',
-    component: DatePickerr,
+    component: DatePick,
  };
 
 
 
- export const Default = (props) => (
-     <DatePickerr/>
+ export const Default = () => (
+    <Box pad={'large'}>
+        <DatePick />
+        <DatePick value={"25 Aug 2020"} class={"red-border"}/>
+    </Box> 
  )
