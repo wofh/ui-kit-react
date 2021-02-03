@@ -142,7 +142,7 @@ Modal.propTypes = {
 	/**
 	 *
 	 */
-	modalRoot: PropTypes.node
+	modalRoot: PropTypes.instanceOf(HTMLElement)
 }
 
 Modal.defaultProps = {
