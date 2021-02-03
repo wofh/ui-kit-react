@@ -9,15 +9,15 @@ export default {
 };
 
 export const Default = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button onClick={action('clicked')} label={'Default'} />
       </Box>
-   </div>
+   </>
 );
 
 export const Uses = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button use={'primary'} label={'Primary'} />
       </Box>
@@ -30,11 +30,11 @@ export const Uses = () => (
       <Box pad={'xsmall'}>
          <Button use={'danger'} label={'Danger'} />
       </Box>
-   </div>
+   </>
 );
 
 export const Sizes = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button size={'tiny'} label={'Tiny'} />
       </Box>
@@ -50,11 +50,11 @@ export const Sizes = () => (
       <Box pad={'xsmall'}>
          <Button size={'large'} label={'Large'} />
       </Box>
-   </div>
+   </>
 );
 
 export const WithIcons = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button iconLeft={'check'} use={'primary'} label={'Save'} />
       </Box>
@@ -67,11 +67,11 @@ export const WithIcons = () => (
       <Box pad={'xsmall'}>
          <Button iconRight={'arrowright'} label={'Explore'} />
       </Box>
-   </div>
+   </>
 );
 
 export const Loading = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button size={'medium'} use={'primary'} isLoading={true} label={'Default Loading'} />
       </Box>
@@ -83,13 +83,21 @@ export const Loading = () => (
             loadingText={'Custom Loading Text...'}
          />
       </Box>
-   </div>
+   </>
 );
 
 export const FullWidth = () => (
-   <div>
+   <>
       <Box pad={'xsmall'}>
          <Button fullWidth use={'primary'} label={'Full Width Button'} />
       </Box>
-   </div>
+   </>
+);
+
+export const Plain = () => (
+   <>
+      <Box pad={'xsmall'}>
+         <Button plain label={'Plain Button'} />
+      </Box>
+   </>
 );
