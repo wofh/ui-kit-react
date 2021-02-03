@@ -5,6 +5,7 @@ import { Input } from './Input';
 import { Password } from './Password';
 import { Textarea } from './Textarea';
 import { color, spacing, typography } from '../../shared/styles';
+import { Email } from './Email';
 
 const StyledLabel = styled.label`
    display: block;
@@ -48,8 +49,9 @@ export const Field = (props) => {
             return <Password {...props} />;
 
          case 'text':
-         case 'email':
             return <Input {...props} />;
+         case 'email':
+            return <Email {...props} />;
 
          default:
             return <Input {...props} />;
@@ -81,42 +83,42 @@ export const Field = (props) => {
 Field.propTypes = {
 
    /**
-    * Add some description here to describe the field prop, this will be displayed in storybook
+    * Type of the input field
     */
    type : PropTypes.oneOf(['text', 'textarea', 'password', 'email']).isRequired,
 
    /**
-    * Description here
+    * Label of the input field
     */
    label : PropTypes.string,
 
    /**
-    * Description here
+    * Description of the input field
     */
    description : PropTypes.string,
 
    /**
-    * Description here
+    * Error is a state. It can be either string or boolean. If it has error message and/or it is `true`, input changes its box-shadow to red and shows the error message below
     */
    error : PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
 
    /**
-    * Description here
+    * Input's placeholder
     */
    placeholder : PropTypes.string,
 
    /**
-    * Description here
+    * Function. Called when change event occurs
     */
    onChange : PropTypes.func,
 
    /**
-    * Description here
+    * Input's value
     */
    value : PropTypes.string,
 
    /**
-    * Description here
+    * Success is a state. If `true`, input changes its box-shadow to green
     */
    success : PropTypes.bool,
 
