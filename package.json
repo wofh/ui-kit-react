@@ -1,6 +1,6 @@
 {
   "name": "@wofh/ui-kit-react",
-  "version": "0.7.10",
+  "version": "0.7.16",
   "description": "WOFH UI Kit is a reusable component library that helps WOFH contributors build UIs faster. The goal is to make building durable UIs more productive and satisfying.",
   "main": "dist/index.js",
   "repository": {
@@ -21,7 +21,6 @@
   "homepage": "https://github.com/wofh/ui-kit-react#readme",
   "dependencies": {
     "prop-types": "^15.5.4",
-    "react-datepicker": "^3.4.1",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
@@ -43,14 +42,15 @@
     "prettier": "2.0.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^4.0.1",
+    "release-it": "^14.2.2"
   },
   "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
   "scripts": {
-    "release": "npm run build && ./scripts/release.sh && npm run deploy-storybook",
+    "release": "npm run build && release-it && npm run deploy-storybook",
     "build": "rimraf dist && babel src -d dist",
     "storybook": "start-storybook -p 9009 --docs",
     "build-storybook": "build-storybook --docs",
@@ -63,5 +63,14 @@
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "tokenRef": "GITHUB_TOKEN"
+    },
+    "npm": {
+      "publish": true
+    }
   }
 }

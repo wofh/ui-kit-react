@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { typography } from '../../shared/styles';
+import styled, { css } from 'styled-components';
+import { typography, color } from '../../shared/styles';
 
 const sizes = {
    xsmall: typography.size.s1,
@@ -14,14 +14,25 @@ const sizes = {
 };
 
 const StyledText = styled.span`
-   font-size: ${(props) => sizes[props.size || 'default']}px;
    line-height: 1.2;
+
+   font-size: ${(props) => sizes[props.size || 'default']}px;
+
+   ${(props) => props.color && css`
+      color: ${color[props.color] || props.color};
+   `};
+
+   ${(props) => props.weight && css`
+      font-weight: ${typography.weight[props.weight] || props.weight};
+   `};
 `;
 
 export const Text = (props) => <StyledText {...props} />;
 
 Text.propTypes = {
    size: PropTypes.oneOf(Object.keys(sizes)),
+   color: PropTypes.string,
+   weight: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 Text.defaultProps = {

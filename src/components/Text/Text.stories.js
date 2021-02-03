@@ -31,10 +31,62 @@ export const Sizes = () => (
          <Text size={'medium'}>Text medium</Text>
       </Box>
       <Box pad={'small'}>
+         <Text size={'default'}>Text default</Text>
+      </Box>
+      <Box pad={'small'}>
          <Text size={'small'}>Text small</Text>
       </Box>
       <Box pad={'small'}>
          <Text size={'xsmall'}>Text xsmall</Text>
+      </Box>
+   </div>
+);
+
+export const Color = () => (
+   <div>
+      <Box pad={'small'}>
+         <Text color={'primary'}>Primary color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'secondary'}>Secondary color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'tertiary'}>Tertiary color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'success'}>Success color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'danger'}>Danger color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'warning'}>Warning color</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text color={'#00c5e6'}>Custom color</Text>
+      </Box>
+   </div>
+);
+
+export const Weight = () => (
+   <div>
+      <Box pad={'small'}>
+         <Text weight={'regular'}>Regular weight</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text weight={'medium'}>Medium weight</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text weight={'semibold'}>Semibold weight</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text weight={'bold'}>Bold weight</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text weight={'extrabold'}>Extrabold weight</Text>
+      </Box>
+      <Box pad={'small'}>
+         <Text weight={'black'}>Black weight</Text>
       </Box>
    </div>
 );

@@ -98,7 +98,7 @@ Field.propTypes = {
    /**
     * Description here
     */
-   error : PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
+   error : PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
    /**
     * Description here
@@ -143,7 +143,7 @@ Field.propTypes = {
 
 Field.defaultProps = {
    type : 'text',
-   error : '',
+   error : false,
    success : false,
    spaceAfter: undefined
 };

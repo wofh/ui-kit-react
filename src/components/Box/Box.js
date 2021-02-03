@@ -13,6 +13,8 @@ export const padding = {
 };
 
 const StyledBox = styled.div`
+   line-height: 1;
+
    padding: ${(props) => padding[props.pad]};
    ${(props) => props.align && 'text-align: ' + props.align};
    ${(props) =>
