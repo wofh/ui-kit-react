@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { DropdownItem } from './DropdownItem'
 import { Box, padding } from '../Box'
 import { useVisible } from '../hooks'
 import { spacing } from '../../shared/styles';
@@ -113,6 +114,8 @@ export const Dropdown = ({ children, trigger, pad, position, onOpen, onClose, ..
    );
 };
 
+Dropdown.Item = DropdownItem
+
 Dropdown.propTypes = {
 
    /**
@@ -191,7 +194,7 @@ Dropdown.propTypes = {
 Dropdown.defaultProps = {
    trigger: undefined,
    position: 'bottom',
-   pad: 'small',
+   pad: 'none',
    align: 'left',
    background: '#FFF',
    w: 200,

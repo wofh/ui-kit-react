@@ -2,11 +2,12 @@ import React from 'react';
 import { Row, Col } from '../Grid';
 import { Box } from '../Box';
 import { Button } from '../Button';
-import { Dropdown } from './Dropdown';
+import { Dropdown, DropdownItem } from './';
 
 export default {
    title: 'Components/Dropdown',
    component: Dropdown,
+   subcomponents: { DropdownItem },
 };
 
 const dropdownContent = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
@@ -14,7 +15,11 @@ const dropdownContent = 'Lorem Ipsum is simply dummy text of the printing and ty
 export const Default = () => (
    <Box pad={'large'} align={'center'} style={{ height: '300px', display: 'flex', alignItems: 'center' }}>
       <Box style={{ margin: '0 auto' }}>
-         <Dropdown trigger={<Button label={'Click to open'} use={'primary'} />} background={'lighter'}>{dropdownContent}</Dropdown>
+         <Dropdown trigger={<Button label={'Click to open'} use={'primary'} />} background={'lighter'}>
+            <DropdownItem>Menu Item 1</DropdownItem>
+            <DropdownItem>Menu Item 2</DropdownItem>
+            <DropdownItem>Menu Item 3</DropdownItem>
+         </Dropdown>
       </Box>
    </Box>
 );
