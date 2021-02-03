@@ -98,7 +98,7 @@ Field.propTypes = {
    /**
     * Description here
     */
-   error : PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
+   error : PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
    /**
     * Description here
