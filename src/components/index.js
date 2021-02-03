@@ -10,6 +10,7 @@ export * from './Heading';
 export * from './hooks';
 export * from './Icon';
 export * from './Image';
+export * from './Modal';
 export * from './ProgressDots';
 export * from './Sidebar';
 export * from './Skeleton';
