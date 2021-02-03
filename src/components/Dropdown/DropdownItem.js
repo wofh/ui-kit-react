@@ -1,9 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Box, padding } from '../Box'
 
-const StyledDropdownItem = styled(Box)``;
+const StyledDropdownItem = styled(Box)`
+
+   ${props => props.onClick && css`
+      cursor: pointer;
+
+      &:hover {
+         opacity: 0.75;
+      }
+   `}
+`;
 
 export const DropdownItem = ({ children, ...props }) => {
    return <StyledDropdownItem {...props}>{children}</StyledDropdownItem>
