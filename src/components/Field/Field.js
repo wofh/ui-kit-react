@@ -100,7 +100,7 @@ Field.propTypes = {
    /**
     * Error is a state. It can be either string or boolean. If it has error message and/or it is `true`, input changes its box-shadow to red and shows the error message below
     */
-   error : PropTypes.oneOfType(PropTypes.string, PropTypes.bool),
+   error : PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 
    /**
     * Input's placeholder
@@ -145,7 +145,7 @@ Field.propTypes = {
 
 Field.defaultProps = {
    type : 'text',
-   error : '',
+   error : false,
    success : false,
    spaceAfter: undefined
 };

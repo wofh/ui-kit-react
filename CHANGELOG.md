@@ -1,3 +1,73 @@
+# v0.7.13 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Add weight and color props to Text component ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
+# v0.7.12 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Update textare component ([@stefanomarra](https://github.com/stefanomarra))
+- Fixed minor issues ([@stefanomarra](https://github.com/stefanomarra))
+- Fix minor issue ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
+# v0.7.12 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Fixed minor issues ([@stefanomarra](https://github.com/stefanomarra))
+- Fix minor issue ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
+# v0.7.12 (Tue Feb 02 2021)
+
+#### ⚠️ Pushed to `master`
+
+- Fixed minor issues (stefano.marra1987@gmail.com)
+- Fix minor issue (stefano.marra1987@gmail.com)
+
+#### Authors: 1
+
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
+# v0.7.11 (Tue Feb 02 2021)
+
+#### 🐛 Bug Fix
+
+- Update Fields [#2](https://github.com/wofh/ui-kit-react/pull/2) ([@GeghamG](https://github.com/GeghamG) [@stefanomarra](https://github.com/stefanomarra))
+
+#### ⚠️ Pushed to `master`
+
+- Added Field component to storybook ([@stefanomarra](https://github.com/stefanomarra))
+- Added default size to Text component ([@stefanomarra](https://github.com/stefanomarra))
+
+#### Authors: 2
+
+- Gegham Gasparyan ([@GeghamG](https://github.com/GeghamG))
+- Stefano Marra ([@stefanomarra](https://github.com/stefanomarra))
+
+---
+
 # v0.7.10 (Tue Feb 02 2021)
 
 #### ⚠️ Pushed to `master`

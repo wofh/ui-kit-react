@@ -5,14 +5,15 @@ import { color, spacing, typography } from '../../shared/styles';
 const StyledBase = styled.textarea`
    display: block;
    width: 100%;
-   min-height: 36px;
+   min-height: ${typography.size.m2 * 2}px;
    border: none;
+   outline: none;
    resize: none;
 
-   padding: ${typography.size.m1 * 0.5}px ${typography.size.m1}px;
+   padding: ${typography.size.m1 * 0.75}px ${typography.size.m1}px;
    font-size: ${typography.size.s2}px;
    line-height: 1.5;
-   box-shadow: 0 0 0 1px ${color.medium};
+   box-shadow: inset 0 0 0 1px ${color.medium};
    border-radius: ${spacing.borderRadius.default}px;
 
    ${(props) => (!props.error && !props.success) && css`

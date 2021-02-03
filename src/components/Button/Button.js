@@ -36,24 +36,23 @@ const ButtonLabel = styled.span`
    display: inline-block;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButtonPlain = styled.button`
    outline: none;
    border: none;
-   color: #fff;
    cursor: pointer;
-   border-radius: ${(props) => props.theme.spacing.borderRadius.default}px;
-   background-color: ${(props) => getBackgroundColor(props)};
-   padding: 0 ${(props) => padding[props.size] * 1.5}px;
-   font-size: ${(props) => sizes[props.size]}px;
-   line-height: ${(props) => padding[props.size] * 2}px;
-   font-weight: ${(props) => props.theme.typography.weight.medium};
+   background-color: transparent;
+   padding: 0;
 
-   ${(props) =>
-      props.fullWidth &&
-      css`
-         display: block;
-         width: 100%;
-      `}
+   font-size: ${(props) => sizes[props.size]}px;
+
+   &:hover {
+      opacity: 0.8;
+   }
+
+   &:disabled {
+      background-color: #a7b6c2;
+      cursor: default;
+   }
 
    ${ButtonIcon} {
       &:first-child {
@@ -69,18 +68,26 @@ export const StyledButton = styled.button`
          height: ${(props) => sizes[props.size] * 1.2}px;
       }
    }
+`
 
-   &:hover {
-      opacity: 0.8;
-   }
+export const StyledButton = styled(StyledButtonPlain)`
+   color: #fff;
+   border-radius: ${(props) => props.theme.spacing.borderRadius.default}px;
+   background-color: ${(props) => getBackgroundColor(props)};
+   padding: 0 ${(props) => padding[props.size] * 1.5}px;
+   line-height: ${(props) => padding[props.size] * 2}px;
+   font-weight: ${(props) => props.theme.typography.weight.medium};
 
-   &:disabled {
-      background-color: #a7b6c2;
-      cursor: default;
-   }
+   ${(props) =>
+      props.fullWidth &&
+      css`
+         display: block;
+         width: 100%;
+      `}
+
 `;
 
-export const Button = ({ children, label, loadingText, iconLeft, iconRight, ...props }) => {
+export const Button = ({ plain, children, label, loadingText, iconLeft, iconRight, ...props }) => {
    const theme = useTheme();
    const propsWithTheme = { theme, ...props };
 
@@ -104,6 +111,17 @@ export const Button = ({ children, label, loadingText, iconLeft, iconRight, ...p
       return label || children || '';
    };
 
+   if (plain) {
+
+      return (
+         <StyledButtonPlain {...propsWithTheme}>
+            {getIconLeft()}
+            <ButtonLabel>{getContent()}</ButtonLabel>
+            {getIconRight()}
+         </StyledButtonPlain>
+      );
+   }
+
    return (
       <StyledButton {...propsWithTheme}>
          {getIconLeft()}
@@ -118,6 +136,11 @@ Button.propTypes = {
    size: PropTypes.oneOf(Object.keys(sizes)),
    use: PropTypes.oneOf(Object.keys(color)),
    isLoading: PropTypes.bool,
+
+   /**
+    * If `true` the button will be displayed with minimal styling applied
+    */
+   plain: PropTypes.bool,
 
    /**
     * When a button is in the loading state you can supply custom text
@@ -145,6 +168,7 @@ Button.defaultProps = {
    size: 'default',
    use: 'tertiary',
    isLoading: false,
+   plain: false,
    loadingText: 'Loading...',
    fullWidth: false,
    iconLeft: undefined,
