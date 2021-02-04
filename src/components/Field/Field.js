@@ -93,6 +93,11 @@ Field.propTypes = {
    label : PropTypes.string,
 
    /**
+    * Name of the input field
+    */
+   name : PropTypes.string,
+
+   /**
     * Description of the input field
     */
    description : PropTypes.string,
