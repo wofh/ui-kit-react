@@ -7,6 +7,7 @@ import { spacing, color } from '../../shared/styles';
 const StyledDropdownContent = styled(Box)`
    display: none;
    position: absolute;
+   line-height: 1.2;
    border-radius: ${spacing.borderRadius.small}px;
 
    ${props => props.open && css`
