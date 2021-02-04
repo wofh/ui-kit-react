@@ -33,6 +33,23 @@ export const Uses = () => (
    </>
 );
 
+export const Stroked = () => (
+   <>
+      <Box pad={'xsmall'}>
+         <Button use={'primary'} label={'Primary'} stroked />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button use={'secondary'} label={'Secondary'} stroked />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button use={'tertiary'} label={'Tertiary'} stroked />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button use={'danger'} label={'Danger'} stroked />
+      </Box>
+   </>
+);
+
 export const Sizes = () => (
    <>
       <Box pad={'xsmall'}>
