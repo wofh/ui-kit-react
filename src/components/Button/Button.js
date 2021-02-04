@@ -22,7 +22,7 @@ const padding = {
    tiny: typography.size.s1,
 };
 
-const getBackgroundColor = (props) => {
+const getColor = (props) => {
    return props.theme.color[props.use] || props.theme.color.tertiary;
 };
 
@@ -73,7 +73,7 @@ export const StyledButtonPlain = styled.button`
 export const StyledButton = styled(StyledButtonPlain)`
    color: #fff;
    border-radius: ${(props) => props.theme.spacing.borderRadius.default}px;
-   background-color: ${(props) => getBackgroundColor(props)};
+   background-color: ${(props) => getColor(props)};
    padding: 0 ${(props) => padding[props.size] * 1.5}px;
    line-height: ${(props) => padding[props.size] * 2}px;
    font-weight: ${(props) => props.theme.typography.weight.medium};
@@ -83,6 +83,14 @@ export const StyledButton = styled(StyledButtonPlain)`
       css`
          display: block;
          width: 100%;
+      `}
+
+   ${(props) =>
+      props.stroked &&
+      css`
+         background-color: transparent;
+         box-shadow: inset 0 0 0 1px ${getColor(props)};
+         color: ${getColor(props)};
       `}
 
 `;
@@ -138,6 +146,11 @@ Button.propTypes = {
    isLoading: PropTypes.bool,
 
    /**
+    * If `true` sets the color of the line drawn around the button
+    */
+   stroked: PropTypes.bool,
+
+   /**
     * If `true` the button will be displayed with minimal styling applied
     */
    plain: PropTypes.bool,
@@ -169,6 +182,7 @@ Button.defaultProps = {
    use: 'tertiary',
    isLoading: false,
    plain: false,
+   stroked: false,
    loadingText: 'Loading...',
    fullWidth: false,
    iconLeft: undefined,
