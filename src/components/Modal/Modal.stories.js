@@ -15,7 +15,7 @@ export const Default = () => {
 	return (
 		<Box pad={'xsmall'}>
 			<Button onClick={() => setIsOpen(true)} label={'Open Modal'} />
-			<Modal isOpen={isOpen} w={{ min: 640, max: '100%' }} h={{ min: 640 }} onClose={() => setIsOpen(false)} />
+			<Modal isOpen={isOpen} w={{ max: 640 }} h={{ min: 660 }} onClose={() => setIsOpen(false)} />
 		</Box>
 	);
 }

@@ -1,20 +1,38 @@
 import React, { useEffect } from 'react'
 import { createPortal } from "react-dom";
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { spacing } from '../../shared/styles';
-import { width, height } from '../../shared/mixins';
+import { width, height, breakpoint } from '../../shared/mixins';
+
+const GlobalStyleBodyWithModal = createGlobalStyle`
+	body {
+		${props => props.isOpen && css`
+			overflow: hidden;
+		`}
+	}
+`
 
 const StyledModal = styled.div`
 	position: relative;
 	min-width: 260px;
-	margin-bottom: 100px;
 	background: #FFF;
 	border-radius: ${spacing.borderRadius.default}px;
 	padding: ${spacing.padding.medium}px;
 	z-index: 1000;
+	${width('90%')}
+
+	${breakpoint('xs')(css`
+		margin-top: 20px;
+		margin-bottom: 20px;
+	`)}
+
+	${breakpoint('md')(css`
+		margin-top: 5%;
+		margin-bottom: 40px;
+	`)}
 
 	${props => props.w && width(props.w)}
 	${props => props.h && height(props.h)}
@@ -26,8 +44,6 @@ const StyledOverlay = styled.div`
 	height: 100%;
 	top: 0;
 	left: 0;
-	background: #000;
-	opacity: 0.75;
 `
 
 const StyledModalWrapper = styled.div`
@@ -36,9 +52,12 @@ const StyledModalWrapper = styled.div`
 	transform: translate(-50%, -50%);
 	width: 100%;  height: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: start;
 	align-items: center;
+	flex-direction: column;
 	z-index: 100;
+	background-color: rgba(0, 0, 0, 75%);
+	overflow: auto;
 `
 
 const Portal = ({ modalRoot, children }) => {
@@ -68,7 +87,7 @@ export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
 		return (
 			<StyledModalWrapper {...props}>
 				<StyledModal {...props}>
-					<Button plain onClick={onClose}><Icon icon={'close'} /></Button>
+					<Button plain onClick={onClose}><Icon icon={'closeAlt'} /></Button>
 					{children}
 				</StyledModal>
 				<StyledOverlay onClick={onClose} />
@@ -78,6 +97,7 @@ export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
 
 	return (
 		<Portal modalRoot={modalRoot}>
+			<GlobalStyleBodyWithModal isOpen={isOpen} />
 			{getModal()}
 		</Portal>
 	);
@@ -122,7 +142,7 @@ Modal.propTypes = {
 	/**
 	 *
 	 */
-	modalRoot: PropTypes.node
+	modalRoot: PropTypes.instanceOf(HTMLElement)
 }
 
 Modal.defaultProps = {
