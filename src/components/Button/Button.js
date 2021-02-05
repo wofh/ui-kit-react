@@ -29,7 +29,7 @@ const getColor = (props) => {
 const ButtonIcon = styled.span`
    position: relative;
    display: inline-block;
-   top: -2px;
+   top: -1px;
 `;
 
 const ButtonLabel = styled.span`
