@@ -7,7 +7,6 @@ import { Icon } from '../Icon';
 const ItemIcon = styled.span`
    position: relative;
    display: inline-block;
-   top: -2px;
 `;
 
 const ItemLabel = styled.span`
