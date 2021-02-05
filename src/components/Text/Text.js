@@ -14,7 +14,7 @@ const sizes = {
 };
 
 const StyledText = styled.span`
-   line-height: 1.2;
+   line-height: 1.5;
 
    font-size: ${(props) => sizes[props.size || 'default']}px;
 

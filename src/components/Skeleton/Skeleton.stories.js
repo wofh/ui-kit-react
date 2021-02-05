@@ -2,6 +2,7 @@ import React from 'react';
 import { Box } from '../Box';
 import { Skeleton } from './Skeleton';
 import { Heading } from '../Heading';
+import { Text } from '../Text';
 
 export default {
    title: 'Components/Skeleton',
@@ -17,7 +18,7 @@ export const Default = () => (
          <Heading size={'xxlarge'}><Skeleton /></Heading>
       </Box>
       <Box pad={'xsmall'}>
-         <Skeleton count={4} />
+         <Text><Skeleton count={4} /></Text>
       </Box>
    </Box>
 );
