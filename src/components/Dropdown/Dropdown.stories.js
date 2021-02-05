@@ -2,24 +2,26 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Box } from '../Box';
 import { Button } from '../Button';
-import { Dropdown, DropdownItem, DropdownContent } from './';
+import { Dropdown, DropdownItem, DropdownContent, DropdownDivider } from './';
 
 export default {
    title: 'Components/Dropdown',
    component: Dropdown,
-   subcomponents: { DropdownContent, DropdownItem },
+   subcomponents: { DropdownContent, DropdownItem, DropdownDivider },
 };
 
 const dropdownContent = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
 
 export const Default = () => (
-   <Box pad={'large'} align={'center'} style={{ height: '300px', display: 'flex', alignItems: 'center' }}>
+   <Box pad={'large'} align={'center'} style={{ height: '300px', display: 'flex', alignItems: 'top' }}>
       <Box style={{ margin: '0 auto' }}>
          <Dropdown trigger={<Button label={'Click to open'} use={'primary'} />}>
             <Dropdown.Content border={1}>
-               <DropdownItem onClick={action('Item 1 Clicked')}>Menu Item 1</DropdownItem>
-               <Dropdown.Item onClick={action('Item 2 Clicked')}>Menu Item 2</Dropdown.Item>
-               <DropdownItem onClick={action('Item 3 Clicked')}>Menu Item 3</DropdownItem>
+               <DropdownItem onClick={action('Account Clicked')} iconLeft={'user'}>Account</DropdownItem>
+               <Dropdown.Item onClick={action('Settings Clicked')} iconLeft={'cog'}>Settings</Dropdown.Item>
+               <Dropdown.Item onClick={action('Support Clicked')} iconLeft={'question'}>Support</Dropdown.Item>
+               <DropdownDivider />
+               <DropdownItem onClick={action('Logout Clicked')} iconLeft={'power'}>Logout</DropdownItem>
             </Dropdown.Content>
          </Dropdown>
       </Box>

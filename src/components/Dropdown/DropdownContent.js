@@ -114,7 +114,7 @@ DropdownContent.propTypes = {
 };
 
 DropdownContent.defaultProps = {
-   pad: 'none',
+   pad: 'small',
    align: 'left',
    background: null,
    border: 1,
