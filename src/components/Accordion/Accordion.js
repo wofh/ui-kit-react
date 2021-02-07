@@ -25,7 +25,7 @@ const StyledAccordionIcon = styled.span`
 const StyledAccordionContent = styled(Box)`
    position: relative;
    display: none;
-   line-height: 1.2;
+   line-height: 1.5;
 `;
 
 const StyledAccordion = styled.div`
