@@ -13,7 +13,7 @@ const StyledAccordionTitle = styled(Box)`
    color: ${color.darker};
    background-color: ${color.light};
    border-radius: ${spacing.borderRadius.default}px;
-   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
+   padding: ${spacing.padding.medium * 0.5}px ${spacing.padding.medium}px;
 `;
 
 const StyledAccordionIcon = styled.span`
@@ -27,7 +27,7 @@ const StyledAccordionContent = styled(Box)`
    position: relative;
    display: none;
    line-height: 1.5;
-   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
+   padding: ${spacing.padding.medium * 0.5}px ${spacing.padding.medium}px;
 `;
 
 const StyledAccordion = styled.div`

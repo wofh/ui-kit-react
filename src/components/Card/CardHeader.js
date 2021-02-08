@@ -5,7 +5,7 @@ import { Box, padding } from '../Box'
 import { color, spacing } from '../../shared/styles'
 
 const StyledCardHeader = styled(Box)`
-   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
+   padding: ${spacing.padding.medium * 0.5}px ${spacing.padding.medium}px;
    box-shadow: 0 1px 0 0 ${color.medium};
 `;
 

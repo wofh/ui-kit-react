@@ -5,7 +5,7 @@ import { Box, padding } from '../Box'
 import { spacing } from '../../shared/styles'
 
 const StyledCardContent = styled(Box)`
-   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
+   padding: ${spacing.padding.medium * 0.5}px ${spacing.padding.medium}px;
 `;
 
 export const CardContent = (props) => {
