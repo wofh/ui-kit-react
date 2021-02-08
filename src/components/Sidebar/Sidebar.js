@@ -195,7 +195,7 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
 
    const getItemIconArrow = item => (
       <StyledItemIcon left>
-         {item.items && item.items.length ? <Icon icon={(activeParentItem || activeItem) === item ? 'arrowup' :'arrowdown'} /> : null}
+         {item.items && item.items.length ? <Icon icon={(activeParentItem || activeItem) === item ? 'ChevronUp' :'ChevronDown'} /> : null}
       </StyledItemIcon>
    )
 

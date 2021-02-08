@@ -23,6 +23,11 @@ const Path = styled.path`
  */
 export const Icon = ({ icon, block, ...props }) => {
 	if (!icon) return null
+
+	if (typeof icons[icon] === 'object') {
+		return icons[icon].render({ size: 20 });
+	}
+
 	return (
 		<Svg viewBox="0 0 1024 1024" width="20px" height="20px" block={block} {...props}>
 			<Path d={icons[icon]} />
