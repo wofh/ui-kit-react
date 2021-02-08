@@ -20,6 +20,8 @@
   },
   "homepage": "https://wofh.github.io/ui-kit-react",
   "dependencies": {
+    "@styled-icons/ionicons-outline": "^10.24.0",
+    "@styled-icons/ionicons-solid": "^10.24.0",
     "prop-types": "^15.5.4",
     "styled-components": "^5.1.0"
   },
@@ -35,8 +37,6 @@
     "@storybook/preset-create-react-app": "^2.1.1",
     "@storybook/react": "^5.3.18",
     "@storybook/storybook-deployer": "^2.8.5",
-    "@styled-icons/ionicons-outline": "^10.24.0",
-    "@styled-icons/ionicons-solid": "^10.24.0",
     "auto": "^9.31.1",
     "cross-env": "^7.0.2",
     "husky": ">=4",
