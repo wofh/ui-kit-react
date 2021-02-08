@@ -13,11 +13,12 @@ const StyledAccordionTitle = styled(Box)`
    color: ${color.darker};
    background-color: ${color.light};
    border-radius: ${spacing.borderRadius.default}px;
+   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
 `;
 
 const StyledAccordionIcon = styled.span`
    position: absolute;
-   right: ${spacing.padding.small}px;
+   right: ${spacing.padding.medium}px;
    top: 50%;
    transform: translateY(-50%);
 `;
@@ -26,6 +27,7 @@ const StyledAccordionContent = styled(Box)`
    position: relative;
    display: none;
    line-height: 1.5;
+   padding: ${spacing.padding.medium * 0.75}px ${spacing.padding.medium}px;
 `;
 
 const StyledAccordion = styled.div`
@@ -62,11 +64,11 @@ export const Accordion = ({ children, title, onOpen, onClose, ...props }) => {
    }
 
    const getTitle = () => {
-      return <StyledAccordionTitle pad={'small'} onClick={handleClick}>{title}<StyledAccordionIcon><Icon icon={isOpen?'arrowup':'arrowdown'} /></StyledAccordionIcon></StyledAccordionTitle>
+      return <StyledAccordionTitle pad={'medium'} onClick={handleClick}>{title}<StyledAccordionIcon><Icon icon={isOpen?'arrowup':'arrowdown'} /></StyledAccordionIcon></StyledAccordionTitle>
    }
 
    const getContent = () => {
-      return <StyledAccordionContent {...props}>{children}</StyledAccordionContent>
+      return <StyledAccordionContent {...props} pad={'medium'}>{children}</StyledAccordionContent>
    }
 
    return (
