@@ -7,6 +7,7 @@ import { spacing, color } from '../../shared/styles';
 const StyledDropdownContent = styled(Box)`
    display: none;
    position: absolute;
+   line-height: 1.2;
    border-radius: ${spacing.borderRadius.small}px;
 
    ${props => props.open && css`
@@ -113,7 +114,7 @@ DropdownContent.propTypes = {
 };
 
 DropdownContent.defaultProps = {
-   pad: 'none',
+   pad: 'small',
    align: 'left',
    background: null,
    border: 1,

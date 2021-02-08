@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
 import { spacing, color, typography } from '../../shared/styles';
+import { hex2rgba } from '../../shared/mixins';
 import { useTheme } from '../hooks';
 
 const getBackgroundColor = (props) => {
-   return props.background || props.theme.color.lighter;
+   return props.background || props.theme.color.lightest;
 };
 
 const StyledItemIcon = styled.span`
@@ -57,11 +58,21 @@ const StyledItem = styled.button`
          position: absolute;
          width: ${spacing.borderRadius.xsmall}px;
          height: ${typography.size.m1 * 1.5}px;
-         background-color: ${color.secondary};
+         background-color: ${color.primary};
          top: 50%;
          transform: translateY(-50%);
          left: -20px;
          border-radius: 0 ${spacing.borderRadius.xsmall}px ${spacing.borderRadius.xsmall}px 0;
+      }
+
+      &:after {
+         content: "";
+         position: absolute;
+         background-color: ${hex2rgba(color.primary, 0.1)};
+         top: 0;
+         bottom: 0;
+         left: -20px;
+         right: -20px;
       }
    `};
 
@@ -71,7 +82,7 @@ const StyledItem = styled.button`
 
    ${StyledItemIcon} {
       ${props => props.active && css`
-         color: ${color.secondary};
+         color: ${color.primary};
       `}
    }
 `;
@@ -97,6 +108,7 @@ const StyledSidebar = styled.div`
    min-height: 100%;
    padding: ${spacing.padding.medium}px;
    background-color: ${props => getBackgroundColor(props)};
+   box-shadow: 0 0 0 1px ${color.medium};
 
    ${StyledItem} {
       ${props => props.collapsed && 'text-align: center;'}
@@ -183,7 +195,7 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
 
    const getItemIconArrow = item => (
       <StyledItemIcon left>
-         {item.items && item.items.length ? <Icon icon={(activeParentItem || activeItem) === item ? 'arrowup' :'arrowdown'} /> : null}
+         {item.items && item.items.length ? <Icon icon={(activeParentItem || activeItem) === item ? 'ChevronUp' :'ChevronDown'} /> : null}
       </StyledItemIcon>
    )
 

@@ -2,6 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Box, padding } from '../Box'
+import { Icon } from '../Icon';
+
+const ItemIcon = styled.span`
+   position: relative;
+   display: inline-block;
+`;
+
+const ItemLabel = styled.span`
+   display: inline-block;
+`;
 
 const StyledDropdownItem = styled(Box)`
 
@@ -12,10 +22,41 @@ const StyledDropdownItem = styled(Box)`
          opacity: 0.75;
       }
    `}
+
+   ${ItemIcon} {
+      &:first-child {
+         margin-right: 10px;
+      }
+
+      &:last-child {
+         margin-left: 10px;
+      }
+   }
 `;
 
-export const DropdownItem = ({ children, ...props }) => {
-   return <StyledDropdownItem {...props}>{children}</StyledDropdownItem>
+export const DropdownItem = ({ children, iconLeft, iconRight, ...props }) => {
+
+   const getIconLeft = () =>
+      iconLeft ? (
+         <ItemIcon>
+            <Icon icon={iconLeft} />
+         </ItemIcon>
+      ) : null;
+
+   const getIconRight = () =>
+      iconRight ? (
+         <ItemIcon>
+            <Icon icon={iconRight} />
+         </ItemIcon>
+      ) : null;
+
+   return (
+      <StyledDropdownItem {...props}>
+         {getIconLeft()}
+         <ItemLabel>{children}</ItemLabel>
+         {getIconRight()}
+      </StyledDropdownItem>
+   )
 }
 
 DropdownItem.propTypes = {

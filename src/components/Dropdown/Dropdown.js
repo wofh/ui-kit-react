@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { DropdownItem } from './DropdownItem'
 import { DropdownContent } from './DropdownContent'
+import { DropdownDivider } from './DropdownDivider'
 import { padding } from '../Box'
 import { useVisible } from '../hooks'
 
@@ -61,8 +62,9 @@ export const Dropdown = ({ children, trigger, pad, position, onOpen, onClose, ..
    );
 };
 
-Dropdown.Item = DropdownItem
 Dropdown.Content = DropdownContent
+Dropdown.Item = DropdownItem
+Dropdown.Divider = DropdownDivider
 
 Dropdown.propTypes = {
 

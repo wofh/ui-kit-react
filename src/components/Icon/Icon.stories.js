@@ -37,7 +37,7 @@ export default {
 };
 
 export const labels = () => (
-  <div>
+  <>
     There are {Object.keys(icons).length} icons
     <List>
       {Object.keys(icons).map(key => (
@@ -47,7 +47,7 @@ export const labels = () => (
         </Item>
       ))}
     </List>
-  </div>
+  </>
 );
 
 export const inline = () => (

@@ -15,12 +15,22 @@ const GlobalStyleBodyWithModal = createGlobalStyle`
 	}
 `
 
+const StyledModalCloseButton = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	button {
+		padding: 10px;
+	}
+`
+
 const StyledModal = styled.div`
 	position: relative;
 	min-width: 260px;
 	background: #FFF;
 	border-radius: ${spacing.borderRadius.default}px;
-	padding: ${spacing.padding.medium}px;
+	padding: ${spacing.padding.large}px;
 	z-index: 1000;
 	${width('90%')}
 
@@ -82,15 +92,27 @@ export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
 		return null;
 	}
 
+	const getCloseButton = () => {
+		if ( !onClose ) {
+			return null
+		}
+
+		return (
+			<StyledModalCloseButton>
+				<Button plain onClick={onClose}><Icon icon={'closeAlt'} /></Button>
+			</StyledModalCloseButton>
+		)
+	}
+
 	const getModal = () => {
 
 		return (
 			<StyledModalWrapper {...props}>
 				<StyledModal {...props}>
-					<Button plain onClick={onClose}><Icon icon={'closeAlt'} /></Button>
+					{getCloseButton()}
 					{children}
 				</StyledModal>
-				<StyledOverlay onClick={onClose} />
+				<StyledOverlay onClick={onClose ? onClose : () => {}} />
 			</StyledModalWrapper>
 		)
 	}

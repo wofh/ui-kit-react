@@ -12,6 +12,7 @@ const sizes = {
 
 const StyledProgressDots = styled.div`
    display: inline-block;
+   line-height: 1;
    font-size: ${(props) => sizes[props.size] || props.size}px;
 `;
 

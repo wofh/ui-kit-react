@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { spacing, color } from '../../shared/styles';
 import { width, height } from '../../shared/mixins';
 
@@ -13,7 +13,7 @@ export const padding = {
 };
 
 const StyledBox = styled.div`
-   line-height: 1.2;
+   line-height: 1;
 
    padding: ${(props) => padding[props.pad]};
    ${(props) => props.align && 'text-align: ' + props.align};
@@ -22,6 +22,8 @@ const StyledBox = styled.div`
 
    ${props => props.w && width(props.w)}
    ${props => props.h && height(props.h)}
+
+   ${props => props.spaceAfter && css`margin-bottom: ${props.spaceAfter}px;`}
 `;
 
 export const Box = (props) => <StyledBox {...props} />;
@@ -42,6 +44,11 @@ Box.propTypes = {
     * Background color
     */
    background: PropTypes.string,
+
+   /**
+    * Defines a custom bottom spacing
+    */
+   spaceAfter: PropTypes.number,
 
    /**
     * Height of the box. It can be an object with `min` and `max` keys to set accordingly min-height and max-height.
@@ -72,4 +79,5 @@ Box.defaultProps = {
    pad: 'small',
    h: null,
    w: null,
+   spaceAfter: undefined
 };
