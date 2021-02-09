@@ -52,7 +52,7 @@ const StyledItem = styled.button`
       opacity: 0.8;
    }
 
-   ${props => props.active && css`
+   ${props => (props.active && !props.isSubItem) && css`
       &:before {
          content: "";
          position: absolute;
@@ -166,6 +166,10 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
       return activeItem === item
    }
 
+   const isSubItemActive = (item) => {
+      return items.filter((i => i == item)).length === 0
+   }
+
    const handleClick = (item, parentItem) => {
 
       if (!activePath) {
@@ -206,7 +210,7 @@ export const Sidebar = ({ items, activePath, footer, children, header, collapsed
    const getItem = (item, index, parentItem = null) => {
       return (
          <div key={index}>
-            <StyledItem active={isActiveItem(item) || isActiveItemParent(item)} onClick={() => handleClick(item, parentItem)}>
+            <StyledItem isSubItem={isSubItemActive(item)} active={isActiveItem(item) || isActiveItemParent(item)} onClick={() => handleClick(item, parentItem)}>
                {getItemIcon(item.icon||null)}
                {!collapsed && getItemLabel(item.label||null)}
                {!collapsed && getItemIconArrow(item)}
