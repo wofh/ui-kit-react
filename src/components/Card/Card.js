@@ -1,12 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { CardImage } from './CardImage'
 import { CardHeader } from './CardHeader'
 import { CardContent } from './CardContent'
 import { CardFooter } from './CardFooter'
 import { spacing, color } from '../../shared/styles'
 
+const cardSubComponents = [
+   <CardImage />,
+   <CardHeader />,
+   <CardContent />,
+   <CardFooter />
+]
+
 const StyledCard = styled.div`
+   overflow: hidden;
    border-radius: ${spacing.borderRadius.default}px;
    box-shadow: 0 0 0 1px ${color.medium};
    background-color: ${color.lightest};
@@ -18,7 +27,19 @@ const StyledCard = styled.div`
    ${props => props.spaceAfter && css`margin-bottom: ${props.spaceAfter}px;`}
 `;
 
-export const Card = ({ children, header, footer, ...props }) => {
+export const Card = ({ children, header, footer, image, ...props }) => {
+
+   const getImage = () => {
+
+      if (!image) return null
+
+      // Check if child content is already a CardImage
+      if (typeof image == 'object' && image.type === (<CardImage />).type) {
+         return <image.type {...props} {...image.props} />
+      }
+
+      return <CardImage {...props} src={image} />
+   }
 
    const getHeader = () => {
 
@@ -35,7 +56,7 @@ export const Card = ({ children, header, footer, ...props }) => {
    const getContent = () => {
 
       // Check if child content is an array and is one of <CardHeader />, <CardContent />, <CardFooter />
-      if (Array.isArray(children) && typeof children[0] == 'object' && [<CardHeader />, <CardContent />, <CardFooter />].includes((t) => t.type === children[0].type).length > 0) {
+      if (Array.isArray(children) && typeof children[0] == 'object' && cardSubComponents.filter((t) => t.type === children[0].type).length > 0) {
          return children;
       }
 
@@ -61,6 +82,7 @@ export const Card = ({ children, header, footer, ...props }) => {
 
    return (
       <StyledCard {...props}>
+         {getImage()}
          {getHeader()}
          {getContent()}
          {getFooter()}
@@ -68,11 +90,37 @@ export const Card = ({ children, header, footer, ...props }) => {
    )
 }
 
+Card.Image = CardImage
 Card.Header = CardHeader
 Card.Content = CardContent
 Card.Footer = CardFooter
 
 Card.propTypes = {
+
+   /**
+    * Card content
+    */
+   children: PropTypes.node,
+
+   /**
+    * Card header content
+    */
+   header: PropTypes.string,
+
+   /**
+    * Card footer content
+    */
+   footer: PropTypes.string,
+
+   /**
+    * Card image source
+    */
+   image: PropTypes.string,
+
+   /**
+    * Card content
+    */
+   image: PropTypes.node,
 
    /**
     * Text align

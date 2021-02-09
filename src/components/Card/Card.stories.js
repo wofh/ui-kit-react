@@ -1,33 +1,54 @@
 import React from 'react';
 import { Box } from '../Box'
-import { Field } from '../Field'
+import { Row, Col } from '../Grid';
 import { Card } from './Card'
 import { CardHeader } from './CardHeader'
 import { CardContent } from './CardContent'
 import { CardFooter } from './CardFooter'
+import { CardImage } from './CardImage'
 
 export default {
 	title: 'Components/Card',
 	component: Card,
-	subcomponents: { CardHeader, CardContent, CardFooter }
+	subcomponents: { CardImage, CardHeader, CardContent, CardFooter }
 };
 
-const content = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
+const content = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.'
+const imageSrc = 'https://www.foodspring.it/magazine/wp-content/uploads/2020/11/GettyImages-1076946698-4.jpg'
 
 export const Default = () => (
-	<Box pad={'xsmall'}>
-		<Card>
-			<CardHeader>Account Details</CardHeader>
-			<CardContent>{content}</CardContent>
-			<CardFooter>Card Footer</CardFooter>
-		</Card>
-	</Box>
+	<Row gutter={40} justify={'center'} spaceAfter={0}>
+		<Col span={6} xs={10}>
+			<Card>
+				<CardImage src={imageSrc} />
+				<CardHeader>Card Header</CardHeader>
+				<CardContent>{content}</CardContent>
+				<CardFooter>Card Footer</CardFooter>
+			</Card>
+		</Col>
+	</Row>
 );
 
 export const DefaultVariant = () => (
-	<Box pad={'xsmall'}>
-		<Card header={'Account Details'} footer={'Card Footer'}>
-			{content}
-		</Card>
-	</Box>
+	<Row gutter={40} justify={'center'} spaceAfter={0}>
+		<Col span={6} xs={10}>
+			<Card header={'Card Header'} footer={'Card Footer'} image={imageSrc}>
+				{content}
+			</Card>
+		</Col>
+	</Row>
+);
+
+export const Align = () => (
+	<Row gutter={40} justify={'center'} spaceAfter={0}>
+		<Col span={4} xs={10}>
+			<Card header={'Left Align'} align={'left'} spaceAfter={20}>{content}</Card>
+		</Col>
+		<Col span={4} xs={10}>
+			<Card header={'Center Align'} align={'center'} spaceAfter={20}>{content}</Card>
+		</Col>
+		<Col span={4} xs={10}>
+			<Card header={'Right Align'} align={'right'} spaceAfter={20}>{content}</Card>
+		</Col>
+	</Row>
 );

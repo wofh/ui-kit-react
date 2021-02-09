@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box } from '../Box'
-import { Row, Col } from './Grid'
+import { Container, Row, Col } from './Grid'
 
 export default {
 	title: 'Components/Grid',
-	subcomponents: {Row, Col},
+	subcomponents: {Container, Row, Col},
 };
 
 export const Default = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col span={1}>
 				<Box background={'secondary'} h={30} pad={'none'} />
@@ -87,15 +87,15 @@ export const Default = () => (
 			</Col>
 		</Row>
 		<Row gutter={20}>
-			<Col>
+			<Col span={12}>
 				<Box background={'secondary'} h={30} pad={'none'} />
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const NoGutter = () => (
-	<Box>
+	<Container>
 		<Row>
 			<Col span={6}>
 				<Box background={'#17dfae'} pad={'medium'}></Box>
@@ -104,11 +104,11 @@ export const NoGutter = () => (
 				<Box background={'#00c5e6'} pad={'medium'}></Box>
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const Gutter = () => (
-	<Box>
+	<Container>
 		<Row gutter={40}>
 			<Col span={4}>
 				<Box background={'#17dfae'} pad={'medium'}></Box>
@@ -120,11 +120,11 @@ export const Gutter = () => (
 				<Box background={'#17dfae'} pad={'medium'}></Box>
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const ColumnOffset = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col span={4} offset={2}>
 				<Box background={'#17dfae'} pad={'medium'}></Box>
@@ -133,11 +133,11 @@ export const ColumnOffset = () => (
 				<Box background={'#00c5e6'} pad={'medium'}></Box>
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const ColumnOrder = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col span={3} order={4}>
 				<Box background={'#17dfae'} pad={'medium'} align={'center'}>1</Box>
@@ -152,11 +152,11 @@ export const ColumnOrder = () => (
 				<Box background={'#00c5e6'} pad={'medium'} align={'center'}>4</Box>
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const ColumnSort = () => (
-	<Box>
+	<Container>
 		<Row gutter={20} justify={'start'} align={'top'}>
 			<Col span={3}>
 				<Box background={'#17dfae'} pad={'medium'} h={200}></Box>
@@ -190,11 +190,11 @@ export const ColumnSort = () => (
 				<Box background={'#17dfae'} pad={'medium'} h={130}></Box>
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const Responsive = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col xs={2} sm={4} md={6} lg={8} xl={10}>
 				<Box background={'#17dfae'} pad={'medium'} />
@@ -203,11 +203,11 @@ export const Responsive = () => (
 				<Box background={'#00c5e6'} pad={'medium'} />
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const ExoticResponsive = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col xs={{ span: 6, offset: 2 }} md={{ span: 8 }} lg={{ span: 4, offset: 4 }}>
 				<Box background={'#17dfae'} pad={'medium'} />
@@ -216,11 +216,11 @@ export const ExoticResponsive = () => (
 				<Box background={'#00c5e6'} pad={'medium'} />
 			</Col>
 		</Row>
-	</Box>
+	</Container>
 );
 
 export const Grow = () => (
-	<Box>
+	<Container>
 		<Row gutter={20}>
 			<Col span={2}>
 				<Box background={'#00c5e6'} pad={'medium'} />
@@ -232,5 +232,47 @@ export const Grow = () => (
 				<Box background={'#00c5e6'} pad={'medium'} w={300} />
 			</Col>
 		</Row>
-	</Box>
+	</Container>
+);
+
+export const ContainerMaxWidth = () => (
+	<Container maxWidth={520}>
+		<Row>
+			<Col span={3}>
+				<Box background={'#17dfae'} pad={'medium'}></Box>
+			</Col>
+			<Col span={5}>
+				<Box background={'#00c5e6'} pad={'medium'}></Box>
+			</Col>
+			<Col span={4}>
+				<Box background={'#17dfae'} pad={'medium'}></Box>
+			</Col>
+		</Row>
+	</Container>
+);
+
+export const ContainerAlign = () => (
+	<>
+		<Container maxWidth={420} spaceAfter={20}>
+			<Row>
+				<Col span={12}>
+					<Box background={'#17dfae'} pad={'medium'}></Box>
+				</Col>
+			</Row>
+		</Container>
+		<Container maxWidth={420} align={'left'} spaceAfter={20}>
+			<Row>
+				<Col span={12}>
+					<Box background={'#00c5e6'} pad={'medium'}></Box>
+				</Col>
+			</Row>
+		</Container>
+		<Container maxWidth={420} align={'right'} spaceAfter={20}>
+			<Row>
+				<Col span={12}>
+					<Box background={'#17dfae'} pad={'medium'}></Box>
+				</Col>
+			</Row>
+		</Container>
+	</>
 );
