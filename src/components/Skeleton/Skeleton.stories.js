@@ -2,6 +2,8 @@ import React from 'react';
 import { Box } from '../Box';
 import { Skeleton } from './Skeleton';
 import { Heading } from '../Heading';
+import { Row, Col } from '../Grid';
+import { Card } from '../Card';
 import { Text } from '../Text';
 
 export default {
@@ -10,17 +12,32 @@ export default {
 };
 
 export const Default = () => (
-   <Box pad={'xsmall'}>
-      <Box pad={'xsmall'}>
-         <Skeleton circle={true} w={100} h={100} />
-      </Box>
-      <Box pad={'xsmall'}>
-         <Heading size={'xxlarge'}><Skeleton /></Heading>
-      </Box>
-      <Box pad={'xsmall'}>
-         <Text><Skeleton count={4} /></Text>
-      </Box>
-   </Box>
+   <Row gutter={40} justify={'center'} spaceAfter={0}>
+      <Col span={5} xs={12} xl={4}>
+         <Card spaceAfter={20}>
+            <Box pad={'xsmall'}>
+               <Skeleton circle={true} w={100} h={100} />
+            </Box>
+            <Box pad={'xsmall'}>
+               <Heading size={'xxlarge'}><Skeleton /></Heading>
+            </Box>
+            <Box pad={'xsmall'}>
+               <Text><Skeleton count={4} w={'random'} /></Text>
+            </Box>
+         </Card>
+      </Col>
+      <Col span={5} xs={12} xl={4}>
+         <Box pad={'xsmall'}>
+            <Skeleton circle={true} w={100} h={100} />
+         </Box>
+         <Box pad={'xsmall'}>
+            <Heading size={'xxlarge'}><Skeleton /></Heading>
+         </Box>
+         <Box pad={'xsmall'}>
+            <Text><Skeleton count={4} /></Text>
+         </Box>
+      </Col>
+   </Row>
 );
 
 export const SingleLine = () => (

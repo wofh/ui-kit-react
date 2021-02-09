@@ -34,7 +34,8 @@ export const Card = ({ children, header, footer, ...props }) => {
 
    const getContent = () => {
 
-      if (Array.isArray(children)) {
+      // Check if child content is an array and is one of <CardHeader />, <CardContent />, <CardFooter />
+      if (Array.isArray(children) && typeof children[0] == 'object' && [<CardHeader />, <CardContent />, <CardFooter />].includes((t) => t.type === children[0].type).length > 0) {
          return children;
       }
 

@@ -25,7 +25,15 @@ export const skeletonStyles = css`
    width: 100%;
 
    ${props => props.w && css`
-      width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
+      ${
+         props.w === 'random'
+         ? css`
+            width: ${Math.floor(Math.random() * (100 - 50 + 1)) + 50}%;
+         `
+         : css`
+            width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
+         `
+      }
    `}
 
    ${props => props.h && css`
@@ -74,7 +82,7 @@ Skeleton.propTypes = {
    duration: PropTypes.number,
 
    /**
-    * Width of the skeleton
+    * Width of the skeleton, Can be a number (e.g. `30`) or a string (e.g. `50%`, `80px` or `random`)
     */
    w: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 
@@ -93,6 +101,6 @@ Skeleton.defaultProps = {
    count: 1,
    duration: 1.2,
    circle: false,
-   w: null,
+   w: '100%',
    h: null,
 };

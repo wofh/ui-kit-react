@@ -78,7 +78,16 @@ export const Col = ({ children, ...props }) => {
          order: null
       }
 
+      /**
+       * If Col has not a value defined for `xs`, `sm`, `md`, `lg` and `xl` get the `span` prop, otherwise get the last one cached
+       */
       if ( !props[size] ) {
+
+         if (props.span) {
+            sizesProps[size] = Object.assign({}, props);
+            return;
+         }
+
          sizesProps[size] = Object.assign({}, lastSizeProps);
          return;
       }
