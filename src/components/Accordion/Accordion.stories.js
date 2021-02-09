@@ -28,8 +28,8 @@ export const Open = () => (
 
 export const Events = () => (
    <Box pad={'xsmall'}>
-      <Accordion title={'Setup'} onOpen={() => action('Accordion Open Event')} onClose={() => action('Accordion Close Event')}>{content}</Accordion>
-      <Accordion title={'Location'} onOpen={() => action('Accordion Open Event')} onClose={() => action('Accordion Close Event')}>{content}</Accordion>
-      <Accordion title={'Date and Time'} onOpen={() => action('Accordion Open Event')} onClose={() => action('Accordion Close Event')}>{content}</Accordion>
+      <Accordion title={'Setup'} onOpen={action('Accordion Open Event')} onClose={action('Accordion Close Event')}>{content}</Accordion>
+      <Accordion title={'Location'} onOpen={action('Accordion Open Event')} onClose={action('Accordion Close Event')}>{content}</Accordion>
+      <Accordion title={'Date and Time'} onOpen={action('Accordion Open Event')} onClose={action('Accordion Close Event')}>{content}</Accordion>
    </Box>
 );
