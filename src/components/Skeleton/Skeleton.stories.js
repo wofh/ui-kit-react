@@ -69,3 +69,9 @@ export const Duration = () => (
       <Skeleton duration={3} />
    </Box>
 );
+
+export const RandomWidth = () => (
+   <Box pad={'xsmall'}>
+      <Skeleton count={5} w={'random'} />
+   </Box>
+);
