@@ -1,10 +1,15 @@
 import React from 'react';
 import { Box } from '../Box';
 import { Field } from './Field';
+import { Input } from './Input';
+import { Password } from './Password';
+import { Email } from './Email';
+import { Textarea } from './Textarea';
 
 export default {
    title: 'Components/Field',
    component: Field,
+   subcomponents: { Input, Email, Password, Textarea },
 };
 
 const placeholder = 'Placeholder text'
@@ -13,10 +18,10 @@ const description = 'Field description text'
 export const Default = () => (
    <Box pad={'xsmall'}  >
       <Box >
-         <Field spaceAfter={20} type={'text'} placeholder={placeholder} label={'Text'} description={description}/>
-         <Field spaceAfter={20} type={'textarea'} placeholder={placeholder} label={'Textarea'} description={description} />
-         <Field spaceAfter={20} type={'password'} placeholder={placeholder} error={'Error Message'} label={'Password'}/>
-         <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Email'} success description={description}/>
+         <Field spaceAfter={20} type={'text'} placeholder={placeholder} label={'Text'} description={description} />
+         <Field spaceAfter={20} type={'textarea'} placeholder={placeholder} label={'Textarea'} description={description} autoResize />
+         <Field spaceAfter={20} type={'password'} placeholder={placeholder} error={'Error Message'} label={'Password'} />
+         <Field spaceAfter={20} type={'email'} placeholder={placeholder} label={'Email'} success description={description} />
       </Box>
    </Box>
 );

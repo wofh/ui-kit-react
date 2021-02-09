@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { color, spacing, typography } from '../../shared/styles';
 
@@ -39,6 +40,31 @@ const StyledBase = styled.textarea`
    `}
 `;
 
-export const Textarea = (props) => {
-   return <StyledBase {...props} />
+export const Textarea = ({ autoResize, ...props }) => {
+   const el = useRef(null);
+
+   const handleResize = () => {
+      if (!autoResize) return
+      el.current.style.height = 'auto';
+      el.current.style.height = (el.current.scrollHeight) + 'px';
+   }
+
+   useEffect(() => {
+      el.current.addEventListener('input', handleResize);
+      return () => el.current.removeEventListener('input', handleResize);
+   });
+
+   return <StyledBase ref={el} {...props} />
 }
+
+Textarea.propTypes = {
+
+   /**
+    * Autoresize textarea
+    */
+   autoResize: PropTypes.bool
+};
+
+Textarea.defaultProps = {
+   autoResize: false
+};
