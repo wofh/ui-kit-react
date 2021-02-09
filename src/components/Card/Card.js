@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { Box, padding } from '../Box'
 import { CardHeader } from './CardHeader'
 import { CardContent } from './CardContent'
 import { CardFooter } from './CardFooter'
@@ -9,7 +8,6 @@ import { spacing, color } from '../../shared/styles'
 
 const StyledCard = styled.div`
    border-radius: ${spacing.borderRadius.default}px;
-   padding: ${(props) => padding[props.pad]};
    box-shadow: 0 0 0 1px ${color.medium};
    background-color: ${color.lightest};
 
@@ -35,6 +33,10 @@ export const Card = ({ children, header, footer, ...props }) => {
    }
 
    const getContent = () => {
+
+      if (Array.isArray(children)) {
+         return children;
+      }
 
       // Check if child content is already a CardContent
       if (typeof children == 'object' && children.type === (<CardContent />).type) {
@@ -72,11 +74,6 @@ Card.Footer = CardFooter
 Card.propTypes = {
 
    /**
-    * Padding
-    */
-   pad: PropTypes.oneOf(Object.keys(padding)),
-
-   /**
     * Text align
     */
    align: PropTypes.oneOf(['left', 'center', 'right']),
@@ -93,6 +90,5 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-   pad: undefined,
    spaceAfter: undefined
 };
