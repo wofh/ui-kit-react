@@ -4,8 +4,9 @@ import styled, { css } from 'styled-components';
 import { Input } from './Input';
 import { Password } from './Password';
 import { Textarea } from './Textarea';
-import { color, spacing, typography } from '../../shared/styles';
 import { Email } from './Email';
+import { Select } from './Select';
+import { color, spacing, typography } from '../../shared/styles';
 
 const StyledLabel = styled.label`
    display: block;
@@ -50,8 +51,12 @@ export const Field = (props) => {
 
          case 'text':
             return <Input {...props} />;
+
          case 'email':
             return <Email {...props} />;
+
+         case 'select':
+            return <Select {...props} />;
 
          default:
             return <Input {...props} />;
@@ -85,7 +90,7 @@ Field.propTypes = {
    /**
     * Type of the input field
     */
-   type : PropTypes.oneOf(['text', 'textarea', 'password', 'email']).isRequired,
+   type : PropTypes.oneOf(['text', 'textarea', 'password', 'email', 'select']).isRequired,
 
    /**
     * Label of the input field

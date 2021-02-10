@@ -54,6 +54,13 @@ export const StyledButtonPlain = styled.button`
       cursor: default;
    }
 
+   ${(props) =>
+      props.fullWidth &&
+      css`
+         display: block;
+         width: 100%;
+      `}
+
    ${ButtonIcon} {
       &:first-child {
          margin-right: 10px;
@@ -77,13 +84,6 @@ export const StyledButton = styled(StyledButtonPlain)`
    padding: 0 ${(props) => padding[props.size] * 1.5}px;
    line-height: ${(props) => padding[props.size] * 2}px;
    font-weight: ${(props) => props.theme.typography.weight.medium};
-
-   ${(props) =>
-      props.fullWidth &&
-      css`
-         display: block;
-         width: 100%;
-      `}
 
    ${(props) =>
       props.stroked &&

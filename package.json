@@ -23,6 +23,7 @@
     "@styled-icons/ionicons-outline": "^10.24.0",
     "@styled-icons/ionicons-solid": "^10.24.0",
     "prop-types": "^15.5.4",
+    "react-select-search": "^3.0.1",
     "styled-components": "^5.1.0"
   },
   "devDependencies": {
