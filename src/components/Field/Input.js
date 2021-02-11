@@ -81,7 +81,7 @@ const StyledInputWrapper = styled.div`
    }
 `
 
-export const Input = (props) => {
+export const Input = ({ onChange, ...props }) => {
 
    const getIconLeft = () =>
       props.iconLeft ? (
@@ -100,7 +100,7 @@ export const Input = (props) => {
    return (
       <StyledInputWrapper {...props}>
          {getIconLeft()}
-         <StyledBase {...props} defaultValue={props.value} />
+         <StyledBase {...props} onChange={onChange} defaultValue={props.value} />
          {getIconRight()}
       </StyledInputWrapper>
    )

@@ -43,7 +43,7 @@ const StyledInputWrapper = styled.div`
    }
 `
 
-export const Password = (props) => {
+export const Password = ({ onChange, ...props }) => {
    const [visible, setVisible] = useState(false)
 
    const getVisibilityIcon = () => {
@@ -80,7 +80,7 @@ export const Password = (props) => {
    return (
       <StyledInputWrapper {...props}>
          {getIconLeft()}
-         <StyledBase {...props} type={visible?'text':'password'} defaultValue={props.value} />
+         <StyledBase {...props} type={visible ? 'text' : 'password'} onChange={onChange} defaultValue={props.value} />
          {getIconRight()}
       </StyledInputWrapper>
    )

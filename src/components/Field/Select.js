@@ -188,7 +188,7 @@ export const Select = ({ onChange, plain, open, options, multiSelect, searchable
 
         if ( plain ) {
             return [{ name: props.placeholder, disabled: true, selected: true }].concat(options).map(({ name, value, disabled, ...option}) => (
-                <StyledOption value={value} disabled={disabled||false} {...option}>{name}</StyledOption>
+                <StyledOption key={name} value={value} disabled={disabled||false} {...option}>{name}</StyledOption>
             ))
         }
 
@@ -199,7 +199,7 @@ export const Select = ({ onChange, plain, open, options, multiSelect, searchable
                         <StyledItemButton value={''} disabled={true}>{props.placeholder}</StyledItemButton>
                     </li>
                     {snapshot.options.map((option) => (
-                        <li key={option.value}>
+                        <li key={option.name}>
                             <StyledItemButton active={isOptionActive(option)} {...optionProps} value={option.value} disabled={option.disabled||false}>{option.name}</StyledItemButton>
                         </li>
                     ))}
@@ -226,7 +226,7 @@ export const Select = ({ onChange, plain, open, options, multiSelect, searchable
 
     return (
         <StyledWrapper {...props} {...snapshot}>
-            <StyledInput {...valueProps} {...props} >
+            <StyledInput {...valueProps} {...props}>
                 {getIconLeft()}
                 <span>{snapshot.displayValue || props.placeholder || ''}</span>
                 {getIconRight()}

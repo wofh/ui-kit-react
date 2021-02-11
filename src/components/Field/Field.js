@@ -39,27 +39,46 @@ const StyledField = styled.div`
    `}
 `;
 
-export const Field = (props) => {
+export const Field = ({ onChange, ...props }) => {
+
+   const handleOnChange = (e) => {
+      let value = e;
+
+      switch (props.type) {
+         case 'select':
+            if ( !props.plain ) {
+               break;
+            }
+
+         default:
+            e.preventDefault();
+            value = e.target.value;
+      }
+
+      if (onChange) {
+         onChange(value, e)
+      }
+   }
 
    const getField = () => {
       switch (props.type) {
          case 'textarea':
-            return <Textarea {...props} />;
+            return <Textarea {...props} onChange={handleOnChange} />;
 
          case 'password':
-            return <Password {...props} />;
+            return <Password {...props} onChange={handleOnChange} />;
 
          case 'text':
-            return <Input {...props} />;
+            return <Input {...props} onChange={handleOnChange} />;
 
          case 'email':
-            return <Email {...props} />;
+            return <Email {...props} onChange={handleOnChange} />;
 
          case 'select':
-            return <Select {...props} />;
+            return <Select {...props} onChange={handleOnChange} />;
 
          default:
-            return <Input {...props} />;
+            return <Input {...props} onChange={handleOnChange} />;
       }
    }
 

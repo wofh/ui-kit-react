@@ -20,7 +20,7 @@ const selectOptions = [
    { name: 'Pilates', value: 'pilates' },
    { name: 'Martial Arts', value: 'martial-arts' },
    { name: 'Dance', value: 'dance' },
-   { name: 'Meditation', value: 'meditation', disabled: true },
+   { name: 'Meditation (Disabled)', value: 'meditation', disabled: true },
    { name: 'Cross-Fit', value: 'cross-fit' },
 ]
 
@@ -85,9 +85,9 @@ export const Autofocus = () => (
 export const SelectTypes = () => (
    <Box pad={'xsmall'}  >
       <Box >
-         <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={placeholder} label={'Select'} onChange={(e) => console.log(e)} />
-         <Field spaceAfter={20} multiSelect closeOnSelect={false} type={'select'} options={selectOptions} placeholder={placeholder} label={'Multi Select'} onChange={(e) => console.log(e)} />
-         <Field spaceAfter={20} plain type={'select'} options={selectOptions} placeholder={placeholder} label={'Plain Select'} onChange={(e) => console.log(e)} />
+         <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={placeholder} label={'Select'} onChange={(val) => console.log(val)} />
+         <Field spaceAfter={20} multiSelect closeOnSelect={false} type={'select'} options={selectOptions} placeholder={placeholder} label={'Multi Select'} onChange={(val) => console.log(val)} />
+         <Field spaceAfter={20} plain type={'select'} options={selectOptions} placeholder={placeholder} label={'Plain Select'} onChange={(val) => console.log(val)} />
       </Box>
    </Box>
 );
