@@ -195,3 +195,36 @@ export const Autofocus = () => (
       </Box>
    </>
 );
+
+export const AsyncSelect = () => (
+   <Box pad={'xsmall'} h={440}>
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         searchable
+         placeholder={'Async Select'}
+         debounce={1000}
+         fetchOptions={(query, defaultOptions) => {
+            return new Promise((resolve, reject) => {
+               fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
+                  .then((response) => response.json())
+                  .then(({ drinks }) => {
+                     if (!drinks) {
+                        resolve([]);
+                     } else {
+                        resolve(
+                           drinks.map(({ idDrink, strDrink }) => ({
+                              value: idDrink,
+                              name: strDrink,
+                           }))
+                        );
+                     }
+                  })
+                  .catch(reject);
+            });
+         }}
+         label={'Async Select'}
+         onChange={(val) => console.log(val)}
+      />
+   </Box>
+);

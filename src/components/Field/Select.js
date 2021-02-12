@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
 import { StyledBase } from './Input';
 import { color, spacing, typography } from '../../shared/styles';
-import { hex2rgba } from '../../shared/mixins';
+import { hex2rgba, debounce } from '../../shared/mixins';
 
 const StyledIcon = styled.span`
    position: absolute;
@@ -131,7 +131,7 @@ const StyledWrapper = styled.div`
         overflow: auto;
         border-radius: ${spacing.borderRadius.default}px;
         border: 1px solid ${color.medium};
-        max-height: 400px;
+        max-height: 360px;
 
         li {
             ${StyledItemButton} {}
@@ -284,6 +284,8 @@ export const Select = ({
    plain,
    open,
    options: defaultOptions,
+   fetchOptions,
+   debounce: debounceTime,
    multiSelect,
    searchable,
    onChange,
@@ -296,13 +298,33 @@ export const Select = ({
    const [focus, setFocus] = useState(false);
    const [search, setSearch] = useState('');
    const [options, setOptions] = useState(defaultOptions);
+   const [fetching, setFetching] = useState(false);
 
+   // Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
    const fetch = useMemo(() => {
-      // Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
-      return (s) =>
-         setOptions(
-            flattenOptions(defaultOptions).filter((op) => (op.value + op.name).includes(s))
-         );
+      if (!fetchOptions) {
+         return (s) =>
+            setOptions(
+               flattenOptions(defaultOptions).filter((op) =>
+                  (op.value + op.name).toLowerCase().includes(s.toLowerCase())
+               )
+            );
+      }
+
+      return debounce((s) => {
+         setFetching(true);
+         const req = fetchOptions(s, defaultOptions);
+
+         Promise.resolve(req)
+            .then((newOptions) => {
+               setOptions(
+                  flattenOptions(newOptions).filter((op) =>
+                     (op.value + op.name).toLowerCase().includes(s.toLowerCase())
+                  )
+               );
+            })
+            .finally(() => setFetching(false));
+      }, debounceTime);
    }, [search, defaultOptions, focus]);
 
    useEffect(() => fetch(search), [fetch, search]);
@@ -490,7 +512,7 @@ Select.propTypes = {
          name: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
          disabled: PropTypes.bool,
       })
-   ).isRequired,
+   ),
 
    /**
     * Close the selectbox on select
@@ -508,6 +530,16 @@ Select.propTypes = {
    searchable: PropTypes.bool,
 
    /**
+    * Function to fetch options asynchronously
+    */
+   fetchOptions: PropTypes.func,
+
+   /**
+    * Number of ms to wait until calling `fetchOptions` when searching
+    */
+   debounce: PropTypes.number,
+
+   /**
     * If `true` options will be rendered open
     */
    open: PropTypes.bool,
@@ -519,12 +551,15 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
+   options: [],
    multiSelect: false,
    searchable: false,
    closeOnSelect: true,
    open: false,
    plain: false,
+   fetchOptions: null,
    onChange: () => {},
    onFocus: () => {},
    onBlur: () => {},
+   debounce: 0,
 };
