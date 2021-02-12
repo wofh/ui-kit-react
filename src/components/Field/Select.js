@@ -273,9 +273,9 @@ export const Select = ({
    options: defaultOptions,
    multiSelect,
    searchable,
-   onChange = () => {},
-   onFocus = () => {},
-   onBlur = () => {},
+   onChange,
+   onFocus,
+   onBlur,
    ...props
 }) => {
    const ref = useRef(null);
@@ -511,4 +511,7 @@ Select.defaultProps = {
    closeOnSelect: true,
    open: false,
    plain: false,
+   onChange: () => {},
+   onFocus: () => {},
+   onBlur: () => {},
 };
