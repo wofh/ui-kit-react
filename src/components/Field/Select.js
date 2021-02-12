@@ -69,6 +69,7 @@ const StyledInputDisplay = styled.div`
 `;
 
 const StyledInput = styled(StyledBase)`
+   display: none;
    position: absolute;
    opacity: 0;
    z-index: 100;
@@ -161,6 +162,12 @@ const StyledWrapper = styled.div`
    }
 
    ${StyledInput} {
+      ${(props) =>
+         props.searchable &&
+         css`
+            display: block;
+         `}
+
       ${(props) =>
          props.focus &&
          props.searchable &&
@@ -421,20 +428,39 @@ export const Select = ({
 
    return (
       <StyledWrapper {...props} focus={focus} searchable={searchable}>
-         <StyledInput
-            ref={ref}
-            tabIndex={0}
-            onChange={searchable ? ({ target }) => setSearch(target.value) : () => {}}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            placeholder={props.placeholder || ''}
-            value={search}
-         />
-         <StyledInputDisplay {...props} isPlaceholder={isPlaceholder()}>
-            {renderIconLeft()}
-            <span>{getDisplayValue(value) || props.placeholder || ''}</span>
-            {renderIconRight()}
-         </StyledInputDisplay>
+         {searchable ? (
+            <>
+               <StyledInput
+                  ref={ref}
+                  tabIndex={0}
+                  onChange={searchable ? ({ target }) => setSearch(target.value) : () => {}}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  placeholder={props.placeholder || ''}
+                  value={search}
+               />
+               <StyledInputDisplay {...props} isPlaceholder={isPlaceholder()}>
+                  {renderIconLeft()}
+                  <span>{getDisplayValue(value) || props.placeholder || ''}</span>
+                  {renderIconRight()}
+               </StyledInputDisplay>
+            </>
+         ) : (
+            <>
+               <StyledInputDisplay
+                  ref={ref}
+                  tabIndex={0}
+                  {...props}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                  isPlaceholder={isPlaceholder()}
+               >
+                  {renderIconLeft()}
+                  <span>{getDisplayValue(value) || props.placeholder || ''}</span>
+                  {renderIconRight()}
+               </StyledInputDisplay>
+            </>
+         )}
          {renderOptions()}
       </StyledWrapper>
    );
