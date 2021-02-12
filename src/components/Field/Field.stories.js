@@ -113,6 +113,15 @@ export const FieldType = () => (
       <Field
          spaceAfter={20}
          type={'select'}
+         searchable
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Searchable Select'}
+         onChange={(val) => console.log(val)}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
          plain
          options={selectOptions}
          placeholder={placeholder}

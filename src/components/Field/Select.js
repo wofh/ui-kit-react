@@ -1,7 +1,8 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
+import { StyledBase } from './Input';
 import { color, spacing, typography } from '../../shared/styles';
 import { hex2rgba } from '../../shared/mixins';
 
@@ -22,7 +23,7 @@ const StyledSelect = styled.select`
    background-color: transparent;
 `;
 
-const StyledInput = styled.div`
+const StyledInputDisplay = styled.div`
     position: relative;
 
     display: block;
@@ -67,6 +68,12 @@ const StyledInput = styled.div`
    }
 `;
 
+const StyledInput = styled(StyledBase)`
+   position: absolute;
+   opacity: 0;
+   z-index: 100;
+`;
+
 const StyledItemButton = styled.button`
    width: 100%;
    border: none;
@@ -100,7 +107,13 @@ const StyledItemButton = styled.button`
 `;
 
 const StyledWrapper = styled.div`
-    position: relative;
+   position: relative;
+
+   ${(props) =>
+      props.focus &&
+      css`
+         z-index: 200;
+      `}
 
     ul {
         position: absolute;
@@ -121,32 +134,60 @@ const StyledWrapper = styled.div`
         }
     }
 
-    ${StyledInput} {
-        ${(props) =>
-           !props.error &&
-           !props.success &&
-           css`
-              ${props.focus &&
-              css`
-                 box-shadow: inset 0 0 0 1px ${color.primary};
-              `}
-           `}
+   ${StyledInputDisplay} {
+      ${(props) =>
+         !props.error &&
+         !props.success &&
+         css`
+            ${props.focus &&
+            css`
+               box-shadow: inset 0 0 0 1px ${color.primary};
+            `}
+         `}
 
-        ${(props) =>
-           props.error &&
-           css`
-              color: ${color.danger};
-              box-shadow: inset 0 0 0 1px ${color.danger};
-           `}
+      ${(props) =>
+         props.error &&
+         css`
+            color: ${color.danger};
+            box-shadow: inset 0 0 0 1px ${color.danger};
+         `}
 
-        ${(props) =>
-           props.success &&
-           css`
-              color: ${color.success};
-              box-shadow: inset 0 0 0 1px ${color.success};
-           `}
-    }
+      ${(props) =>
+         props.success &&
+         css`
+            color: ${color.success};
+            box-shadow: inset 0 0 0 1px ${color.success};
+         `}
+   }
+
+   ${StyledInput} {
+      ${(props) =>
+         props.focus &&
+         props.searchable &&
+         css`
+            opacity: 1;
+         `}
+   }
 `;
+
+// Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
+const flattenOptions = (options) => {
+   return options
+      .map((option, i) => {
+         // if (option.type === 'group') {
+         //    const id = `${option.name.replace(/\s+/g, '-').toLowerCase()}-${i}`;
+
+         //    return option.items.map((item) => ({
+         //       ...item,
+         //       groupId: id,
+         //       groupName: option.name,
+         //    }));
+         // }
+
+         return { ...option, index: i };
+      })
+      .flat();
+};
 
 const isOption = (option) => {
    return option !== null && typeof option === 'object' && 'value' in option && 'name' in option;
@@ -222,7 +263,7 @@ export const Select = ({
    closeOnSelect,
    plain,
    open,
-   options,
+   options: defaultOptions,
    multiSelect,
    searchable,
    onChange = () => {},
@@ -233,7 +274,18 @@ export const Select = ({
    const ref = useRef(null);
    const [value, setValue] = useState(multiSelect ? [] : null);
    const [focus, setFocus] = useState(false);
-   // const [search, setSearch] = useState('');
+   const [search, setSearch] = useState('');
+   const [options, setOptions] = useState(defaultOptions);
+
+   const fetch = useMemo(() => {
+      // Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
+      return (s) =>
+         setOptions(
+            flattenOptions(defaultOptions).filter((op) => (op.value + op.name).includes(s))
+         );
+   }, [search, defaultOptions, focus]);
+
+   useEffect(() => fetch(search), [fetch, search]);
 
    const onSelect = useCallback(
       (newValue) => {
@@ -273,7 +325,7 @@ export const Select = ({
    const handleBlur = useCallback(
       (e) => {
          setFocus(false);
-         // setSearch('');
+         setSearch('');
          onBlur(e);
       },
       [onBlur]
@@ -285,6 +337,11 @@ export const Select = ({
       }
 
       return getValues(value) === option.value;
+   };
+
+   const isPlaceholder = () => {
+      if (getDisplayValue(value)) return false;
+      return !!props.placeholder;
    };
 
    const renderArrowIcon = () => (
@@ -348,39 +405,36 @@ export const Select = ({
       return null;
    };
 
-   const isPlaceholder = () => {
-      if (getDisplayValue(value)) return false;
-      return !!props.placeholder;
-   };
-
    if (plain) {
       return (
          <StyledWrapper {...props}>
-            <StyledInput plain={plain} {...props}>
+            <StyledInputDisplay plain={plain} {...props}>
                {renderIconLeft()}
                <StyledSelect {...props} defaultValue={props.value} onChange={onChange}>
                   {renderOptions()}
                </StyledSelect>
                {renderIconRight()}
-            </StyledInput>
+            </StyledInputDisplay>
          </StyledWrapper>
       );
    }
 
    return (
-      <StyledWrapper {...props} focus={focus}>
+      <StyledWrapper {...props} focus={focus} searchable={searchable}>
          <StyledInput
-            {...props}
             ref={ref}
             tabIndex={0}
+            onChange={searchable ? ({ target }) => setSearch(target.value) : () => {}}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            isPlaceholder={isPlaceholder()}
-         >
+            placeholder={props.placeholder || ''}
+            value={search}
+         />
+         <StyledInputDisplay {...props} isPlaceholder={isPlaceholder()}>
             {renderIconLeft()}
             <span>{getDisplayValue(value) || props.placeholder || ''}</span>
             {renderIconRight()}
-         </StyledInput>
+         </StyledInputDisplay>
          {renderOptions()}
       </StyledWrapper>
    );
@@ -412,7 +466,7 @@ Select.propTypes = {
    /**
     * If `true` enables search
     */
-   // searchable: PropTypes.bool,
+   searchable: PropTypes.bool,
 
    /**
     * If `true` options will be rendered open
@@ -427,7 +481,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
    multiSelect: false,
-   // searchable: false,
+   searchable: false,
    closeOnSelect: true,
    open: false,
    plain: false,
