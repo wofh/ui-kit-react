@@ -15,32 +15,43 @@ export const StyledBase = styled.input`
    box-shadow: inset 0 0 0 1px ${color.medium};
    border-radius: ${spacing.borderRadius.default}px;
 
-   ${(props) => (!props.error && !props.success) && css`
-      &:focus {
-         box-shadow: inset 0 0 0 1px ${color.primary};
-      }
-   `}
+   &::-webkit-input-placeholder {
+      color: ${color.mediumdark};
+   };
 
-   ${(props) => props.error && css`
-      color: ${color.danger};
-      box-shadow: inset 0 0 0 1px ${color.danger};
-      &::-webkit-input-placeholder {
+   ${(props) =>
+      !props.error &&
+      !props.success &&
+      css`
+         &:focus {
+            box-shadow: inset 0 0 0 1px ${color.primary};
+         }
+      `}
+
+   ${(props) =>
+      props.error &&
+      css`
          color: ${color.danger};
-      };
-   `}
+         box-shadow: inset 0 0 0 1px ${color.danger};
+         &::-webkit-input-placeholder {
+            color: ${color.danger};
+         }
+      `}
 
-   ${(props) => props.success && css`
-      color: ${color.success};
-      box-shadow: inset 0 0 0 1px ${color.success};
-      &::-webkit-input-placeholder {
+   ${(props) =>
+      props.success &&
+      css`
          color: ${color.success};
-      };
-   `}
+         box-shadow: inset 0 0 0 1px ${color.success};
+         &::-webkit-input-placeholder {
+            color: ${color.success};
+         }
+      `}
 `;
 
 const StyledIcon = styled.span`
    position: absolute;
-`
+`;
 
 const StyledInputWrapper = styled.div`
    position: relative;
@@ -61,28 +72,35 @@ const StyledInputWrapper = styled.div`
          right: 0;
       }
 
-      ${(props) => props.error && css`
-         color: ${color.danger};
-      `}
+      ${(props) =>
+         props.error &&
+         css`
+            color: ${color.danger};
+         `}
 
-      ${(props) => props.success && css`
-         color: ${color.success};
-      `}
+      ${(props) =>
+         props.success &&
+         css`
+            color: ${color.success};
+         `}
    }
 
    ${StyledBase} {
-      ${props => props.iconLeft && css`
-         padding-left: ${typography.size.m2 * 2}px;
-      `}
+      ${(props) =>
+         props.iconLeft &&
+         css`
+            padding-left: ${typography.size.m2 * 2}px;
+         `}
 
-      ${props => props.iconRight && css`
-         padding-right: ${typography.size.m2 * 2}px;
-      `}
+      ${(props) =>
+         props.iconRight &&
+         css`
+            padding-right: ${typography.size.m2 * 2}px;
+         `}
    }
-`
+`;
 
 export const Input = ({ onChange, ...props }) => {
-
    const getIconLeft = () =>
       props.iconLeft ? (
          <StyledIcon>
@@ -103,5 +121,5 @@ export const Input = ({ onChange, ...props }) => {
          <StyledBase {...props} onChange={onChange} defaultValue={props.value} />
          {getIconRight()}
       </StyledInputWrapper>
-   )
-}
+   );
+};

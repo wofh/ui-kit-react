@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
-import { color } from '../../shared/styles'
-import { skeletonGlow } from '../../shared/animation'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { color } from '../../shared/styles';
+import { skeletonGlow } from '../../shared/animation';
 
 export const skeletonColors = {
    base: color.light,
-   highlight: color.lighter
-}
+   highlight: color.lighter,
+};
 
 export const skeletonStyles = css`
    background-color: ${skeletonColors.base};
@@ -24,53 +24,58 @@ export const skeletonStyles = css`
    line-height: 1;
    width: 100%;
 
-   ${props => props.w && css`
-      ${
-         props.w === 'random'
-         ? css`
-            width: ${Math.floor(Math.random() * (100 - 50 + 1)) + 50}%;
-         `
-         : css`
-            width: ${(typeof props.w == 'number') ? (props.w + 'px') : props.w};
-         `
-      }
-   `}
+   ${(props) =>
+      props.w &&
+      css`
+         ${props.w === 'random'
+            ? css`
+                 width: ${Math.floor(Math.random() * (100 - 50 + 1)) + 50}%;
+              `
+            : css`
+                 width: ${typeof props.w == 'number' ? props.w + 'px' : props.w};
+              `}
+      `}
 
-   ${props => props.h && css`
-      height: ${(typeof props.h == 'number') ? (props.h + 'px') : props.h};
-   `}
+   ${(props) =>
+      props.h &&
+      css`
+         height: ${typeof props.h == 'number' ? props.h + 'px' : props.h};
+      `}
 
-   ${props => (props.circle && props.h && props.w) && css`
-      border-radius: 50%;
-   `}
+   ${(props) =>
+      props.circle &&
+      props.h &&
+      props.w &&
+      css`
+         border-radius: 50%;
+      `}
 `;
 
 const StyledSkeleton = styled.span`
-   ${css`${skeletonStyles}`}
-   animation: ${skeletonGlow} ${props => props.duration}s ease-in-out infinite;
+   ${css`
+      ${skeletonStyles}
+   `}
+   animation: ${skeletonGlow} ${(props) => props.duration}s ease-in-out infinite;
 `;
 
 /**
- * The <Skeleton> component is designed to be used directly inside the components, in place of content while it's still loading. It will adapt automatically to fit the correct dimensions.
+ * The `<Skeleton />` component is designed to be used directly inside the components, in place of content while it's still loading. It will adapt automatically to fit the correct dimensions.
  */
 export const Skeleton = (props) => {
    const elements = [];
 
    for (let i = 0; i < props.count; i++) {
       elements.push(
-         <StyledSkeleton {...props} key={i}>&zwnj;</StyledSkeleton>
+         <StyledSkeleton {...props} key={i}>
+            &zwnj;
+         </StyledSkeleton>
       );
    }
 
-   return (
-      <>
-         {elements}
-      </>
-   );
+   return <>{elements}</>;
 };
 
 Skeleton.propTypes = {
-
    /**
     * Number of lines
     */

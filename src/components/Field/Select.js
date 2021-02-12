@@ -23,18 +23,24 @@ const StyledSelect = styled.select`
 `;
 
 const StyledInput = styled.div`
-   position: relative;
+    position: relative;
 
-   display: block;
-   width: 100%;
-   border: none;
-   outline: none;
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
 
-   font-size: ${typography.size.s2}px;
-   line-height: ${typography.size.m2 * 2}px;
-   box-shadow: inset 0 0 0 1px ${color.medium};
-   border-radius: ${spacing.borderRadius.default}px;
-   padding: 0 ${typography.size.m1}px;
+    font-size: ${typography.size.s2}px;
+    line-height: ${typography.size.m2 * 2}px;
+    box-shadow: inset 0 0 0 1px ${color.medium};
+    border-radius: ${spacing.borderRadius.default}px;
+    padding: 0 ${typography.size.m1}px;
+
+    ${(props) =>
+       props.isPlaceholder &&
+       css`
+          color: ${color.mediumdark};
+       `}
 
    ${(props) =>
       props.plain &&
@@ -342,6 +348,11 @@ export const Select = ({
       return null;
    };
 
+   const isPlaceholder = () => {
+      if (getDisplayValue(value)) return false;
+      return !!props.placeholder;
+   };
+
    if (plain) {
       return (
          <StyledWrapper {...props}>
@@ -358,7 +369,14 @@ export const Select = ({
 
    return (
       <StyledWrapper {...props} focus={focus}>
-         <StyledInput {...props} ref={ref} tabIndex={0} onFocus={handleFocus} onBlur={handleBlur}>
+         <StyledInput
+            {...props}
+            ref={ref}
+            tabIndex={0}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            isPlaceholder={isPlaceholder()}
+         >
             {renderIconLeft()}
             <span>{getDisplayValue(value) || props.placeholder || ''}</span>
             {renderIconRight()}
