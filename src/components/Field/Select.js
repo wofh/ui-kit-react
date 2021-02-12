@@ -32,10 +32,12 @@ const StyledInputDisplay = styled.div`
     outline: none;
 
     font-size: ${typography.size.s2}px;
-    line-height: ${typography.size.m2 * 2}px;
+    min-height: ${typography.size.m2 * 2}px;
+    line-height: 1.5;
     box-shadow: inset 0 0 0 1px ${color.medium};
     border-radius: ${spacing.borderRadius.default}px;
-    padding: 0 ${typography.size.m1}px;
+    padding: ${typography.size.m1 * 0.5}px ${typography.size.m1}px;
+    padding-right: ${typography.size.m1 * 2}px;
 
     ${(props) =>
        props.isPlaceholder &&
@@ -73,6 +75,7 @@ const StyledInput = styled(StyledBase)`
    position: absolute;
    opacity: 0;
    z-index: 100;
+   height: 100%;
 `;
 
 const StyledItemButton = styled.button`
@@ -101,7 +104,7 @@ const StyledItemButton = styled.button`
       `}
 
    &:disabled,
-    &:disabled:hover {
+   &:disabled:hover {
       background-color: transparent;
       cursor: default;
    }
@@ -136,6 +139,14 @@ const StyledWrapper = styled.div`
     }
 
    ${StyledInputDisplay} {
+
+      ${(props) =>
+         props.focus &&
+         props.searchable &&
+         css`
+            display: none;
+         `}
+
       ${(props) =>
          !props.error &&
          !props.success &&
@@ -172,6 +183,8 @@ const StyledWrapper = styled.div`
          props.focus &&
          props.searchable &&
          css`
+            position: relative;
+            height: auto;
             opacity: 1;
          `}
    }
