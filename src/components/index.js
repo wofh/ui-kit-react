@@ -16,5 +16,6 @@ export * from './Modal';
 export * from './ProgressDots';
 export * from './Sidebar';
 export * from './Skeleton';
+export * from './Table';
 export * from './Text';
 export * from './ThemeProvider';
