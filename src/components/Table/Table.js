@@ -2,8 +2,74 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTable, useSortBy, usePagination } from 'react-table';
+import { Icon } from '../Icon';
+import { color, spacing, typography } from '../../shared/styles';
 
-const StyledTable = styled.table``;
+const StyledIcon = styled.span`
+   position: absolute;
+   margin-top: -1px;
+   margin-left: ${spacing.margin.xsmall}px;
+`;
+
+const StyledPagination = styled.div`
+   display: none;
+   padding: ${spacing.padding.small}px ${spacing.padding.medium}px;
+   font-size: ${typography.size.s2}px;
+`;
+
+const StyledTable = styled.table`
+   width: 100%;
+   border-spacing: 0;
+   font-size: ${typography.size.s2}px;
+
+   thead {
+      background-color: ${color.lighter};
+
+      tr {
+         &:first-of-type {
+            th {
+               &:first-of-type {
+                  border-top-left-radius: ${spacing.borderRadius.default}px;
+               }
+
+               &:last-of-type {
+                  border-top-right-radius: ${spacing.borderRadius.default}px;
+               }
+            }
+         }
+
+         &:last-of-type {
+            th {
+               &:first-of-type {
+                  border-bottom-left-radius: ${spacing.borderRadius.default}px;
+               }
+
+               &:last-of-type {
+                  border-bottom-right-radius: ${spacing.borderRadius.default}px;
+               }
+            }
+         }
+      }
+
+      th {
+         padding: ${spacing.padding.small}px ${spacing.padding.medium}px;
+         font-size: ${typography.size.s1}px;
+         text-transform: uppercase;
+         text-align: left;
+         color: ${color.dark};
+      }
+   }
+
+   tbody {
+      tr {
+      }
+
+      td {
+         padding: ${spacing.padding.small}px ${spacing.padding.medium}px;
+         border-bottom: 1px solid ${color.light};
+      }
+   }
+`;
 
 export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) => {
    const data = useMemo(() => defaultData, []);
@@ -40,9 +106,17 @@ export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) 
                      {headerGroup.headers.map((column) => (
                         <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                            {column.render('Header')}
-                           <span>
-                              {column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''}
-                           </span>
+                           <StyledIcon>
+                              {column.isSorted ? (
+                                 column.isSortedDesc ? (
+                                    <Icon icon={'ArrowDownCircle'} />
+                                 ) : (
+                                    <Icon icon={'ArrowUpCircle'} />
+                                 )
+                              ) : (
+                                 ''
+                              )}
+                           </StyledIcon>
                         </th>
                      ))}
                   </tr>
@@ -61,7 +135,7 @@ export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) 
                })}
             </tbody>
          </StyledTable>
-         <div className="pagination">
+         <StyledPagination>
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                {'<<'}
             </button>{' '}
@@ -104,7 +178,7 @@ export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) 
                   </option>
                ))}
             </select>
-         </div>
+         </StyledPagination>
       </>
    );
 };
