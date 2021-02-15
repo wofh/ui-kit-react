@@ -6,11 +6,12 @@ import { Password } from './Password';
 import { Email } from './Email';
 import { Textarea } from './Textarea';
 import { Select } from './Select';
+import { Checkbox } from './Checkbox';
 
 export default {
    title: 'Components/Field',
    component: Field,
-   subcomponents: { Input, Email, Password, Textarea, Select },
+   subcomponents: { Input, Email, Password, Textarea, Select, Checkbox },
 };
 
 const placeholder = 'Placeholder text';
@@ -58,13 +59,20 @@ export const Default = () => (
             description={description}
          />
          <Field
-            spaceAfter={60}
+            spaceAfter={20}
             type={'select'}
             options={selectOptions}
             placeholder={placeholder}
             label={'Select'}
             description={description}
          />
+         <Field type={'group'} label={'Checkbox'} description={description}>
+            <Field type={'checkbox'} label={'Checkbox 1'} inline />
+            <Field type={'checkbox'} label={'Checkbox 2'} checked inline />
+            <Field type={'checkbox'} label={'Checkbox 3'} checked inline />
+            <Field type={'checkbox'} label={'Checkbox 4'} inline />
+            <Field spaceAfter={40} type={'checkbox'} label={'Checkbox 5'} inline />
+         </Field>
       </Box>
    </Box>
 );
@@ -135,6 +143,12 @@ export const FieldType = () => (
          label={'Textarea'}
          description={description}
       />
+      <Field type={'group'} label={'Checkbox'} description={description} spaceAfter={20}>
+         <Field type={'checkbox'} label={'Checkbox 1'} inline />
+         <Field type={'checkbox'} label={'Checkbox 2'} checked inline />
+         <Field type={'checkbox'} label={'Checkbox 3'} checked inline />
+         <Field type={'checkbox'} label={'Checkbox 4'} inline />
+      </Field>
    </Box>
 );
 
@@ -204,6 +218,7 @@ export const AsyncSelect = () => (
          searchable
          placeholder={'Async Select'}
          debounce={1000}
+         preFetchOptions
          fetchOptions={(query, defaultOptions) => {
             return new Promise((resolve, reject) => {
                fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`)
@@ -225,6 +240,21 @@ export const AsyncSelect = () => (
          }}
          label={'Async Select'}
          onChange={(val) => console.log(val)}
+      />
+   </Box>
+);
+
+export const Misc = () => (
+   <Box pad={'xsmall'}>
+      <Field type={'group'} label={'Group Type'} description={description} spaceAfter={40}>
+         (This is the group child node) Add a label and description without the actual field. Best
+         used with checkbox fields.
+      </Field>
+      <Field
+         type={'none'}
+         label={'None Type'}
+         description={'Add no field. You can still ad a label and a description.'}
+         spaceAfter={40}
       />
    </Box>
 );
