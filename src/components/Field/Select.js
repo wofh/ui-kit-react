@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
+import { ProgressDots } from '../ProgressDots';
 import { StyledBase } from './Input';
 import { color, spacing, typography } from '../../shared/styles';
 import { hex2rgba, debounce } from '../../shared/mixins';
@@ -285,6 +286,7 @@ export const Select = ({
    open,
    options: defaultOptions,
    fetchOptions,
+   preFetchOptions,
    debounce: debounceTime,
    multiSelect,
    searchable,
@@ -302,6 +304,10 @@ export const Select = ({
 
    // Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
    const fetch = useMemo(() => {
+      if (!preFetchOptions && !focus && fetching) {
+         return () => {};
+      }
+
       if (!fetchOptions) {
          return (s) =>
             setOptions(
@@ -422,11 +428,20 @@ export const Select = ({
       if (focus || open) {
          return (
             <ul>
-               <li>
-                  <StyledItemButton value={''} disabled={true}>
-                     {props.placeholder}
-                  </StyledItemButton>
-               </li>
+               {props.placeholder && !fetching && (
+                  <li>
+                     <StyledItemButton value={''} disabled={true}>
+                        {props.placeholder}
+                     </StyledItemButton>
+                  </li>
+               )}
+               {fetching && (
+                  <li>
+                     <StyledItemButton disabled={true}>
+                        <ProgressDots isLoading />
+                     </StyledItemButton>
+                  </li>
+               )}
                {options.map((option) => (
                   <li key={option.name}>
                      <StyledItemButton
@@ -545,6 +560,11 @@ Select.propTypes = {
    open: PropTypes.bool,
 
    /**
+    * Pre fetch options before select open
+    */
+   preFetchOptions: PropTypes.bool,
+
+   /**
     * If `true` a plain select with minimal styling/feature will be rendered
     */
    plain: PropTypes.bool,
@@ -562,4 +582,5 @@ Select.defaultProps = {
    onFocus: () => {},
    onBlur: () => {},
    debounce: 0,
+   preFetchOptions: false,
 };

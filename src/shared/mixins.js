@@ -111,15 +111,43 @@ export const hex2rgba = (hex, alpha = 1) => {
    return `rgba(${r},${g},${b},${alpha})`;
 };
 
-export const debounce = (func, wait) => {
+export const debounce = (cb, wait) => {
    let timeout;
 
    return (...args) => {
-      clearTimeout(timeout);
+      const later = () => {
+         clearTimeout(timeout);
+         cb(...args);
+      };
 
-      timeout = setTimeout(() => {
-         timeout = null;
-         func(...args);
-      }, wait);
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
    };
+};
+
+export const throttle = (cb, wait) => {
+   let throttleTimeout = null;
+   let storedEvent = null;
+
+   const throttledEventHandler = (event) => {
+      storedEvent = event;
+
+      const shouldHandleEvent = !throttleTimeout;
+
+      if (shouldHandleEvent) {
+         cb(storedEvent);
+
+         storedEvent = null;
+
+         throttleTimeout = setTimeout(() => {
+            throttleTimeout = null;
+
+            if (storedEvent) {
+               throttledEventHandler(storedEvent);
+            }
+         }, wait);
+      }
+   };
+
+   return throttledEventHandler;
 };
