@@ -303,21 +303,51 @@ export const Select = ({
    const [fetching, setFetching] = useState(false);
 
    // Based on: https://github.com/tbleckert/react-select-search/blob/24bbf7f76acf0f13f10c5bcdb31becc9a600e970/src/useFetch.js
-   const fetch = useMemo(() => {
-      if (!preFetchOptions && !focus && fetching) {
-         return () => {};
-      }
+   // const fetch = useMemo(() => {
+   //    if ( (!preFetchOptions && !focus) && fetching ) {
+   //       return () => {}
+   //    }
 
-      if (!fetchOptions) {
-         return (s) =>
+   //    if (!fetchOptions) {
+   //       return (s) =>
+   //          setOptions(
+   //             flattenOptions(defaultOptions).filter((op) =>
+   //                (op.value + op.name).toLowerCase().includes(s.toLowerCase())
+   //             )
+   //          );
+   //    }
+
+   //    return debounce((s) => {
+   //       setFetching(true);
+   //       const req = fetchOptions(s, defaultOptions);
+
+   //       Promise.resolve(req)
+   //          .then((newOptions) => {
+   //             setOptions(
+   //                flattenOptions(newOptions).filter((op) =>
+   //                   (op.value + op.name).toLowerCase().includes(s.toLowerCase())
+   //                )
+   //             );
+   //          })
+   //          .finally(() => setFetching(false));
+   //    }, debounceTime);
+   // }, [search, defaultOptions, focus]);
+
+   const fetch = useRef(
+      debounce((s) => {
+         if (!preFetchOptions && !focus && fetching) {
+            return;
+         }
+
+         if (!fetchOptions) {
             setOptions(
                flattenOptions(defaultOptions).filter((op) =>
                   (op.value + op.name).toLowerCase().includes(s.toLowerCase())
                )
             );
-      }
+            return;
+         }
 
-      return debounce((s) => {
          setFetching(true);
          const req = fetchOptions(s, defaultOptions);
 
@@ -330,10 +360,10 @@ export const Select = ({
                );
             })
             .finally(() => setFetching(false));
-      }, debounceTime);
-   }, [search, defaultOptions, focus]);
+      }, debounceTime)
+   );
 
-   useEffect(() => fetch(search), [fetch, search]);
+   useEffect(() => fetch.current(search), [search, defaultOptions, focus]);
 
    const onSelect = useCallback(
       (newValue) => {
