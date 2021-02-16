@@ -96,11 +96,11 @@ const Portal = ({ modalRoot, children }) => {
 
    useEffect(() => {
       modalRoot.appendChild(el);
-   }, []);
+   }, [el]);
 
    useEffect(() => {
       return () => modalRoot.removeChild(el);
-   });
+   }, [el]);
 
    return createPortal(children, el);
 };

@@ -62,15 +62,23 @@ export const Controlled = () => {
 
    useEffect(() => {
       if (isOpen) {
-         setTimeout(() => setIsOpen(false), 5000);
+         const timeout = setTimeout(() => setIsOpen(false), 5000);
+         return () => clearTimeout(timeout);
       }
    }, [isOpen]);
 
-   const content = () => {
+   const Content = (props) => {
+      const [seconds, setSeconds] = useState(5);
+
+      useEffect(() => {
+         const interval = setInterval(() => setSeconds((s) => s - 1), 1000);
+         return () => clearInterval(interval);
+      }, []);
+
       return (
          <p>
             This is a controlled modal and can't be closed manually, it will close automatically
-            after 5 seconds
+            after {seconds} second{seconds > 1 && 's'}
          </p>
       );
    };
@@ -79,7 +87,7 @@ export const Controlled = () => {
       <Box pad={'xsmall'}>
          <Button onClick={() => setIsOpen(true)} label={'Open Modal'} />
          <Modal isOpen={isOpen} w={{ max: 440 }}>
-            {content()}
+            <Content />
          </Modal>
       </Box>
    );
