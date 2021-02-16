@@ -5,9 +5,21 @@ import { color, spacing, typography } from '../../shared/styles';
 import { hex2rgba } from '../../shared/mixins';
 
 const StyledLabel = styled.span`
-   display: inline-block;
+   display: block;
    font-size: ${typography.size.s3}px;
+   line-height: 1.4;
+`;
+
+const StyledDescription = styled.span`
+   display: block;
+   color: ${color.mediumdark};
+   font-size: ${typography.size.s2}px;
    line-height: 1.5;
+`;
+
+const StyledInline = styled.span`
+   display: inline-block;
+   vertical-align: top;
    margin-left: ${spacing.margin.small}px;
 `;
 
@@ -48,12 +60,13 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
 
 const StyledCheckbox = styled.div`
    display: inline-block;
-   width: 18px;
-   height: 18px;
+   width: 20px;
+   height: 20px;
    border-radius: ${spacing.borderRadius.xsmall}px;
    transition: all 150ms;
    padding: 2px;
    line-height: 1;
+   vertical-align: top;
 
    ${HiddenCheckbox}:focus + & {
       box-shadow: inset 0 0 0 1px ${hex2rgba(color.primary, 0.4)},
@@ -66,12 +79,14 @@ const StyledCheckbox = styled.div`
 const CheckboxContainer = styled.div`
    display: inline-block;
    vertical-align: middle;
+
+   label {
+      display: block;
+   }
 `;
 
 export const Checkbox = ({ checked, ...props }) => {
    const ref = useRef(null);
-
-   console.log(props);
 
    return (
       <CheckboxContainer>
@@ -82,7 +97,12 @@ export const Checkbox = ({ checked, ...props }) => {
                   <polyline points="20 6 9 17 4 12" />
                </Icon>
             </StyledCheckbox>
-            {props.label && <StyledLabel>{props.label}</StyledLabel>}
+            {(props.label || props.description) && (
+               <StyledInline>
+                  {props.label && <StyledLabel>{props.label}</StyledLabel>}
+                  {props.description && <StyledDescription>{props.description}</StyledDescription>}
+               </StyledInline>
+            )}
          </label>
       </CheckboxContainer>
    );

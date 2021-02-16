@@ -43,19 +43,12 @@ export const Default = () => (
             description={description}
             autoResize
          />
-         <Field
-            spaceAfter={20}
-            type={'password'}
-            placeholder={placeholder}
-            error={'Error Message'}
-            label={'Password'}
-         />
+         <Field spaceAfter={20} type={'password'} placeholder={placeholder} label={'Password'} />
          <Field
             spaceAfter={20}
             type={'email'}
             placeholder={placeholder}
             label={'Email'}
-            success
             description={description}
          />
          <Field
@@ -67,11 +60,43 @@ export const Default = () => (
             description={description}
          />
          <Field type={'group'} label={'Checkbox'} description={description}>
-            <Field type={'checkbox'} label={'Checkbox 1'} inline />
-            <Field type={'checkbox'} label={'Checkbox 2'} checked inline />
-            <Field type={'checkbox'} label={'Checkbox 3'} checked inline />
-            <Field type={'checkbox'} label={'Checkbox 4'} inline />
-            <Field spaceAfter={40} type={'checkbox'} label={'Checkbox 5'} inline />
+            <Field
+               spaceAfter={10}
+               type={'checkbox'}
+               label={'Checkbox 1'}
+               description={'Checkbox description 1'}
+               inline
+            />
+            <Field
+               spaceAfter={10}
+               type={'checkbox'}
+               label={'Checkbox 2'}
+               description={'Checkbox description 2'}
+               checked
+               inline
+            />
+            <Field
+               spaceAfter={10}
+               type={'checkbox'}
+               label={'Checkbox 3'}
+               description={'Checkbox description 3'}
+               checked
+               inline
+            />
+            <Field
+               spaceAfter={10}
+               type={'checkbox'}
+               label={'Checkbox 4'}
+               description={'Checkbox description 4'}
+               inline
+            />
+            <Field
+               spaceAfter={40}
+               type={'checkbox'}
+               label={'Checkbox 5'}
+               description={'Checkbox description 5'}
+               inline
+            />
          </Field>
       </Box>
    </Box>
@@ -159,6 +184,7 @@ export const OnlyField = () => (
       <Field spaceAfter={20} type={'password'} placeholder={'Password'} />
       <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={'Select'} />
       <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
+      <Field spaceAfter={20} type={'checkbox'} defaultChecked />
    </Box>
 );
 
