@@ -131,7 +131,7 @@ export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
                {getCloseButton()}
                {children}
             </StyledModal>
-            <StyledOverlay onClick={onClose ? onClose : () => {}} />
+            {!props.fullScreen && <StyledOverlay onClick={onClose ? onClose : () => {}} />}
          </StyledModalWrapper>
       );
    };
