@@ -75,7 +75,7 @@ export const StyledButtonPlain = styled.button`
          height: ${(props) => sizes[props.size] * 1.2}px;
       }
    }
-`
+`;
 
 export const StyledButton = styled(StyledButtonPlain)`
    color: #fff;
@@ -83,7 +83,7 @@ export const StyledButton = styled(StyledButtonPlain)`
    background-color: ${(props) => getColor(props)};
    padding: 0 ${(props) => padding[props.size] * 1.5}px;
    line-height: ${(props) => padding[props.size] * 2}px;
-   font-weight: ${(props) => props.theme.typography.weight.medium};
+   font-weight: ${(props) => props.theme.typography.weight.semibold};
 
    ${(props) =>
       props.stroked &&
@@ -92,7 +92,6 @@ export const StyledButton = styled(StyledButtonPlain)`
          box-shadow: inset 0 0 0 1px ${getColor(props)};
          color: ${getColor(props)};
       `}
-
 `;
 
 export const Button = ({ plain, children, label, loadingText, iconLeft, iconRight, ...props }) => {
@@ -120,7 +119,6 @@ export const Button = ({ plain, children, label, loadingText, iconLeft, iconRigh
    };
 
    if (plain) {
-
       return (
          <StyledButtonPlain {...propsWithTheme}>
             {getIconLeft()}
@@ -186,5 +184,5 @@ Button.defaultProps = {
    loadingText: 'Loading...',
    fullWidth: false,
    iconLeft: undefined,
-   iconRight: undefined
+   iconRight: undefined,
 };
