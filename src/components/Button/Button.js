@@ -137,6 +137,9 @@ export const Button = ({ plain, children, label, loadingText, iconLeft, iconRigh
    );
 };
 
+Button.StyledButton = StyledButton;
+Button.StyledButtonPlain = StyledButtonPlain;
+
 Button.propTypes = {
    label: PropTypes.string,
    size: PropTypes.oneOf(Object.keys(sizes)),
