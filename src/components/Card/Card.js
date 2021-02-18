@@ -30,21 +30,11 @@ export const Card = ({ children, header, footer, image, ...props }) => {
    const getImage = () => {
       if (!image) return null;
 
-      // Check if child content is already a CardImage
-      if (typeof image == 'object' && image.type === (<CardImage />).type) {
-         return <image.type {...props} {...image.props} />;
-      }
-
       return <CardImage {...props} src={image} />;
    };
 
    const getHeader = () => {
       if (!header) return null;
-
-      // Check if child content is already a CardHeader
-      if (typeof header == 'object' && header.type === (<CardHeader />).type) {
-         return <header.type {...props} {...header.props} />;
-      }
 
       return <CardHeader {...props}>{header}</CardHeader>;
    };
@@ -70,11 +60,6 @@ export const Card = ({ children, header, footer, image, ...props }) => {
    const getFooter = () => {
       if (!footer) return null;
 
-      // Check if child content is already a CardFooter
-      if (typeof footer == 'object' && footer.type === (<CardFooter />).type) {
-         return <footer.type {...props} {...footer.props} />;
-      }
-
       return <CardFooter {...props}>{footer}</CardFooter>;
    };
 
@@ -97,7 +82,7 @@ Card.propTypes = {
    /**
     * Card content
     */
-   children: PropTypes.node,
+   children: PropTypes.any,
 
    /**
     * Card header content
@@ -131,5 +116,5 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
-   spaceAfter: undefined,
+   spaceAfter: null,
 };

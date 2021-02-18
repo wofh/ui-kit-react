@@ -1,9 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
-import { Box } from '../Box'
-import { Image } from '../Image'
-import { color } from '../../shared/styles'
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
+import { Box } from '../Box';
+import { Image } from '../Image';
+import { color } from '../../shared/styles';
 
 const StyledCardImage = styled(Box)`
    line-height: 0;
@@ -11,19 +11,21 @@ const StyledCardImage = styled(Box)`
 `;
 
 export const CardImage = ({ src, ...props }) => {
+   if (!src) return null;
    return (
       <StyledCardImage {...props} pad={'none'}>
          <Image src={src} />
       </StyledCardImage>
-   )
-}
+   );
+};
 
 CardImage.propTypes = {
-
    /**
     * Image source
     */
-   src: PropTypes.string.isRequired
+   src: PropTypes.string,
 };
 
-CardImage.defaultProps = {};
+CardImage.defaultProps = {
+   src: null,
+};
