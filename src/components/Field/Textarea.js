@@ -26,7 +26,7 @@ const StyledBase = styled.textarea`
       !props.success &&
       css`
          &:focus {
-            box-shadow: 0 0 0 1px ${color.primary};
+            box-shadow: inset 0 0 0 1px ${color.primary};
          }
       `}
 
