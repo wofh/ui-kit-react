@@ -37,6 +37,7 @@ const ButtonLabel = styled.span`
 `;
 
 export const StyledButtonPlain = styled.button`
+   display: inline-block;
    outline: none;
    border: none;
    cursor: pointer;
