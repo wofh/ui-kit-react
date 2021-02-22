@@ -65,6 +65,10 @@ export const Textarea = forwardRef(({ autoResize, ...props }, ref) => {
       return () => el.current.removeEventListener('input', handleResize);
    });
 
+   useEffect(() => {
+      handleResize();
+   }, []);
+
    return <StyledBase ref={el} {...props} />;
 });
 

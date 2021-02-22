@@ -296,7 +296,11 @@ export const Select = ({
    ...props
 }) => {
    const ref = useRef(null);
-   const [value, setValue] = useState(multiSelect ? [] : null);
+   const defaultValue = getOption(
+      props.value || props.defaultValue || (multiSelect ? [] : null),
+      defaultOptions || []
+   );
+   const [value, setValue] = useState(defaultValue);
    const [focus, setFocus] = useState(false);
    const [search, setSearch] = useState('');
    const [options, setOptions] = useState(defaultOptions);
@@ -497,7 +501,11 @@ export const Select = ({
          <StyledWrapper {...props}>
             <StyledInputDisplay plain={plain} {...props}>
                {renderIconLeft()}
-               <StyledSelect {...props} defaultValue={props.value} onChange={onChange}>
+               <StyledSelect
+                  {...props}
+                  defaultValue={props.value || props.defaultValue || null}
+                  onChange={onChange}
+               >
                   {renderOptions()}
                </StyledSelect>
                {renderIconRight()}
