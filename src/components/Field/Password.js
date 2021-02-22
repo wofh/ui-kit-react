@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
 import { color, typography } from '../../shared/styles';
@@ -11,10 +11,12 @@ const StyledIcon = styled.span`
    text-align: center;
    color: ${color.mediumdark};
 
-   ${props => props.onClick && css`
-      cursor: pointer;
-   `}
-`
+   ${(props) =>
+      props.onClick &&
+      css`
+         cursor: pointer;
+      `}
+`;
 
 const StyledInputWrapper = styled.div`
    position: relative;
@@ -33,18 +35,22 @@ const StyledInputWrapper = styled.div`
    }
 
    ${StyledBase} {
-      ${props => props.iconLeft && css`
-         padding-left: ${typography.size.m2 * 2}px;
-      `}
+      ${(props) =>
+         props.iconLeft &&
+         css`
+            padding-left: ${typography.size.m2 * 2}px;
+         `}
 
-      ${props => props.iconRight && css`
-         padding-right: ${typography.size.m2 * 2}px;
-      `}
+      ${(props) =>
+         props.iconRight &&
+         css`
+            padding-right: ${typography.size.m2 * 2}px;
+         `}
    }
-`
+`;
 
-export const Password = ({ onChange, ...props }) => {
-   const [visible, setVisible] = useState(false)
+export const Password = forwardRef(({ onChange, ...props }, ref) => {
+   const [visible, setVisible] = useState(false);
 
    const getVisibilityIcon = () => {
       if (visible) {
@@ -52,16 +58,15 @@ export const Password = ({ onChange, ...props }) => {
             <StyledIcon onClick={() => setVisible(!visible)}>
                <Icon icon={'eyeclose'} />
             </StyledIcon>
-         )
-      }
-      else {
+         );
+      } else {
          return (
             <StyledIcon onClick={() => setVisible(!visible)}>
                <Icon icon={'eye'} />
             </StyledIcon>
-         )
+         );
       }
-   }
+   };
 
    const getIconLeft = () =>
       props.iconLeft ? (
@@ -75,13 +80,20 @@ export const Password = ({ onChange, ...props }) => {
          <StyledIcon>
             <Icon icon={props.iconRight} />
          </StyledIcon>
-      ) : getVisibilityIcon();
+      ) : (
+         getVisibilityIcon()
+      );
 
    return (
       <StyledInputWrapper {...props}>
          {getIconLeft()}
-         <StyledBase {...props} type={visible ? 'text' : 'password'} onChange={onChange} defaultValue={props.value} />
+         <StyledBase
+            ref={ref}
+            {...props}
+            type={visible ? 'text' : 'password'}
+            onChange={onChange}
+         />
          {getIconRight()}
       </StyledInputWrapper>
-   )
-}
+   );
+});

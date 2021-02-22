@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useState } from 'react';
+import React, { useRef, useCallback, useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
 import { color, spacing, typography } from '../../shared/styles';
@@ -85,13 +85,11 @@ const CheckboxContainer = styled.div`
    }
 `;
 
-export const Checkbox = ({ checked, ...props }) => {
-   const ref = useRef(null);
-
+export const Checkbox = forwardRef(({ checked, ...props }, ref) => {
    return (
       <CheckboxContainer>
          <label>
-            <HiddenCheckbox ref={ref} {...props} checked={checked} />
+            <HiddenCheckbox ref={ref} {...props} defaultChecked={checked} />
             <StyledCheckbox checked={checked}>
                <Icon viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12" />
@@ -106,7 +104,7 @@ export const Checkbox = ({ checked, ...props }) => {
          </label>
       </CheckboxContainer>
    );
-};
+});
 
 Checkbox.propTypes = {
    inline: PropTypes.bool,

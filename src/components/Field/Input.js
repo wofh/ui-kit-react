@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { Icon } from '../Icon';
 import { color, spacing, typography } from '../../shared/styles';
@@ -100,7 +100,7 @@ const StyledInputWrapper = styled.div`
    }
 `;
 
-export const Input = ({ onChange, ...props }) => {
+export const Input = forwardRef(({ onChange, ...props }, ref) => {
    const getIconLeft = () =>
       props.iconLeft ? (
          <StyledIcon>
@@ -118,8 +118,8 @@ export const Input = ({ onChange, ...props }) => {
    return (
       <StyledInputWrapper {...props}>
          {getIconLeft()}
-         <StyledBase {...props} onChange={onChange} defaultValue={props.value} />
+         <StyledBase ref={ref} {...props} onChange={onChange} />
          {getIconRight()}
       </StyledInputWrapper>
    );
-};
+});

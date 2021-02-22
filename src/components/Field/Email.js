@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { color, spacing, typography } from '../../shared/styles';
 import { Icon } from '../Icon';
@@ -10,7 +10,7 @@ const StyledIcon = styled.span`
    width: 36px;
    text-align: center;
    color: ${color.mediumdark};
-`
+`;
 
 const StyledInputWrapper = styled.div`
    position: relative;
@@ -29,37 +29,40 @@ const StyledInputWrapper = styled.div`
    }
 
    ${StyledBase} {
-      ${props => props.iconLeft && css`
-         padding-left: 36px;
-      `}
+      ${(props) =>
+         props.iconLeft &&
+         css`
+            padding-left: 36px;
+         `}
 
-      ${props => props.iconRight && css`
-         padding-right: 36px;
-      `}
+      ${(props) =>
+         props.iconRight &&
+         css`
+            padding-right: 36px;
+         `}
    }
-`
+`;
 
-export const Email = ({ onChange, ...props }) => {
+export const Email = forwardRef(({ onChange, ...props }, ref) => {
+   const getIconLeft = () =>
+      props.iconLeft ? (
+         <StyledIcon>
+            <Icon icon={props.iconLeft} />
+         </StyledIcon>
+      ) : null;
 
-    const getIconLeft = () =>
-        props.iconLeft ? (
-            <StyledIcon>
-                <Icon icon={props.iconLeft} />
-            </StyledIcon>
-        ) : null;
+   const getIconRight = () =>
+      props.iconRight ? (
+         <StyledIcon>
+            <Icon icon={props.iconRight} />
+         </StyledIcon>
+      ) : null;
 
-    const getIconRight = () =>
-        props.iconRight ? (
-            <StyledIcon>
-                <Icon icon={props.iconRight} />
-            </StyledIcon>
-        ) : null;
-
-    return (
-        <StyledInputWrapper {...props}>
-            {getIconLeft()}
-            <StyledBase {...props} onChange={onChange} defaultValue={props.value} />
-            {getIconRight()}
-        </StyledInputWrapper>
-    )
-}
+   return (
+      <StyledInputWrapper {...props}>
+         {getIconLeft()}
+         <StyledBase ref={ref} {...props} onChange={onChange} />
+         {getIconRight()}
+      </StyledInputWrapper>
+   );
+});

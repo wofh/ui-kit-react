@@ -517,7 +517,7 @@ export const Select = ({
                   onFocus={handleFocus}
                   onBlur={handleBlur}
                   placeholder={props.placeholder || ''}
-                  value={search}
+                  defaultValue={search}
                />
                <StyledInputDisplay {...props} isPlaceholder={isPlaceholder()}>
                   {renderIconLeft()}
