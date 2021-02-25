@@ -72,8 +72,8 @@ const StyledTable = styled.table`
 `;
 
 export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) => {
-   const data = useMemo(() => defaultData, []);
-   const columns = useMemo(() => defaultColumns, []);
+   const data = useMemo(() => defaultData, [defaultData]);
+   const columns = useMemo(() => defaultColumns, [defaultColumns]);
    const {
       getTableProps,
       getTableBodyProps,
