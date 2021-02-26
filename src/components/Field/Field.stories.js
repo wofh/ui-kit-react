@@ -26,84 +26,82 @@ const selectOptions = [
 ];
 
 export const Default = () => (
-   <Box pad={'xsmall'}>
-      <Box>
+   <Box pad={'none'}>
+      <Field
+         spaceAfter={20}
+         type={'text'}
+         placeholder={placeholder}
+         label={'Text'}
+         description={description}
+      />
+      <Field
+         spaceAfter={20}
+         type={'textarea'}
+         placeholder={placeholder}
+         label={'Textarea'}
+         description={description}
+         autoResize
+      />
+      <Field spaceAfter={20} type={'password'} placeholder={placeholder} label={'Password'} />
+      <Field
+         spaceAfter={20}
+         type={'email'}
+         placeholder={placeholder}
+         label={'Email'}
+         description={description}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Select'}
+         description={description}
+      />
+      <Field type={'group'} label={'Checkbox'} description={description}>
          <Field
-            spaceAfter={20}
-            type={'text'}
-            placeholder={placeholder}
-            label={'Text'}
-            description={description}
+            spaceAfter={10}
+            type={'checkbox'}
+            label={'Checkbox 1'}
+            description={'Checkbox description 1'}
+            inline
          />
          <Field
-            spaceAfter={20}
-            type={'textarea'}
-            placeholder={placeholder}
-            label={'Textarea'}
-            description={description}
-            autoResize
-         />
-         <Field spaceAfter={20} type={'password'} placeholder={placeholder} label={'Password'} />
-         <Field
-            spaceAfter={20}
-            type={'email'}
-            placeholder={placeholder}
-            label={'Email'}
-            description={description}
+            spaceAfter={10}
+            type={'checkbox'}
+            label={'Checkbox 2'}
+            description={'Checkbox description 2'}
+            checked
+            inline
          />
          <Field
-            spaceAfter={20}
-            type={'select'}
-            options={selectOptions}
-            placeholder={placeholder}
-            label={'Select'}
-            description={description}
+            spaceAfter={10}
+            type={'checkbox'}
+            label={'Checkbox 3'}
+            description={'Checkbox description 3'}
+            checked
+            inline
          />
-         <Field type={'group'} label={'Checkbox'} description={description}>
-            <Field
-               spaceAfter={10}
-               type={'checkbox'}
-               label={'Checkbox 1'}
-               description={'Checkbox description 1'}
-               inline
-            />
-            <Field
-               spaceAfter={10}
-               type={'checkbox'}
-               label={'Checkbox 2'}
-               description={'Checkbox description 2'}
-               checked
-               inline
-            />
-            <Field
-               spaceAfter={10}
-               type={'checkbox'}
-               label={'Checkbox 3'}
-               description={'Checkbox description 3'}
-               checked
-               inline
-            />
-            <Field
-               spaceAfter={10}
-               type={'checkbox'}
-               label={'Checkbox 4'}
-               description={'Checkbox description 4'}
-               inline
-            />
-            <Field
-               spaceAfter={40}
-               type={'checkbox'}
-               label={'Checkbox 5'}
-               description={'Checkbox description 5'}
-               inline
-            />
-         </Field>
-      </Box>
+         <Field
+            spaceAfter={10}
+            type={'checkbox'}
+            label={'Checkbox 4'}
+            description={'Checkbox description 4'}
+            inline
+         />
+         <Field
+            spaceAfter={40}
+            type={'checkbox'}
+            label={'Checkbox 5'}
+            description={'Checkbox description 5'}
+            inline
+         />
+      </Field>
    </Box>
 );
 
 export const FieldType = () => (
-   <Box pad={'xsmall'}>
+   <>
       <Field
          spaceAfter={20}
          type={'text'}
@@ -174,23 +172,23 @@ export const FieldType = () => (
          <Field type={'checkbox'} label={'Checkbox 3'} checked inline />
          <Field type={'checkbox'} label={'Checkbox 4'} inline />
       </Field>
-   </Box>
+   </>
 );
 
 export const OnlyField = () => (
-   <Box>
+   <>
       <Field spaceAfter={20} type={'text'} placeholder={'Text'} />
       <Field spaceAfter={20} type={'email'} placeholder={'Email'} />
       <Field spaceAfter={20} type={'password'} placeholder={'Password'} />
       <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={'Select'} />
       <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
       <Field spaceAfter={20} type={'checkbox'} defaultChecked />
-   </Box>
+   </>
 );
 
 export const FieldState = () => (
    <>
-      <Box>
+      <>
          <Field
             spaceAfter={20}
             type={'email'}
@@ -199,8 +197,8 @@ export const FieldState = () => (
             description={description}
             success
          />
-      </Box>
-      <Box>
+      </>
+      <>
          <Field
             spaceAfter={20}
             type={'email'}
@@ -209,35 +207,29 @@ export const FieldState = () => (
             description={description}
             error={'This field has some error'}
          />
-      </Box>
+      </>
    </>
 );
 
 export const WithIcons = () => (
    <>
-      <Box>
-         <Field
-            spaceAfter={20}
-            type={'text'}
-            placeholder={placeholder}
-            label={'Search'}
-            iconLeft={'search'}
-         />
-         <Field spaceAfter={20} type={'text'} placeholder={placeholder} error iconRight={'alert'} />
-      </Box>
+      <Field
+         spaceAfter={20}
+         type={'text'}
+         placeholder={placeholder}
+         label={'Search'}
+         iconLeft={'search'}
+      />
+      <Field spaceAfter={20} type={'text'} placeholder={placeholder} error iconRight={'alert'} />
    </>
 );
 
 export const Autofocus = () => (
-   <>
-      <Box>
-         <Field type={'text'} placeholder={placeholder} label={'Autofocus'} autoFocus />
-      </Box>
-   </>
+   <Field type={'text'} placeholder={placeholder} label={'Autofocus'} autoFocus />
 );
 
 export const AsyncSelect = () => (
-   <Box pad={'xsmall'} h={440}>
+   <Box pad={'none'} h={440}>
       <Field
          spaceAfter={20}
          type={'select'}
@@ -271,7 +263,7 @@ export const AsyncSelect = () => (
 );
 
 export const Misc = () => (
-   <Box pad={'xsmall'}>
+   <>
       <Field type={'group'} label={'Group Type'} description={description} spaceAfter={40}>
          (This is the group child node) Add a label and description without the actual field. Best
          used with checkbox fields.
@@ -282,5 +274,5 @@ export const Misc = () => (
          description={'Add no field. You can still ad a label and a description.'}
          spaceAfter={40}
       />
-   </Box>
+   </>
 );

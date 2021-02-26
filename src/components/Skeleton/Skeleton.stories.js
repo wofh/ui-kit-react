@@ -12,66 +12,54 @@ export default {
 };
 
 export const Default = () => (
-   <Row gutter={40} justify={'center'} spaceAfter={0}>
+   <Row justify={'center'} spaceAfter={0}>
       <Col span={5} xs={12} xl={4}>
          <Card spaceAfter={20}>
-            <Box pad={'xsmall'}>
+            <Box>
                <Skeleton circle={true} w={100} h={100} />
             </Box>
-            <Box pad={'xsmall'}>
-               <Heading size={'xxlarge'}><Skeleton /></Heading>
+            <Box>
+               <Heading size={'xxlarge'}>
+                  <Skeleton />
+               </Heading>
             </Box>
-            <Box pad={'xsmall'}>
-               <Text><Skeleton count={4} w={'random'} /></Text>
+            <Box>
+               <Text>
+                  <Skeleton count={4} w={'random'} />
+               </Text>
             </Box>
          </Card>
       </Col>
       <Col span={5} xs={12} xl={4}>
-         <Box pad={'xsmall'}>
+         <Box>
             <Skeleton circle={true} w={100} h={100} />
          </Box>
-         <Box pad={'xsmall'}>
-            <Heading size={'xxlarge'}><Skeleton /></Heading>
+         <Box>
+            <Heading size={'xxlarge'}>
+               <Skeleton />
+            </Heading>
          </Box>
-         <Box pad={'xsmall'}>
-            <Text><Skeleton count={4} /></Text>
+         <Box>
+            <Text>
+               <Skeleton count={4} />
+            </Text>
          </Box>
       </Col>
    </Row>
 );
 
-export const SingleLine = () => (
-   <Box pad={'xsmall'}>
-      <Skeleton />
-   </Box>
-);
+export const SingleLine = () => <Skeleton />;
 
-export const MultipleLines = () => (
-   <Box pad={'xsmall'}>
-      <Skeleton count={5} />
-   </Box>
-);
+export const MultipleLines = () => <Skeleton count={5} />;
 
 export const Circle = () => (
-   <Box pad={'xsmall'}>
+   <Box>
       <Skeleton circle={true} w={150} h={150} />
    </Box>
 );
 
-export const Rectangle = () => (
-   <Box pad={'xsmall'}>
-      <Skeleton w={150} h={200} />
-   </Box>
-);
+export const Rectangle = () => <Skeleton w={150} h={200} />;
 
-export const Duration = () => (
-   <Box pad={'xsmall'}>
-      <Skeleton duration={3} />
-   </Box>
-);
+export const Duration = () => <Skeleton duration={3} />;
 
-export const RandomWidth = () => (
-   <Box pad={'xsmall'}>
-      <Skeleton count={5} w={'random'} />
-   </Box>
-);
+export const RandomWidth = () => <Skeleton count={5} w={'random'} />;

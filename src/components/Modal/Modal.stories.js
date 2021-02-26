@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { action } from '@storybook/addon-actions';
-import { Box } from '../Box';
 import { Button } from '../Button';
 import { Modal } from './Modal';
 
@@ -48,12 +46,12 @@ export const Default = () => {
    };
 
    return (
-      <Box pad={'xsmall'}>
+      <>
          <Button onClick={() => setIsOpen(true)} label={'Open Modal'} />
          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} w={{ max: 840 }}>
             {content()}
          </Modal>
-      </Box>
+      </>
    );
 };
 
@@ -84,12 +82,12 @@ export const Controlled = () => {
    };
 
    return (
-      <Box pad={'xsmall'}>
+      <>
          <Button onClick={() => setIsOpen(true)} label={'Open Modal'} />
          <Modal isOpen={isOpen} w={{ max: 440 }}>
             <Content />
          </Modal>
-      </Box>
+      </>
    );
 };
 
@@ -97,7 +95,7 @@ export const Fullscreen = () => {
    const [isOpen, setIsOpen] = useState(false);
 
    return (
-      <Box pad={'xsmall'}>
+      <>
          <Button onClick={() => setIsOpen(true)} label={'Open Modal In Fullscreen'} />
          <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} fullScreen>
             <>
@@ -131,6 +129,6 @@ export const Fullscreen = () => {
                </p>
             </>
          </Modal>
-      </Box>
+      </>
    );
 };

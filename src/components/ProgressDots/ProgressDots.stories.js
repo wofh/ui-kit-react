@@ -4,43 +4,39 @@ import { Box } from '../Box';
 import { ProgressDots } from './ProgressDots';
 
 export default {
-  title: 'Components/ProgressDots',
-  component: ProgressDots,
+   title: 'Components/ProgressDots',
+   component: ProgressDots,
 };
 
-export const Default = () => (
-  <Box pad={'xsmall'}>
-    <ProgressDots isLoading />
-  </Box>
-);
+export const Default = () => <ProgressDots isLoading />;
 
 export const Sizes = () => (
-  <div>
-    <Box pad={'medium'}>
-      <ProgressDots size={'large'} />
-    </Box>
-    <Box pad={'medium'}>
-      <ProgressDots size={'medium'} />
-    </Box>
-    <Box pad={'medium'}>
-      <ProgressDots size={'small'} />
-    </Box>
-  </div>
+   <>
+      <Box>
+         <ProgressDots size={'large'} />
+      </Box>
+      <Box>
+         <ProgressDots size={'medium'} />
+      </Box>
+      <Box>
+         <ProgressDots size={'small'} />
+      </Box>
+   </>
 );
 
 export const Steps = () => (
-  <div>
-    <Box pad={'medium'}>
-      <ProgressDots size={'medium'} steps={5} />
-    </Box>
-    <Box pad={'medium'}>
-      <ProgressDots size={'medium'} steps={5} progress={1} />
-    </Box>
-    <Box pad={'medium'}>
-      <ProgressDots size={'medium'} steps={5} progress={3} />
-    </Box>
-    <Box pad={'medium'}>
-      <ProgressDots size={'medium'} steps={5} progress={5} />
-    </Box>
-  </div>
+   <>
+      <Box>
+         <ProgressDots size={'medium'} steps={5} />
+      </Box>
+      <Box>
+         <ProgressDots size={'medium'} steps={5} progress={1} />
+      </Box>
+      <Box>
+         <ProgressDots size={'medium'} steps={5} progress={3} />
+      </Box>
+      <Box>
+         <ProgressDots size={'medium'} steps={5} progress={5} />
+      </Box>
+   </>
 );

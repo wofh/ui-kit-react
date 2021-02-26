@@ -76,8 +76,4 @@ const columns = [
    },
 ];
 
-export const Default = () => (
-   <Box pad={'xsmall'}>
-      <Table data={data} columns={columns} />
-   </Box>
-);
+export const Default = () => <Table data={data} columns={columns} />;

@@ -8,13 +8,7 @@ export default {
    component: Button,
 };
 
-export const Default = () => (
-   <>
-      <Box pad={'xsmall'}>
-         <Button onClick={action('clicked')} label={'Default'} />
-      </Box>
-   </>
-);
+export const Default = () => <Button onClick={action('clicked')} label={'Default'} />;
 
 export const Uses = () => (
    <>
@@ -103,18 +97,6 @@ export const Loading = () => (
    </>
 );
 
-export const FullWidth = () => (
-   <>
-      <Box pad={'xsmall'}>
-         <Button fullWidth use={'primary'} label={'Full Width Button'} />
-      </Box>
-   </>
-);
+export const FullWidth = () => <Button fullWidth use={'primary'} label={'Full Width Button'} />;
 
-export const Plain = () => (
-   <>
-      <Box pad={'xsmall'}>
-         <Button plain label={'Plain Button'} />
-      </Box>
-   </>
-);
+export const Plain = () => <Button plain label={'Plain Button'} />;

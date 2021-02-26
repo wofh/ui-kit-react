@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
-// import { spacing, color } from '../../shared/styles';
+import { spacing } from '../../shared/styles';
 
 const StyledRow = styled.div`
    box-sizing: border-box;
@@ -9,24 +9,29 @@ const StyledRow = styled.div`
    flex-wrap: wrap;
    display: flex;
 
-   ${props => (props.gutter > 0) && css`
-      margin-left: ${props.gutter / -2}px;
-      margin-right: ${props.gutter / -2}px;
-      margin-bottom: ${props.gutter}px;
+   ${(props) =>
+      props.gutter > 0 &&
+      css`
+         margin-left: ${props.gutter / -2}px;
+         margin-right: ${props.gutter / -2}px;
+         margin-bottom: ${props.gutter}px;
 
-      ${(typeof props.spaceAfter !== 'undefined') && css`margin-bottom: ${props.spaceAfter}px;`}
-   `}
+         ${typeof props.spaceAfter !== 'undefined' &&
+         css`
+            margin-bottom: ${props.spaceAfter}px;
+         `}
+      `}
 
-   ${props => (props.align === 'top') && 'align-items: flex-start;'}
-   ${props => (props.align === 'middle') && 'align-items: center;'}
-   ${props => (props.align === 'bottom') && 'align-items: flex-end;'}
-   ${props => (props.align === 'stretch') && 'align-items: stretch;'}
+   ${(props) => props.align === 'top' && 'align-items: flex-start;'}
+   ${(props) => props.align === 'middle' && 'align-items: center;'}
+   ${(props) => props.align === 'bottom' && 'align-items: flex-end;'}
+   ${(props) => props.align === 'stretch' && 'align-items: stretch;'}
 
-   ${props => (props.justify === 'start') && 'justify-content: flex-start;'}
-   ${props => (props.justify === 'center') && 'justify-content: center;'}
-   ${props => (props.justify === 'end') && 'justify-content: flex-end;'}
-   ${props => (props.justify === 'space-between') && 'justify-content: space-between;'}
-   ${props => (props.justify === 'space-around') && 'justify-content: space-around;'}
+   ${(props) => props.justify === 'start' && 'justify-content: flex-start;'}
+   ${(props) => props.justify === 'center' && 'justify-content: center;'}
+   ${(props) => props.justify === 'end' && 'justify-content: flex-end;'}
+   ${(props) => props.justify === 'space-between' && 'justify-content: space-between;'}
+   ${(props) => props.justify === 'space-around' && 'justify-content: space-around;'}
 
    :before,
    :after {
@@ -41,7 +46,6 @@ const StyledRow = styled.div`
 `;
 
 export const Row = ({ gutter, children, ...props }) => {
-
    const getCols = () => {
       return React.Children.map(children, (col) => {
          if (!col) {
@@ -54,15 +58,16 @@ export const Row = ({ gutter, children, ...props }) => {
 
          return col;
       });
-   }
+   };
 
    return (
-      <StyledRow {...props} gutter={gutter}>{getCols()}</StyledRow>
-   )
-}
+      <StyledRow {...props} gutter={gutter}>
+         {getCols()}
+      </StyledRow>
+   );
+};
 
 Row.propTypes = {
-
    /**
     * Grid spacing
     */
@@ -81,12 +86,12 @@ Row.propTypes = {
    /**
     * Vertical alignment of the layout of flex
     */
-   align: PropTypes.oneOf(['top', 'middle', 'bottom', 'stretch'])
+   align: PropTypes.oneOf(['top', 'middle', 'bottom', 'stretch']),
 };
 
 Row.defaultProps = {
-   gutter: 0,
+   gutter: 20,
    spaceAfter: undefined,
    justify: 'start',
-   align: 'top'
+   align: 'top',
 };

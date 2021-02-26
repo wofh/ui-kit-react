@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { Box } from '../Box';
 import { Avatar } from './Avatar';
 
@@ -16,37 +15,37 @@ const src = [
 ];
 
 export const Default = () => (
-   <Box pad={'xsmall'}>
+   <>
       <Avatar />
       <Avatar src={src[0]} />
-   </Box>
+   </>
 );
 
 export const Loading = () => (
-   <Box pad={'xsmall'}>
+   <>
       <Avatar isLoading />
-   </Box>
+   </>
 );
 
 export const Initial = () => (
-   <Box pad={'xsmall'}>
+   <>
       <Avatar name={'Stefano'} />
-   </Box>
+   </>
 );
 
 export const Sizes = () => (
-   <div>
-      <Box pad={'xsmall'}>
+   <>
+      <Box>
          <Avatar src={src[0]} size={'large'} />
       </Box>
-      <Box pad={'xsmall'}>
+      <Box>
          <Avatar src={src[1]} size={'medium'} />
       </Box>
-      <Box pad={'xsmall'}>
+      <Box>
          <Avatar src={src[2]} size={'small'} />
       </Box>
-      <Box pad={'xsmall'}>
+      <Box>
          <Avatar src={src[3]} size={'tiny'} />
       </Box>
-   </div>
+   </>
 );

@@ -1,5 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { Box } from '../Box';
 import { AvatarList } from './AvatarList';
 
@@ -21,43 +20,27 @@ const users = [
    { avatarUrl: 'https://randomuser.me/api/portraits/men/32.jpg' },
 ];
 
-export const Default = () => (
-   <Box pad={'xsmall'}>
-      <AvatarList users={users} />
-   </Box>
-);
+export const Default = () => <AvatarList users={users} />;
 
-export const userCount = () => (
-   <Box pad={'xsmall'}>
-      <AvatarList users={users} userCount={50} />
-   </Box>
-);
+export const userCount = () => <AvatarList users={users} userCount={50} />;
 
 export const sizes = () => (
-   <div>
-      <Box pad={'small'}>
+   <>
+      <Box>
          <AvatarList users={users} size={'large'} />
       </Box>
-      <Box pad={'small'}>
+      <Box>
          <AvatarList users={users} size={'medium'} />
       </Box>
-      <Box pad={'small'}>
+      <Box>
          <AvatarList users={users} size={'small'} />
       </Box>
-      <Box pad={'small'}>
+      <Box>
          <AvatarList users={users} size={'tiny'} />
       </Box>
-   </div>
+   </>
 );
 
-export const Loading = () => (
-   <Box pad={'xsmall'}>
-      <AvatarList isLoading />
-   </Box>
-);
+export const Loading = () => <AvatarList isLoading />;
 
-export const Empty = () => (
-   <Box pad={'xsmall'}>
-      <AvatarList users={[]} />
-   </Box>
-);
+export const Empty = () => <AvatarList users={[]} />;
