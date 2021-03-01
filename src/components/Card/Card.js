@@ -15,6 +15,8 @@ const StyledCard = styled.div`
    box-shadow: 0 0 0 1px ${color.medium};
    background-color: ${color.lightest};
 
+   ${(props) => props.onClick && 'cursor: pointer;'};
+
    ${(props) => props.align && 'text-align: ' + props.align};
    ${(props) =>
       props.background && 'background-color: ' + (color[props.background] || props.background)};
@@ -113,6 +115,11 @@ Card.propTypes = {
     * Defines a custom bottom spacing
     */
    spaceAfter: PropTypes.number,
+
+   /**
+    * On click callback
+    */
+   onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
