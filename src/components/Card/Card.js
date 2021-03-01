@@ -45,6 +45,7 @@ export const Card = ({ children, header, footer, image, ...props }) => {
       // Check if child content is an array and is one of <CardHeader />, <CardContent />, <CardFooter />
       if (
          Array.isArray(children) &&
+         children[0] &&
          typeof children[0] == 'object' &&
          cardSubComponents.filter((t) => t.type === children[0].type).length > 0
       ) {
