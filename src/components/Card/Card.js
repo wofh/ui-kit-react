@@ -30,13 +30,13 @@ export const Card = ({ children, header, footer, image, ...props }) => {
    const getImage = () => {
       if (!image) return null;
 
-      return <CardImage {...props} src={image} />;
+      return <CardImage src={image} />;
    };
 
    const getHeader = () => {
       if (!header) return null;
 
-      return <CardHeader {...props}>{header}</CardHeader>;
+      return <CardHeader>{header}</CardHeader>;
    };
 
    const getContent = () => {
@@ -50,17 +50,17 @@ export const Card = ({ children, header, footer, image, ...props }) => {
       }
 
       // Check if child content is already a CardContent
-      if (typeof children == 'object' && children.type === (<CardContent />).type) {
-         return <children.type {...props} {...children.props} />;
+      if (children && typeof children == 'object' && children.type === (<CardContent />).type) {
+         return <children.type {...children.props} />;
       }
 
-      return <CardContent {...props}>{children}</CardContent>;
+      return <CardContent>{children}</CardContent>;
    };
 
    const getFooter = () => {
       if (!footer) return null;
 
-      return <CardFooter {...props}>{footer}</CardFooter>;
+      return <CardFooter>{footer}</CardFooter>;
    };
 
    return (
