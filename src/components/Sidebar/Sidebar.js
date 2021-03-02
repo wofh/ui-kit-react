@@ -118,7 +118,7 @@ const StyledSidebar = styled.div`
    min-height: 100%;
    padding: ${spacing.padding.medium}px;
    background-color: ${(props) => getBackgroundColor(props)};
-   box-shadow: 0 0 0 1px ${color.medium};
+   // box-shadow: 0 0 0 1px ${color.medium};
 
    ${StyledItem} {
       ${(props) => props.collapsed && 'text-align: center;'}
