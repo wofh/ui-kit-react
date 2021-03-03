@@ -79,7 +79,8 @@ const StyledModalWrapper = styled.div`
    align-items: center;
    flex-direction: column;
    z-index: 100;
-   background-color: rgba(0, 0, 0, 75%);
+   background-color: ${({ overlayColor }) =>
+      overlayColor && typeof overlayColor === 'string' ? overlayColor : 'transparent'};
    overflow: auto;
 
    ${(props) =>
@@ -127,7 +128,7 @@ export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
    const getModal = () => {
       return (
          <StyledModalWrapper {...props}>
-            <StyledModal {...props}>
+            <StyledModal fullScreen={props.fullScreen} w={props.w} h={props.h}>
                {getCloseButton()}
                {children}
             </StyledModal>
@@ -188,9 +189,15 @@ Modal.propTypes = {
     *
     */
    modalRoot: PropTypes.instanceOf(HTMLElement),
+
+   /**
+    * Background overlay color
+    */
+   overlayColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 };
 
 Modal.defaultProps = {
    modalRoot: document.body,
    fullScreen: false,
+   overlayColor: 'rgba(0, 0, 0, 75%)',
 };
