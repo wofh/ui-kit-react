@@ -46,6 +46,9 @@ export const Field = ({ onChange, ...props }) => {
       let value = e;
 
       switch (props.type) {
+         case 'checkbox':
+            break;
+
          case 'select':
             if (!props.plain) {
                break;

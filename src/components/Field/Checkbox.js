@@ -49,12 +49,12 @@ const HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
    border: 0;
    clip: rect(0 0 0 0);
    clippath: inset(50%);
-   height: 1px;
    margin: -1px;
-   overflow: hidden;
    padding: 0;
    position: absolute;
    white-space: nowrap;
+   overflow: hidden;
+   height: 1px;
    width: 1px;
 `;
 
@@ -109,9 +109,11 @@ export const Checkbox = forwardRef(({ checked, ...props }, ref) => {
 Checkbox.propTypes = {
    inline: PropTypes.bool,
    checked: PropTypes.bool,
+   onChange: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
    inline: false,
    checked: false,
+   onChange: () => {},
 };
