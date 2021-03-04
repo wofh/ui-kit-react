@@ -15,6 +15,10 @@ const StyledIcon = styled.span`
       props.onClick &&
       css`
          cursor: pointer;
+
+         &:hover {
+            color: ${color.dark};
+         }
       `}
 `;
 

@@ -7,6 +7,7 @@ import { Textarea } from './Textarea';
 import { Email } from './Email';
 import { Select } from './Select';
 import { Checkbox } from './Checkbox';
+import { Number } from './Number';
 import { Datepicker } from './Datepicker';
 import { color, spacing, typography } from '../../shared/styles';
 
@@ -80,6 +81,9 @@ export const Field = ({ onChange, ...props }) => {
 
          case 'email':
             return <Email {...props} onChange={handleOnChange} />;
+
+         case 'number':
+            return <Number {...props} onChange={handleOnChange} />;
 
          case 'select':
             return <Select {...props} onChange={handleOnChange} />;

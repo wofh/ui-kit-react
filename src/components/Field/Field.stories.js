@@ -8,11 +8,12 @@ import { Textarea } from './Textarea';
 import { Select } from './Select';
 import { Datepicker } from './Datepicker';
 import { Checkbox } from './Checkbox';
+import { Number } from './Number';
 
 export default {
    title: 'Components/Field',
    component: Field,
-   subcomponents: { Input, Email, Password, Textarea, Select, Datepicker, Checkbox },
+   subcomponents: { Input, Email, Password, Number, Textarea, Select, Datepicker, Checkbox },
 };
 
 const placeholder = 'Placeholder text';
@@ -49,6 +50,13 @@ export const Default = () => (
          type={'email'}
          placeholder={placeholder}
          label={'Email'}
+         description={description}
+      />
+      <Field
+         spaceAfter={20}
+         type={'number'}
+         placeholder={placeholder}
+         label={'Number'}
          description={description}
       />
       <Field
@@ -134,6 +142,21 @@ export const FieldType = () => (
       />
       <Field
          spaceAfter={20}
+         type={'number'}
+         placeholder={placeholder}
+         label={'Number'}
+         description={description}
+      />
+      <Field
+         spaceAfter={20}
+         type={'number'}
+         plain
+         placeholder={placeholder}
+         label={'Plain Number'}
+         description={description}
+      />
+      <Field
+         spaceAfter={20}
          type={'select'}
          options={selectOptions}
          placeholder={placeholder}
@@ -196,6 +219,7 @@ export const OnlyField = () => (
       <Field spaceAfter={20} type={'text'} placeholder={'Text'} />
       <Field spaceAfter={20} type={'email'} placeholder={'Email'} />
       <Field spaceAfter={20} type={'password'} placeholder={'Password'} />
+      <Field spaceAfter={20} type={'number'} placeholder={'Number'} />
       <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={'Select'} />
       <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
       <Field spaceAfter={20} type={'datepicker'} placeholder={'Datepicker'} />
