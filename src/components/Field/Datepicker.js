@@ -66,6 +66,8 @@ export const Datepicker = ({
    onBlur,
    displayFormat,
    closeOnSelect,
+   datepickerProps,
+   firstDayOfWeek,
    ...props
 }) => {
    const ref = useRef(null);
@@ -136,7 +138,13 @@ export const Datepicker = ({
       if (focus || open) {
          return (
             <StyledDatePicker onMouseDown={handleMouseDown}>
-               <DayPicker onDayClick={handleDateSelect} selectedDays={value} />
+               <DayPicker
+                  onDayClick={handleDateSelect}
+                  selectedDays={value}
+                  initialMonth={value || null}
+                  firstDayOfWeek={firstDayOfWeek}
+                  {...datepickerProps}
+               />
             </StyledDatePicker>
          );
       }
@@ -168,6 +176,16 @@ Datepicker.propTypes = {
     */
    displayFormat: PropTypes.string,
 
+   /**
+    * Props that will be passed to the datepicker plugin (react-day-picker)
+    */
+   datepickerProps: PropTypes.object,
+
+   /**
+    * The day to use as first day of the week, starting from 0 (Sunday) to 6 (Saturday)
+    */
+   firstDayOfWeek: PropTypes.number,
+
    onChange: PropTypes.func,
    onFocus: PropTypes.func,
    onBlur: PropTypes.func,
@@ -177,6 +195,8 @@ Datepicker.defaultProps = {
    open: false,
    closeOnSelect: true,
    displayFormat: 'LL',
+   firstDayOfWeek: 0,
+   datepickerProps: {},
    onChange: () => {},
    onFocus: () => {},
    onBlur: () => {},
