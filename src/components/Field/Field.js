@@ -13,6 +13,7 @@ const StyledLabel = styled.label`
    display: block;
    width: 100%;
    font-size: ${typography.size.s3}px;
+   font-weight: ${typography.weight.medium};
    line-height: 1.5;
    margin-bottom: ${spacing.margin.small}px;
 `;
