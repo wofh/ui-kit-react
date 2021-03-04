@@ -154,6 +154,7 @@ Field.propTypes = {
       'textarea',
       'password',
       'email',
+      'number',
       'select',
       'checkbox',
       'group',

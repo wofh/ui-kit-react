@@ -22,7 +22,7 @@ const StyledButtons = styled.span`
    right: 0;
    display: flex;
    flex-direction: column;
-   height: 80%;
+   height: 100%;
 `;
 
 const StyledInputWrapper = styled.div`
@@ -46,10 +46,22 @@ const StyledInputWrapper = styled.div`
 
          svg {
             position: absolute;
-            height: 18px;
+            height: 16px;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+         }
+
+         &:first-child {
+            svg: {
+               top: 65%;
+            }
+         }
+
+         &:last-child {
+            svg: {
+               top: 35%;
+            }
          }
 
          &:hover {
@@ -88,6 +100,16 @@ export const Number = forwardRef(({ onChange, plain, type, ...props }, ref) => {
    const innerRef = React.useRef(null);
    const combinedRef = useCombinedRefs(ref, innerRef);
 
+   const increment = () => {
+      combinedRef.current.stepUp();
+      // TODO trigger event change
+   };
+
+   const decrement = () => {
+      combinedRef.current.stepDown();
+      // TODO trigger event change
+   };
+
    const getIconLeft = () =>
       props.iconLeft ? (
          <StyledIcon>
@@ -98,10 +120,10 @@ export const Number = forwardRef(({ onChange, plain, type, ...props }, ref) => {
    const getArrowButtons = () =>
       plain ? null : (
          <StyledButtons>
-            <StyledIcon onClick={() => combinedRef.current.stepUp()}>
+            <StyledIcon onClick={increment}>
                <Icon icon={'arrowup'} />
             </StyledIcon>
-            <StyledIcon onClick={() => combinedRef.current.stepDown()}>
+            <StyledIcon onClick={decrement}>
                <Icon icon={'arrowdown'} />
             </StyledIcon>
          </StyledButtons>
