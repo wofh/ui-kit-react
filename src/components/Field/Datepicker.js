@@ -1,5 +1,6 @@
 import React, { useState, useCallback, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from '../Icon';
 import styled, { css } from 'styled-components';
 import DayPicker from 'react-day-picker';
 import moment from 'moment';
