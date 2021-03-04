@@ -7,6 +7,7 @@ import { Textarea } from './Textarea';
 import { Email } from './Email';
 import { Select } from './Select';
 import { Checkbox } from './Checkbox';
+import { Datepicker } from './Datepicker';
 import { color, spacing, typography } from '../../shared/styles';
 
 const StyledLabel = styled.label`
@@ -48,6 +49,7 @@ export const Field = ({ onChange, ...props }) => {
 
       switch (props.type) {
          case 'checkbox':
+         case 'datepicker':
             break;
 
          case 'select':
@@ -84,6 +86,9 @@ export const Field = ({ onChange, ...props }) => {
 
          case 'checkbox':
             return <Checkbox {...props} onChange={handleOnChange} />;
+
+         case 'datepicker':
+            return <Datepicker {...props} onChange={handleOnChange} />;
 
          case 'none':
             return null;

@@ -388,7 +388,7 @@ export const Select = ({
       [closeOnSelect, multiSelect, onChange, value, options]
    );
 
-   const onMouseDown = useCallback(
+   const handleMouseDown = useCallback(
       (e) => {
          e.preventDefault();
          onSelect(e.currentTarget.value);
@@ -482,7 +482,7 @@ export const Select = ({
                         active={isOptionActive(option)}
                         value={option.value}
                         disabled={option.disabled || false}
-                        onMouseDown={onMouseDown}
+                        onMouseDown={handleMouseDown}
                         tabIndex={'-1'}
                      >
                         {option.name}

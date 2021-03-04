@@ -6,12 +6,13 @@ import { Password } from './Password';
 import { Email } from './Email';
 import { Textarea } from './Textarea';
 import { Select } from './Select';
+import { Datepicker } from './Datepicker';
 import { Checkbox } from './Checkbox';
 
 export default {
    title: 'Components/Field',
    component: Field,
-   subcomponents: { Input, Email, Password, Textarea, Select, Checkbox },
+   subcomponents: { Input, Email, Password, Textarea, Select, Datepicker, Checkbox },
 };
 
 const placeholder = 'Placeholder text';
@@ -57,6 +58,14 @@ export const Default = () => (
          placeholder={placeholder}
          label={'Select'}
          description={description}
+      />
+      <Field
+         spaceAfter={20}
+         type={'datepicker'}
+         placeholder={placeholder}
+         label={'Datepicker'}
+         description={description}
+         displayFormat={'DD/MM/YYYY'}
       />
       <Field type={'group'} label={'Checkbox'} description={description}>
          <Field
