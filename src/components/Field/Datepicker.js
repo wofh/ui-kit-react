@@ -7,6 +7,14 @@ import 'react-day-picker/lib/style.css';
 import { color, spacing, typography } from '../../shared/styles';
 // import { hex2rgba } from '../../shared/mixins';
 
+const StyledIcon = styled.span`
+   position: absolute;
+   line-height: 0;
+   width: 36px;
+   text-align: center;
+   color: ${color.mediumdark};
+`;
+
 const StyledDatePicker = styled.div`
    position: absolute;
    z-index: 100;
