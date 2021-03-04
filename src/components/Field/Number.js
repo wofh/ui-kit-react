@@ -53,13 +53,13 @@ const StyledInputWrapper = styled.div`
          }
 
          &:first-child {
-            svg: {
+            svg {
                top: 65%;
             }
          }
 
          &:last-child {
-            svg: {
+            svg {
                top: 35%;
             }
          }
@@ -102,12 +102,12 @@ export const Number = forwardRef(({ onChange, plain, type, ...props }, ref) => {
 
    const increment = () => {
       combinedRef.current.stepUp();
-      // TODO trigger event change
+      combinedRef.current.dispatchEvent(new Event('input', { bubbles: true }));
    };
 
    const decrement = () => {
       combinedRef.current.stepDown();
-      // TODO trigger event change
+      combinedRef.current.dispatchEvent(new Event('input', { bubbles: true }));
    };
 
    const getIconLeft = () =>
