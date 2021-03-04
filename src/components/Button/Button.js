@@ -93,6 +93,8 @@ export const StyledButton = styled(StyledButtonPlain)`
          box-shadow: inset 0 0 0 1px ${getColor(props)};
          color: ${getColor(props)};
       `}
+
+   ${(props) => props.icon && `padding: 0 ${padding[props.size] * 0.5}px`}
 `;
 
 export const Button = ({ plain, children, label, loadingText, iconLeft, iconRight, ...props }) => {
@@ -105,6 +107,7 @@ export const Button = ({ plain, children, label, loadingText, iconLeft, iconRigh
             <Icon icon={iconLeft} />
          </ButtonIcon>
       ) : null;
+
    const getIconRight = () =>
       iconRight ? (
          <ButtonIcon>
@@ -116,7 +119,7 @@ export const Button = ({ plain, children, label, loadingText, iconLeft, iconRigh
       if (props.isLoading) {
          return loadingText;
       }
-      return label || children || '';
+      return label || children || (props.icon ? <Icon icon={props.icon} /> : '');
    };
 
    if (plain) {
@@ -176,6 +179,11 @@ Button.propTypes = {
     * The icon to show on the right side of the label
     */
    iconRight: PropTypes.string,
+
+   /**
+    * The icon to show. It will be visible only if no label and children are set
+    */
+   icon: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -189,4 +197,5 @@ Button.defaultProps = {
    fullWidth: false,
    iconLeft: undefined,
    iconRight: undefined,
+   icon: undefined,
 };

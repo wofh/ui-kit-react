@@ -78,6 +78,9 @@ export const WithIcons = () => (
       <Box pad={'xsmall'}>
          <Button iconRight={'arrowright'} label={'Explore'} />
       </Box>
+      <Box pad={'xsmall'}>
+         <Button icon={'add'} />
+      </Box>
    </>
 );
 
