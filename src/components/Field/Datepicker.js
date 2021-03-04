@@ -176,7 +176,7 @@ Datepicker.propTypes = {
 Datepicker.defaultProps = {
    open: false,
    closeOnSelect: true,
-   displayFormat: 'LLL',
+   displayFormat: 'LL',
    onChange: () => {},
    onFocus: () => {},
    onBlur: () => {},

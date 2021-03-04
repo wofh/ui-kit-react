@@ -175,6 +175,13 @@ export const FieldType = () => (
          label={'Textarea'}
          description={description}
       />
+      <Field
+         spaceAfter={20}
+         type={'datepicker'}
+         placeholder={placeholder}
+         label={'Datepicker'}
+         description={description}
+      />
       <Field type={'group'} label={'Checkbox'} description={description} spaceAfter={20}>
          <Field type={'checkbox'} label={'Checkbox 1'} inline />
          <Field type={'checkbox'} label={'Checkbox 2'} checked inline />
@@ -191,6 +198,7 @@ export const OnlyField = () => (
       <Field spaceAfter={20} type={'password'} placeholder={'Password'} />
       <Field spaceAfter={20} type={'select'} options={selectOptions} placeholder={'Select'} />
       <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
+      <Field spaceAfter={20} type={'datepicker'} placeholder={'Datepicker'} />
       <Field spaceAfter={20} type={'checkbox'} defaultChecked />
    </>
 );
