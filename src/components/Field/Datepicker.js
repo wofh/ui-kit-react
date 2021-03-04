@@ -63,7 +63,35 @@ const StyledInputDisplay = styled.div`
    }
 `;
 
-const DatepickerWrapper = styled.div``;
+const DatepickerWrapper = styled.div`
+
+   ${StyledInputDisplay} {
+
+      ${(props) =>
+         !props.error &&
+         !props.success &&
+         css`
+            ${props.focus &&
+            css`
+               box-shadow: inset 0 0 0 1px ${color.primary};
+            `}
+         `}
+
+      ${(props) =>
+         props.error &&
+         css`
+            color: ${color.danger};
+            box-shadow: inset 0 0 0 1px ${color.danger};
+         `}
+
+      ${(props) =>
+         props.success &&
+         css`
+            color: ${color.success};
+            box-shadow: inset 0 0 0 1px ${color.success};
+         `}
+   }
+`;
 
 export const Datepicker = ({
    open,

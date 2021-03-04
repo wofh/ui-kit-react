@@ -38,7 +38,7 @@ const StyledInputDisplay = styled.div`
     box-shadow: inset 0 0 0 1px ${color.medium};
     border-radius: ${spacing.borderRadius.default}px;
     padding: ${typography.size.m1 * 0.5}px ${typography.size.m1}px;
-    padding-right: ${typography.size.m1 * 2}px;
+    padding-right: ${typography.size.m2 * 2}px;
 
     ${(props) =>
        props.isPlaceholder &&
