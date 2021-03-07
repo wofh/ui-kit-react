@@ -221,7 +221,7 @@ export const Filepicker = ({
       accepted.shift();
       setAcceptedFiles(acceptedFiles.length > 1 ? accepted : []);
 
-      onChange(file);
+      onChange(response, file);
    };
 
    const handleUploadError = (error, file) => {
