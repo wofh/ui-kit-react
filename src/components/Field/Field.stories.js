@@ -7,13 +7,24 @@ import { Email } from './Email';
 import { Textarea } from './Textarea';
 import { Select } from './Select';
 import { Datepicker } from './Datepicker';
+import { Filepicker } from './Filepicker';
 import { Checkbox } from './Checkbox';
 import { Number } from './Number';
 
 export default {
    title: 'Components/Field',
    component: Field,
-   subcomponents: { Input, Email, Password, Number, Textarea, Select, Datepicker, Checkbox },
+   subcomponents: {
+      Input,
+      Email,
+      Password,
+      Number,
+      Textarea,
+      Select,
+      Datepicker,
+      Filepicker,
+      Checkbox,
+   },
 };
 
 const placeholder = 'Placeholder text';
@@ -74,6 +85,13 @@ export const Default = () => (
          label={'Datepicker'}
          description={description}
          displayFormat={'DD/MM/YYYY'}
+      />
+      <Field
+         spaceAfter={20}
+         type={'filepicker'}
+         placeholder={placeholder}
+         label={'Filepicker'}
+         description={description}
       />
       <Field type={'group'} label={'Checkbox'} description={description}>
          <Field
@@ -267,6 +285,33 @@ export const WithIcons = () => (
 
 export const Autofocus = () => (
    <Field type={'text'} placeholder={placeholder} label={'Autofocus'} autoFocus />
+);
+
+export const FileUpload = () => (
+   <Field
+      spaceAfter={20}
+      type={'filepicker'}
+      label={'File Upload'}
+      onUpload={(file, onUploadProgress) => {
+         return new Promise((resolve, reject) => {
+            fetch('http://localhost/api/v0/upload', {
+               onUploadProgress: onUploadProgress,
+               method: 'POST',
+               headers: {
+                  'Content-Type': 'multipart/form-data',
+               },
+               body: file,
+            })
+               .then((res) => res.json())
+               .then(resolve)
+               .catch(reject);
+         });
+      }}
+      onError={(error, file) => {
+         console.log('error', error, file);
+      }}
+      onChange={(val) => console.log(val)}
+   />
 );
 
 export const AsyncSelect = () => (

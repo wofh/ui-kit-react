@@ -9,6 +9,7 @@ import { Select } from './Select';
 import { Checkbox } from './Checkbox';
 import { Number } from './Number';
 import { Datepicker } from './Datepicker';
+import { Filepicker } from './Filepicker';
 import { color, spacing, typography } from '../../shared/styles';
 
 const StyledLabel = styled.label`
@@ -51,6 +52,7 @@ export const Field = ({ onChange, ...props }) => {
       switch (props.type) {
          case 'checkbox':
          case 'datepicker':
+         case 'filepicker':
             break;
 
          case 'select':
@@ -93,6 +95,9 @@ export const Field = ({ onChange, ...props }) => {
 
          case 'datepicker':
             return <Datepicker {...props} onChange={handleOnChange} />;
+
+         case 'filepicker':
+            return <Filepicker {...props} onChange={handleOnChange} />;
 
          case 'none':
             return null;
@@ -157,6 +162,8 @@ Field.propTypes = {
       'number',
       'select',
       'checkbox',
+      'datepicker',
+      'filepicker',
       'group',
       'none',
    ]).isRequired,
