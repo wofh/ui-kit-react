@@ -4,6 +4,20 @@ import { Icon } from '../Icon';
 import styled, { css } from 'styled-components';
 import Dropzone from 'react-dropzone';
 import { color, spacing, typography } from '../../shared/styles';
+import { toBase64 } from '../../shared/mixins';
+
+const StyledIcon = styled.div`
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+
+   svg {
+      width: 64px;
+      height: 64px;
+      color: ${color.medium};
+   }
+`;
 
 const isFileImage = (file) => {
    return file && file.type.split('/')[0] === 'image';
@@ -69,45 +83,12 @@ const StyledFilePreview = styled.div`
          ${StyledFilePreviewImage} {
             opacity: 0.75;
             background-color: ${color.danger};
+            box-shadow: inset 0 0 0 2px ${color.danger};
          }
       `}
 `;
 
-const StyledFilePreviews = styled.div`
-   display: block;
-`;
-
-const FilePreview = ({ file, ...props }) => {
-   const getFileLabel = () => {
-      if (isFileImage(file)) {
-         return null;
-      }
-
-      return file.name.split('.').pop();
-   };
-
-   return (
-      <StyledFilePreview {...props}>
-         <StyledFilePreviewImage file={file} />
-         <StyledFilePreviewLabel>{getFileLabel()}</StyledFilePreviewLabel>
-      </StyledFilePreview>
-   );
-};
-
 const StyledFileInput = styled.input``;
-
-const StyledIcon = styled.div`
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-
-   svg {
-      width: 64px;
-      height: 64px;
-      color: ${color.medium};
-   }
-`;
 
 const StyledDropzone = styled.div`
    position: relative;
@@ -124,14 +105,20 @@ const StyledDropzone = styled.div`
       !props.error &&
       !props.success &&
       css`
-         &:focus {
-            box-shadow: inset 0 0 0 1px ${color.primary};
-         }
-
          &:hover {
             ${StyledIcon} {
                svg {
                   color: ${color.mediumdark};
+               }
+            }
+         }
+
+         &:focus {
+            box-shadow: inset 0 0 0 1px ${color.primary};
+
+            ${StyledIcon} {
+               svg {
+                  color: ${color.primary};
                }
             }
          }
@@ -166,17 +153,93 @@ const StyledDropzone = styled.div`
       `}
 `;
 
-const StyledFilePicker = styled.div`
-   // position: absolute;
-   // z-index: 100;
-   // padding: 0;
-   // margin: 0;
-   // margin-top: ${spacing.padding.xsmall}px;
-   // background-color: #fff;
-   // overflow: auto;
-   // border-radius: ${spacing.borderRadius.default}px;
-   // border: 1px solid ${color.medium};
+const StyledFilePreviews = styled.div`
+   display: block;
+
+   ${StyledFilePreview} {
+      ${StyledFilePreviewImage} {
+      }
+
+      ${StyledIcon}.delete {
+         display: none;
+         cursor: pointer;
+         svg {
+         }
+      }
+
+      &:hover {
+         ${StyledFilePreviewImage} {
+            opacity: 0.5;
+         }
+
+         ${StyledIcon}.delete {
+            display: block;
+
+            svg {
+               color: ${color.danger};
+            }
+         }
+      }
+   }
+
+   ${(props) =>
+      !props.multiple &&
+      css`
+         ${StyledFilePreview} {
+            display: block;
+            margin: 0;
+
+            ${StyledFilePreviewImage} {
+               width: 100%;
+               height: 20vw;
+            }
+         }
+      `}
+
+   ${StyledDropzone} {
+      display: inline-flex;
+      width: 80px;
+      height: 80px;
+      line-height: 0;
+      padding: 0;
+   }
 `;
+
+const StyledFilePicker = styled.div``;
+
+const FilePreview = ({ file, onDelete, ...props }) => {
+   const getFileLabel = () => {
+      if (isFileImage(file)) {
+         return null;
+      }
+
+      return file.name.split('.').pop();
+   };
+
+   const renderDeleteButton = () => {
+      if (!onDelete) {
+         return null;
+      }
+
+      return (
+         <StyledIcon className={'delete'} onClick={() => onDelete(file)}>
+            <Icon icon={'Close'} />
+         </StyledIcon>
+      );
+   };
+
+   return (
+      <StyledFilePreview {...props}>
+         <StyledFilePreviewImage file={file} />
+         <StyledFilePreviewLabel>{getFileLabel()}</StyledFilePreviewLabel>
+         {renderDeleteButton()}
+      </StyledFilePreview>
+   );
+};
+
+FilePreview.defaultProps = {
+   onDelete: undefined,
+};
 
 export const Filepicker = ({
    accept,
@@ -185,31 +248,43 @@ export const Filepicker = ({
    onFocus,
    onBlur,
    onUpload,
-   onError,
+   onUploadError,
+   onDelete,
    ...props
 }) => {
    // const ref = useRef(null);
-   // const defaultValue = props.value || props.defaultValue || null;
-   const [completedFiles, setCompletedFiles] = useState([]);
+   const defaultValue = props.value || props.defaultValue || (multiple ? [] : null);
+
+   const [dragOver, setDragOver] = useState(false);
+   const [value, setValue] = useState(defaultValue);
    const [acceptedFiles, setAcceptedFiles] = useState([]);
+   const [completedFiles, setCompletedFiles] = useState([]);
    const [rejectedFiles, setRejectedFiles] = useState([]);
 
    // const [uploadCompleted, setUploadCompleted] = useState(false);
    // const [uploadErrored, setUploadErrored] = useState(false);
    // const [uploadPercent, setUploadPercent] = useState(false);
-   const [dragOver, setDragOver] = useState(false);
 
    useEffect(() => {
-      // console.log('completedFiles', completedFiles.length)
-      // console.log('acceptedFiles', acceptedFiles.length)
-
-      if (acceptedFiles && acceptedFiles.length > 0) {
+      if (acceptedFiles.length > 0) {
          handleUpload(acceptedFiles[0]);
       }
    }, [acceptedFiles]);
 
+   useEffect(() => {
+      onChange(value);
+   }, [value]);
+
    const handleUploadCompletion = (response, file) => {
       // "file" is equal to the first element of "acceptedFiles"
+
+      if (multiple) {
+         const newValue = [...value];
+         newValue.push(response);
+         setValue(newValue);
+      } else {
+         setValue(response);
+      }
 
       // Add the completed accepted file to the completed files
       const completed = [...completedFiles];
@@ -220,13 +295,11 @@ export const Filepicker = ({
       const accepted = [...acceptedFiles];
       accepted.shift();
       setAcceptedFiles(acceptedFiles.length > 1 ? accepted : []);
-
-      onChange(response, file);
    };
 
    const handleUploadError = (error, file) => {
       // setUploadErrored(true)
-      onError(error, file);
+      onUploadError(error, file);
    };
 
    const handleUploadProgress = (progress) => {
@@ -234,7 +307,7 @@ export const Filepicker = ({
    };
 
    const handleUpload = (file) => {
-      onUpload(file, handleUploadProgress)
+      (onUpload ? onUpload(file, handleUploadProgress) : toBase64(file))
          .then((res) => handleUploadCompletion(res, file))
          .catch((err) => handleUploadError(err, file));
    };
@@ -243,6 +316,9 @@ export const Filepicker = ({
       setDragOver(false);
 
       if (accepted.length > 0) {
+         if (!multiple) {
+            setCompletedFiles([]);
+         }
          setAcceptedFiles([...accepted]);
       }
 
@@ -251,45 +327,97 @@ export const Filepicker = ({
       }
    };
 
+   const handleDelete = (file, list, key) => {
+      onDelete(file);
+
+      if (!multiple) {
+         setCompletedFiles([]);
+         setAcceptedFiles([]);
+         setRejectedFiles([]);
+         setValue(null);
+      } else {
+         switch (list) {
+            case 'completed':
+               setCompletedFiles(completedFiles.filter((file, index) => index != key));
+               setValue(value.filter((val, index) => index != key));
+               break;
+
+            case 'accepted':
+               setAcceptedFiles(acceptedFiles.filter((file, index) => index != key));
+               break;
+
+            case 'rejected':
+               setRejectedFiles(rejectedFiles.filter((file, index) => index != key));
+               break;
+         }
+      }
+   };
+
+   // const getPlaceholderImage = () => {
+   //    if (multiple) {
+   //       return defaultValue || false;
+   //    }
+
+   //    if (completedFiles.length) {
+   //       return URL.createObjectURL(completedFiles[0])
+   //    }
+
+   //    if (acceptedFiles.length) {
+   //       return URL.createObjectURL(acceptedFiles[0])
+   //    }
+
+   //    if (defaultValue) {
+   //       return defaultValue
+   //    }
+
+   //    return false
+   // }
+
    const renderFilePreviews = () => {
       return (
-         <StyledFilePreviews>
+         <StyledFilePreviews multiple={multiple}>
             {completedFiles.map((file, key) => (
-               <FilePreview key={`accepted_${key}`} file={file} completed />
+               <FilePreview
+                  key={`completed_${key}`}
+                  file={file}
+                  completed
+                  onDelete={() => handleDelete(file, 'completed', key)}
+               />
             ))}
             {acceptedFiles.map((file, key) => (
-               <FilePreview key={`accepted_${key}`} file={file} accepted />
+               <FilePreview
+                  key={`accepted_${key}`}
+                  file={file}
+                  accepted
+                  onDelete={() => handleDelete(file, 'accepted', key)}
+               />
             ))}
             {rejectedFiles.map((reject, key) => (
-               <FilePreview key={`accepted_${key}`} file={reject.file} rejected />
+               <FilePreview
+                  key={`rejected_${key}`}
+                  file={reject.file}
+                  rejected
+                  onDelete={() => handleDelete(reject.file, 'rejected', key)}
+               />
             ))}
+            {multiple && (completedFiles.length || acceptedFiles.length) ? renderDropzone() : null}
          </StyledFilePreviews>
       );
    };
 
-   const renderDropdown = ({ getRootProps, getInputProps }) => {
+   const renderDropzoneChild = ({ getRootProps, getInputProps }) => {
       return (
          <StyledDropzone {...getRootProps()} dragOver={dragOver}>
             <StyledFileInput {...getInputProps()} />
             <StyledIcon>
                <Icon icon={'Add'} />
             </StyledIcon>
-            {/* {completedFiles.map((file, key) => (
-               <div key={`completed_${key}`}>{file.name} Completed</div>)
-            )}
-            {acceptedFiles.map((file, key) => (
-               <div key={`accepted_${key}`}>{file.name} Accepted</div>)
-            )}
-            {rejectedFiles.map((rejected, key) => (
-               <div key={`rejected_${key}`}>{rejected.file.name} Rejected</div>)
-            )} */}
          </StyledDropzone>
       );
    };
 
-   return (
-      <StyledFilePicker>
-         {renderFilePreviews()}
+   const renderDropzone = () => {
+      return (
          <Dropzone
             accept={accept}
             multiple={multiple}
@@ -298,28 +426,61 @@ export const Filepicker = ({
             onDragLeave={() => setDragOver(false)}
             onDragOver={() => setDragOver(true)}
          >
-            {renderDropdown}
+            {renderDropzoneChild}
          </Dropzone>
+      );
+   };
+
+   return (
+      <StyledFilePicker>
+         {renderFilePreviews()}
+         {completedFiles.length || acceptedFiles.length ? null : renderDropzone()}
       </StyledFilePicker>
    );
 };
 
 Filepicker.propTypes = {
+   /**
+    * Accepted mime type
+    */
    accept: PropTypes.string,
+
+   /**
+    * Enables multiple file selection
+    */
    multiple: PropTypes.bool,
+
+   /**
+    * Callback triggered on file upload
+    */
    onChange: PropTypes.func,
+
+   /**
+    * Callback function that handles the file upload. Received the `file` as first parameter and the `onUploadProgress` callback to attach to the request as second parameter.
+    * When no upload callback function is passed, a base64 of the file is created
+    */
+   onUpload: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
+
+   /**
+    * Callback function triggered on upload error
+    */
+   onUploadError: PropTypes.func,
+
+   /**
+    * Callback function triggered when a file is deleted
+    */
+   onDelete: PropTypes.func,
    onFocus: PropTypes.func,
    onBlur: PropTypes.func,
-   onUpload: PropTypes.func,
-   onError: PropTypes.func,
 };
 
 Filepicker.defaultProps = {
    accept: 'image/jpeg, image/png',
-   multiple: true,
+   multiple: false,
    onChange: () => {},
+   onDelete: () => {},
    onFocus: () => {},
    onBlur: () => {},
-   onUpload: () => new Promise((resolve) => resolve()),
-   onError: () => new Promise((r, reject) => reject()),
+   onUpload: false,
+   onUploadError: () => new Promise((r, reject) => reject()),
 };

@@ -288,30 +288,45 @@ export const Autofocus = () => (
 );
 
 export const FileUpload = () => (
-   <Field
-      spaceAfter={20}
-      type={'filepicker'}
-      label={'File Upload'}
-      onUpload={(file, onUploadProgress) => {
-         return new Promise((resolve, reject) => {
-            fetch('http://localhost/api/v0/upload', {
-               onUploadProgress: onUploadProgress,
-               method: 'POST',
-               headers: {
-                  'Content-Type': 'multipart/form-data',
-               },
-               body: file,
-            })
-               .then((res) => res.json())
-               .then(resolve)
-               .catch(reject);
-         });
-      }}
-      onError={(error, file) => {
-         console.log('error', error, file);
-      }}
-      onChange={(val) => console.log(val)}
-   />
+   <>
+      <Field
+         spaceAfter={20}
+         type={'filepicker'}
+         label={'File Upload'}
+         onUpload={(file, onUploadProgress) => {
+            return new Promise((resolve, reject) => {
+               fetch('http://localhost/api/v0/upload', {
+                  onUploadProgress: onUploadProgress,
+                  method: 'POST',
+                  headers: {
+                     'Content-Type': 'multipart/form-data',
+                  },
+                  body: file,
+               })
+                  .then((res) => res.json())
+                  .then(resolve)
+                  .catch(reject);
+            });
+         }}
+         onUploadError={(error, file) => {
+            console.log('error', error, file);
+         }}
+         onChange={(val) => console.log(val)}
+      />
+      <Field
+         spaceAfter={20}
+         type={'filepicker'}
+         label={'Single File Upload'}
+         onChange={(val) => console.log('update', val)}
+      />
+      <Field
+         spaceAfter={20}
+         type={'filepicker'}
+         label={'Multiple File Upload'}
+         multiple
+         onChange={(val) => console.log('update', val)}
+      />
+   </>
 );
 
 export const AsyncSelect = () => (
