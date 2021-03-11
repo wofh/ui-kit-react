@@ -38,6 +38,12 @@ const StyledFilePreviewImage = styled.div`
       css`
          background-image: url(${URL.createObjectURL(props.file)});
       `}
+
+   ${(props) =>
+      props.image &&
+      css`
+         background-image: url(${props.image});
+      `}
 `;
 
 const StyledFilePreviewLabel = styled.div`
@@ -207,9 +213,17 @@ const StyledFilePreviews = styled.div`
 
 const StyledFilePicker = styled.div``;
 
-const FilePreview = ({ file, onDelete, ...props }) => {
+const FilePreview = ({ file, onDelete, image, ...props }) => {
    const getFileLabel = () => {
+      if (!file) {
+         return null;
+      }
+
       if (isFileImage(file)) {
+         return null;
+      }
+
+      if (!file.name) {
          return null;
       }
 
@@ -230,7 +244,7 @@ const FilePreview = ({ file, onDelete, ...props }) => {
 
    return (
       <StyledFilePreview {...props}>
-         <StyledFilePreviewImage file={file} />
+         <StyledFilePreviewImage file={file} image={image} />
          <StyledFilePreviewLabel>{getFileLabel()}</StyledFilePreviewLabel>
          {renderDeleteButton()}
       </StyledFilePreview>
@@ -376,6 +390,22 @@ export const Filepicker = ({
    const renderFilePreviews = () => {
       return (
          <StyledFilePreviews multiple={multiple}>
+            {!completedFiles.length &&
+            !acceptedFiles.length &&
+            (multiple ? value.length : value) ? (
+               multiple ? (
+                  value.map((image, key) => (
+                     <FilePreview
+                        key={`default_${key}`}
+                        image={image}
+                        completed
+                        onDelete={() => setValue(value.filter((val, index) => index != key))}
+                     />
+                  ))
+               ) : (
+                  <FilePreview image={value} completed onDelete={() => setValue(null)} />
+               )
+            ) : null}
             {completedFiles.map((file, key) => (
                <FilePreview
                   key={`completed_${key}`}
@@ -434,7 +464,9 @@ export const Filepicker = ({
    return (
       <StyledFilePicker>
          {renderFilePreviews()}
-         {completedFiles.length || acceptedFiles.length ? null : renderDropzone()}
+         {completedFiles.length || acceptedFiles.length || (multiple ? value.length : value)
+            ? null
+            : renderDropzone()}
       </StyledFilePicker>
    );
 };
