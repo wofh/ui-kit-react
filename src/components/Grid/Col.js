@@ -7,82 +7,85 @@ import { styles } from '../../shared';
 const grid_columns = styles.responsive.columns;
 
 const span = (span) => {
-   if (isNaN(span)) return css``
-   if (!span) return css``
+   if (isNaN(span)) return css``;
+   if (!span) return css``;
    return css`
       display: block;
       width: ${(span / grid_columns) * 100}%;
-   `
-}
+   `;
+};
 
 const offset = (offset = null) => {
-   if (!offset) return css``
+   if (!offset) return css``;
    return css`
       margin-left: ${(offset / grid_columns) * 100}%;
-   `
-}
+   `;
+};
 
 const order = (order = null) => {
-   if (!order) return css``
+   if (!order) return css``;
    return css`
       order: ${order};
-   `
-}
+   `;
+};
 
 const StyledCol = styled.div`
    position: relative;
    min-height: 1px;
+   max-width: 100%;
    float: left;
    flex: 0 0 auto;
 
-   ${props => (props.gutter > 0) && css`
-      padding-left: ${props.gutter / 2}px;
-      padding-right: ${props.gutter / 2}px;
-   `}
+   ${(props) =>
+      props.gutter > 0 &&
+      css`
+         padding-left: ${props.gutter / 2}px;
+         padding-right: ${props.gutter / 2}px;
+      `}
 
-   ${props => span(props.span)}
-   ${props => offset(props.offset || 0)}
-   ${props => order(props.order)}
+   ${(props) => span(props.span)}
+   ${(props) => offset(props.offset || 0)}
+   ${(props) => order(props.order)}
 
-   ${props => props.xs && breakpoint('xs', 'sm')(span(props.xs.span))}
-   ${props => props.sm && breakpoint('sm', 'md')(span(props.sm.span))}
-   ${props => props.md && breakpoint('md', 'lg')(span(props.md.span))}
-   ${props => props.lg && breakpoint('lg', 'xl')(span(props.lg.span))}
-   ${props => props.xl && breakpoint('xl')(span(props.xl.span))}
+   ${(props) => props.xs && breakpoint('xs', 'sm')(span(props.xs.span))}
+   ${(props) => props.sm && breakpoint('sm', 'md')(span(props.sm.span))}
+   ${(props) => props.md && breakpoint('md', 'lg')(span(props.md.span))}
+   ${(props) => props.lg && breakpoint('lg', 'xl')(span(props.lg.span))}
+   ${(props) => props.xl && breakpoint('xl')(span(props.xl.span))}
 
-   ${props => props.xs && breakpoint('xs', 'sm')(offset(props.xs.offset))}
-   ${props => props.sm && breakpoint('sm', 'md')(offset(props.sm.offset))}
-   ${props => props.md && breakpoint('md', 'lg')(offset(props.md.offset))}
-   ${props => props.lg && breakpoint('lg', 'xl')(offset(props.lg.offset))}
-   ${props => props.xl && breakpoint('xl')(offset(props.xl.offset))}
+   ${(props) => props.xs && breakpoint('xs', 'sm')(offset(props.xs.offset))}
+   ${(props) => props.sm && breakpoint('sm', 'md')(offset(props.sm.offset))}
+   ${(props) => props.md && breakpoint('md', 'lg')(offset(props.md.offset))}
+   ${(props) => props.lg && breakpoint('lg', 'xl')(offset(props.lg.offset))}
+   ${(props) => props.xl && breakpoint('xl')(offset(props.xl.offset))}
 
-   ${props => props.xs && breakpoint('xs', 'sm')(order(props.xs.order))}
-   ${props => props.sm && breakpoint('sm', 'md')(order(props.sm.order))}
-   ${props => props.md && breakpoint('md', 'lg')(order(props.md.order))}
-   ${props => props.lg && breakpoint('lg', 'xl')(order(props.lg.order))}
-   ${props => props.xl && breakpoint('xl')(order(props.xl.order))}
+   ${(props) => props.xs && breakpoint('xs', 'sm')(order(props.xs.order))}
+   ${(props) => props.sm && breakpoint('sm', 'md')(order(props.sm.order))}
+   ${(props) => props.md && breakpoint('md', 'lg')(order(props.md.order))}
+   ${(props) => props.lg && breakpoint('lg', 'xl')(order(props.lg.order))}
+   ${(props) => props.xl && breakpoint('xl')(order(props.xl.order))}
 
-   ${props => props.grow && css`
-      flex-grow: ${props.grow === true ? 1 : props.grow};
-   `}
+   ${(props) =>
+      props.grow &&
+      css`
+         flex-grow: ${props.grow === true ? 1 : props.grow};
+      `}
 `;
 
 export const Col = ({ children, ...props }) => {
-
    let sizesProps = {};
    let lastSizeProps = {};
    ['xs', 'sm', 'md', 'lg', 'xl'].forEach((size) => {
       let sizeProps = {
          span: null,
          offset: 0,
-         order: null
-      }
+         order: null,
+      };
 
       /**
        * If Col has not a value defined for `xs`, `sm`, `md`, `lg` and `xl` get the `span` prop, otherwise get the last one cached
        */
-      if ( !props[size] ) {
-
+      if (!props[size]) {
          if (props.span) {
             sizesProps[size] = Object.assign({}, props);
             return;
@@ -94,8 +97,7 @@ export const Col = ({ children, ...props }) => {
 
       if (typeof props[size] === 'number') {
          sizeProps.span = props[size];
-      }
-      else if (typeof props[size] === 'object') {
+      } else if (typeof props[size] === 'object') {
          sizeProps = Object.assign({}, sizeProps, props[size]);
       }
 
@@ -104,12 +106,13 @@ export const Col = ({ children, ...props }) => {
    });
 
    return (
-      <StyledCol {...props} {...sizesProps}>{children}</StyledCol>
-   )
+      <StyledCol {...props} {...sizesProps}>
+         {children}
+      </StyledCol>
+   );
 };
 
 Col.propTypes = {
-
    /**
     * Number of cells
     */
@@ -133,51 +136,66 @@ Col.propTypes = {
    /**
     * <576px, could be a `span` value or a object contain above props
     */
-   xs: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
-      span: PropTypes.number,
-      offset: PropTypes.number,
-      order: PropTypes.number,
-   }) ]),
+   xs: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+         span: PropTypes.number,
+         offset: PropTypes.number,
+         order: PropTypes.number,
+      }),
+   ]),
 
    /**
     * ≥576px, could be a `span` value or a object contain above props
     */
-   sm: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
-      span: PropTypes.number,
-      offset: PropTypes.number,
-      order: PropTypes.number,
-   }) ]),
+   sm: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+         span: PropTypes.number,
+         offset: PropTypes.number,
+         order: PropTypes.number,
+      }),
+   ]),
 
    /**
     * ≥768px, could be a `span` value or a object contain above props
     */
-   md: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
-      span: PropTypes.number,
-      offset: PropTypes.number,
-      order: PropTypes.number,
-   }) ]),
+   md: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+         span: PropTypes.number,
+         offset: PropTypes.number,
+         order: PropTypes.number,
+      }),
+   ]),
 
    /**
     * ≥992px, could be a `span` value or a object contain above props
     */
-   lg: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
-      span: PropTypes.number,
-      offset: PropTypes.number,
-      order: PropTypes.number,
-   }) ]),
+   lg: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+         span: PropTypes.number,
+         offset: PropTypes.number,
+         order: PropTypes.number,
+      }),
+   ]),
 
    /**
     * ≥1200px, could be a `span` value or a object contain above props
     */
-   xl: PropTypes.oneOfType([ PropTypes.number, PropTypes.shape({
-      span: PropTypes.number,
-      offset: PropTypes.number,
-      order: PropTypes.number,
-   }) ])
+   xl: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+         span: PropTypes.number,
+         offset: PropTypes.number,
+         order: PropTypes.number,
+      }),
+   ]),
 };
 
 Col.defaultProps = {
    span: null,
    offset: 0,
-   grow: false
+   grow: false,
 };
