@@ -53,7 +53,7 @@ const StyledInputWrapper = styled.div`
    }
 `;
 
-export const Password = forwardRef(({ onChange, ...props }, ref) => {
+export const Password = forwardRef(({ onChange, onFocus, onBlur, ...props }, ref) => {
    const [visible, setVisible] = useState(false);
 
    const getVisibilityIcon = () => {
@@ -96,6 +96,8 @@ export const Password = forwardRef(({ onChange, ...props }, ref) => {
             {...props}
             type={visible ? 'text' : 'password'}
             onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
          />
          {getIconRight()}
       </StyledInputWrapper>

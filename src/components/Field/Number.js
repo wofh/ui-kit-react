@@ -96,7 +96,7 @@ const StyledInputWrapper = styled.div`
    }
 `;
 
-export const Number = forwardRef(({ onChange, plain, type, ...props }, ref) => {
+export const Number = forwardRef(({ onChange, onFocus, onBlur, plain, type, ...props }, ref) => {
    const innerRef = React.useRef(null);
    const combinedRef = useCombinedRefs(ref, innerRef);
 
@@ -132,7 +132,14 @@ export const Number = forwardRef(({ onChange, plain, type, ...props }, ref) => {
    return (
       <StyledInputWrapper {...props} plain={plain}>
          {getIconLeft()}
-         <StyledBase ref={combinedRef} type={type} {...props} onChange={onChange} />
+         <StyledBase
+            ref={combinedRef}
+            type={type}
+            {...props}
+            onChange={onChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
+         />
          {getArrowButtons()}
       </StyledInputWrapper>
    );

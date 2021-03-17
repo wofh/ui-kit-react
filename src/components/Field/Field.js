@@ -63,7 +63,7 @@ const StyledComponentWrapper = styled.div`
    align-items: center;
 `;
 
-export const Field = ({ onChange, ...props }) => {
+export const Field = ({ onChange, onBlur, onFocus, ...props }) => {
    const handleOnChange = (e) => {
       let value = e;
 
@@ -100,31 +100,74 @@ export const Field = ({ onChange, ...props }) => {
       const field = () => {
          switch (props.type) {
             case 'textarea':
-               return <Textarea {...props} onChange={handleOnChange} />;
+               return (
+                  <Textarea
+                     {...props}
+                     onChange={handleOnChange}
+                     onFocus={onFocus}
+                     onBlur={onBlur}
+                  />
+               );
 
             case 'password':
-               return <Password {...props} onChange={handleOnChange} />;
+               return (
+                  <Password
+                     {...props}
+                     onChange={handleOnChange}
+                     onFocus={onFocus}
+                     onBlur={onBlur}
+                  />
+               );
 
             case 'text':
-               return <Input {...props} onChange={handleOnChange} />;
+               return (
+                  <Input {...props} onChange={handleOnChange} onFocus={onFocus} onBlur={onBlur} />
+               );
 
             case 'email':
-               return <Email {...props} onChange={handleOnChange} />;
+               return (
+                  <Email {...props} onChange={handleOnChange} onFocus={onFocus} onBlur={onBlur} />
+               );
 
             case 'number':
-               return <Number {...props} onChange={handleOnChange} />;
+               return (
+                  <Number {...props} onChange={handleOnChange} onFocus={onFocus} onBlur={onBlur} />
+               );
 
             case 'select':
-               return <Select {...props} onChange={handleOnChange} />;
+               return (
+                  <Select {...props} onChange={handleOnChange} onFocus={onFocus} onBlur={onBlur} />
+               );
 
             case 'checkbox':
-               return <Checkbox {...props} onChange={handleOnChange} />;
+               return (
+                  <Checkbox
+                     {...props}
+                     onChange={handleOnChange}
+                     onFocus={onFocus}
+                     onBlur={onBlur}
+                  />
+               );
 
             case 'datepicker':
-               return <Datepicker {...props} onChange={handleOnChange} />;
+               return (
+                  <Datepicker
+                     {...props}
+                     onChange={handleOnChange}
+                     onFocus={onFocus}
+                     onBlur={onBlur}
+                  />
+               );
 
             case 'filepicker':
-               return <Filepicker {...props} onChange={handleOnChange} />;
+               return (
+                  <Filepicker
+                     {...props}
+                     onChange={handleOnChange}
+                     onFocus={onFocus}
+                     onBlur={onBlur}
+                  />
+               );
 
             case 'none':
                return null;
@@ -133,7 +176,9 @@ export const Field = ({ onChange, ...props }) => {
                return props.children;
 
             default:
-               return <Input {...props} onChange={handleOnChange} />;
+               return (
+                  <Input {...props} onChange={handleOnChange} onFocus={onFocus} onBlur={onBlur} />
+               );
          }
       };
 

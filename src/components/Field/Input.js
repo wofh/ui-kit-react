@@ -100,7 +100,7 @@ const StyledInputWrapper = styled.div`
    }
 `;
 
-export const Input = forwardRef(({ onChange, ...props }, ref) => {
+export const Input = forwardRef(({ onChange, onFocus, onBlur, ...props }, ref) => {
    const getIconLeft = () =>
       props.iconLeft ? (
          <StyledIcon>
@@ -118,7 +118,7 @@ export const Input = forwardRef(({ onChange, ...props }, ref) => {
    return (
       <StyledInputWrapper {...props}>
          {getIconLeft()}
-         <StyledBase ref={ref} {...props} onChange={onChange} />
+         <StyledBase ref={ref} {...props} onChange={onChange} onFocus={onFocus} onBlur={onBlur} />
          {getIconRight()}
       </StyledInputWrapper>
    );

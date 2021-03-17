@@ -47,6 +47,7 @@ export const Default = () => (
          placeholder={placeholder}
          label={'Text'}
          description={description}
+         onBlur={console.log}
       />
       <Field
          spaceAfter={20}
