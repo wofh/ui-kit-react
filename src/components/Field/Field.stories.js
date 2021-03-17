@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '../Box';
+import { Button } from '../Button';
 import { Field } from './Field';
 import { Input } from './Input';
 import { Password } from './Password';
@@ -365,6 +366,23 @@ export const AsyncSelect = () => (
          onChange={(val) => console.log(val)}
       />
    </Box>
+);
+
+export const FieldPrefixSuffix = () => (
+   <>
+      <Field
+         label={'Prefix'}
+         description={'This field has a prefix'}
+         prefix={<Button use={'primary'} label={'Prefix Button'} />}
+         spaceAfter={20}
+      />
+      <Field
+         label={'Suffix'}
+         description={'This field has a suffix'}
+         suffix={<Button use={'primary'} label={'Suffix Button'} />}
+         spaceAfter={20}
+      />
+   </>
 );
 
 export const Misc = () => (

@@ -45,6 +45,24 @@ const StyledField = styled.div`
       `}
 `;
 
+const StyledPrefix = styled.div`
+   margin-right: ${spacing.margin.small}px;
+`;
+const StyledSuffix = styled.div`
+   margin-left: ${spacing.margin.small}px;
+`;
+
+const StyledComponent = styled.div`
+   flex-grow: 1;
+`;
+
+const StyledComponentWrapper = styled.div`
+   position: relative;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+`;
+
 export const Field = ({ onChange, ...props }) => {
    const handleOnChange = (e) => {
       let value = e;
@@ -71,43 +89,61 @@ export const Field = ({ onChange, ...props }) => {
    };
 
    const getField = () => {
-      switch (props.type) {
-         case 'textarea':
-            return <Textarea {...props} onChange={handleOnChange} />;
+      const prefix = () => {
+         return props.prefix ? <StyledPrefix>{props.prefix}</StyledPrefix> : null;
+      };
 
-         case 'password':
-            return <Password {...props} onChange={handleOnChange} />;
+      const suffix = () => {
+         return props.suffix ? <StyledSuffix>{props.suffix}</StyledSuffix> : null;
+      };
 
-         case 'text':
-            return <Input {...props} onChange={handleOnChange} />;
+      const field = () => {
+         switch (props.type) {
+            case 'textarea':
+               return <Textarea {...props} onChange={handleOnChange} />;
 
-         case 'email':
-            return <Email {...props} onChange={handleOnChange} />;
+            case 'password':
+               return <Password {...props} onChange={handleOnChange} />;
 
-         case 'number':
-            return <Number {...props} onChange={handleOnChange} />;
+            case 'text':
+               return <Input {...props} onChange={handleOnChange} />;
 
-         case 'select':
-            return <Select {...props} onChange={handleOnChange} />;
+            case 'email':
+               return <Email {...props} onChange={handleOnChange} />;
 
-         case 'checkbox':
-            return <Checkbox {...props} onChange={handleOnChange} />;
+            case 'number':
+               return <Number {...props} onChange={handleOnChange} />;
 
-         case 'datepicker':
-            return <Datepicker {...props} onChange={handleOnChange} />;
+            case 'select':
+               return <Select {...props} onChange={handleOnChange} />;
 
-         case 'filepicker':
-            return <Filepicker {...props} onChange={handleOnChange} />;
+            case 'checkbox':
+               return <Checkbox {...props} onChange={handleOnChange} />;
 
-         case 'none':
-            return null;
+            case 'datepicker':
+               return <Datepicker {...props} onChange={handleOnChange} />;
 
-         case 'group':
-            return props.children;
+            case 'filepicker':
+               return <Filepicker {...props} onChange={handleOnChange} />;
 
-         default:
-            return <Input {...props} onChange={handleOnChange} />;
-      }
+            case 'none':
+               return null;
+
+            case 'group':
+               return props.children;
+
+            default:
+               return <Input {...props} onChange={handleOnChange} />;
+         }
+      };
+
+      return (
+         <StyledComponentWrapper>
+            {prefix()}
+            <StyledComponent>{field()}</StyledComponent>
+            {suffix()}
+         </StyledComponentWrapper>
+      );
    };
 
    const getError = () => {
@@ -191,7 +227,7 @@ Field.propTypes = {
    /**
     * Description of the input field
     */
-   description: PropTypes.string,
+   description: PropTypes.node,
 
    /**
     * Error is a state. It can be either string or boolean. If it has error message and/or it is `true`, input changes its box-shadow to red and shows the error message below
