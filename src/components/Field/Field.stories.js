@@ -247,26 +247,30 @@ export const OnlyField = () => (
 
 export const FieldState = () => (
    <>
-      <>
-         <Field
-            spaceAfter={20}
-            type={'email'}
-            placeholder={placeholder}
-            label={'Success'}
-            description={description}
-            success
-         />
-      </>
-      <>
-         <Field
-            spaceAfter={20}
-            type={'email'}
-            placeholder={placeholder}
-            label={'Error'}
-            description={description}
-            error={'This field has some error'}
-         />
-      </>
+      <Field
+         spaceAfter={20}
+         type={'email'}
+         placeholder={placeholder}
+         label={'Success'}
+         description={description}
+         success
+      />
+      <Field
+         spaceAfter={20}
+         type={'email'}
+         placeholder={placeholder}
+         label={'Error'}
+         description={description}
+         error={'This field has some error'}
+      />
+      <Field
+         spaceAfter={20}
+         type={'email'}
+         placeholder={placeholder}
+         label={'Multiple Errors'}
+         description={description}
+         error={['This field more then one error', 'This is another error']}
+      />
    </>
 );
 

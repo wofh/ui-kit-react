@@ -111,7 +111,17 @@ export const Field = ({ onChange, ...props }) => {
    };
 
    const getError = () => {
-      return typeof props.error === 'string' ? <StyledError>{props.error}</StyledError> : null;
+      const renderError = (error, index = null) => <StyledError key={index}>{error}</StyledError>;
+
+      if (typeof props.error === 'string') {
+         return renderError(props.error);
+      }
+
+      if (Array.isArray(props.error)) {
+         return props.error.map(renderError);
+      }
+
+      return null;
    };
 
    const getDescription = () => {
@@ -186,7 +196,11 @@ Field.propTypes = {
    /**
     * Error is a state. It can be either string or boolean. If it has error message and/or it is `true`, input changes its box-shadow to red and shows the error message below
     */
-   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+   error: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.bool,
+      PropTypes.arrayOf(PropTypes.string),
+   ]),
 
    /**
     * Input's placeholder
