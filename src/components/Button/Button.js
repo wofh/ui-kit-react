@@ -184,6 +184,11 @@ Button.propTypes = {
     * The icon to show. It will be visible only if no label and children are set
     */
    icon: PropTypes.string,
+
+   /**
+    * Sets the button type attribute
+    */
+   type: PropTypes.oneOf([undefined, 'submit', 'reset']),
 };
 
 Button.defaultProps = {
@@ -198,4 +203,5 @@ Button.defaultProps = {
    iconLeft: undefined,
    iconRight: undefined,
    icon: undefined,
+   type: undefined,
 };
