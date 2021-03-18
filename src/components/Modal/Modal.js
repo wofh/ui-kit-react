@@ -106,13 +106,17 @@ const Portal = ({ modalRoot, children }) => {
    return createPortal(children, el);
 };
 
-export const Modal = ({ isOpen, onClose, children, modalRoot, ...props }) => {
+export const Modal = ({ isOpen, onClose, hideCloseIcon, children, modalRoot, ...props }) => {
    if (!isOpen) {
       return null;
    }
 
    const getCloseButton = () => {
       if (!onClose) {
+         return null;
+      }
+
+      if (hideCloseIcon) {
          return null;
       }
 
@@ -194,10 +198,16 @@ Modal.propTypes = {
     * Background overlay color
     */
    overlayColor: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+
+   /**
+    * If `true` hides the close icon
+    */
+   hideCloseIcon: PropTypes.bool,
 };
 
 Modal.defaultProps = {
    modalRoot: document.body,
    fullScreen: false,
    overlayColor: 'rgba(0, 0, 0, 75%)',
+   hideCloseIcon: false,
 };
