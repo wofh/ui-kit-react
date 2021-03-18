@@ -6,6 +6,46 @@ import Dropzone from 'react-dropzone';
 import { color, spacing, typography } from '../../shared/styles';
 import { toBase64 } from '../../shared/mixins';
 
+const StyledProgressRing = styled.div`
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+`;
+class ProgressRing extends React.Component {
+   constructor(props) {
+      super(props);
+
+      const { radius, stroke } = this.props;
+
+      this.normalizedRadius = radius - stroke * 2;
+      this.circumference = this.normalizedRadius * 2 * Math.PI;
+   }
+
+   render() {
+      const { radius, stroke, progress } = this.props;
+
+      const strokeDashoffset = this.circumference - (progress / 100) * this.circumference;
+
+      return (
+         <StyledProgressRing>
+            <svg height={radius * 2} width={radius * 2}>
+               <circle
+                  stroke={'white'}
+                  fill={'transparent'}
+                  strokeWidth={stroke}
+                  strokeDasharray={this.circumference + ' ' + this.circumference}
+                  style={{ strokeDashoffset }}
+                  r={this.normalizedRadius}
+                  cx={radius}
+                  cy={radius}
+               />
+            </svg>
+         </StyledProgressRing>
+      );
+   }
+}
+
 const StyledIcon = styled.div`
    position: absolute;
    top: 50%;
@@ -213,7 +253,7 @@ const StyledFilePreviews = styled.div`
 
 const StyledFilePicker = styled.div``;
 
-const FilePreview = ({ file, onDelete, image, ...props }) => {
+const FilePreview = ({ file, onDelete, image, uploadPercent, ...props }) => {
    const getFileLabel = () => {
       if (!file) {
          return null;
@@ -242,10 +282,19 @@ const FilePreview = ({ file, onDelete, image, ...props }) => {
       );
    };
 
+   const renderUploadProgress = () => {
+      if (uploadPercent === false) {
+         return null;
+      }
+
+      return <ProgressRing radius={40} stroke={4} progress={uploadPercent} />;
+   };
+
    return (
       <StyledFilePreview {...props}>
          <StyledFilePreviewImage file={file} image={image} />
          <StyledFilePreviewLabel>{getFileLabel()}</StyledFilePreviewLabel>
+         {renderUploadProgress()}
          {renderDeleteButton()}
       </StyledFilePreview>
    );
@@ -253,6 +302,7 @@ const FilePreview = ({ file, onDelete, image, ...props }) => {
 
 FilePreview.defaultProps = {
    onDelete: undefined,
+   uploadPercent: false,
 };
 
 export const Filepicker = ({
@@ -277,7 +327,7 @@ export const Filepicker = ({
 
    // const [uploadCompleted, setUploadCompleted] = useState(false);
    // const [uploadErrored, setUploadErrored] = useState(false);
-   // const [uploadPercent, setUploadPercent] = useState(false);
+   const [uploadPercent, setUploadPercent] = useState(false);
 
    useEffect(() => {
       if (acceptedFiles.length > 0) {
@@ -317,7 +367,12 @@ export const Filepicker = ({
    };
 
    const handleUploadProgress = (progress) => {
-      // console.log(progress)
+      if (!progress) {
+         return;
+      }
+
+      const progressPercent = Math.round((progress.loaded * 100) / progress.total);
+      setUploadPercent(progressPercent);
    };
 
    const handleUpload = (file) => {
@@ -420,6 +475,7 @@ export const Filepicker = ({
                   file={file}
                   accepted
                   onDelete={() => handleDelete(file, 'accepted', key)}
+                  uploadPercent={key === 0 ? uploadPercent : false}
                />
             ))}
             {rejectedFiles.map((reject, key) => (
