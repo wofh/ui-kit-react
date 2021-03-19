@@ -30,6 +30,7 @@ export default {
 
 const placeholder = 'Placeholder text';
 const description = 'Field description text';
+const long_description = 'Nunc iaculis enim ac massa vulputate condimentum fusce imperdiet sit';
 const selectOptions = [
    { name: 'Yoga', value: 'yoga' },
    { name: 'Pilates', value: 'pilates' },
@@ -101,7 +102,6 @@ export const Default = () => (
             type={'checkbox'}
             label={'Checkbox 1'}
             description={'Checkbox description 1'}
-            inline
          />
          <Field
             spaceAfter={10}
@@ -109,7 +109,6 @@ export const Default = () => (
             label={'Checkbox 2'}
             description={'Checkbox description 2'}
             checked
-            inline
          />
          <Field
             spaceAfter={10}
@@ -117,21 +116,18 @@ export const Default = () => (
             label={'Checkbox 3'}
             description={'Checkbox description 3'}
             checked
-            inline
          />
          <Field
             spaceAfter={10}
             type={'checkbox'}
             label={'Checkbox 4'}
             description={'Checkbox description 4'}
-            inline
          />
          <Field
             spaceAfter={40}
             type={'checkbox'}
             label={'Checkbox 5'}
             description={'Checkbox description 5'}
-            inline
          />
       </Field>
    </Box>
@@ -226,10 +222,10 @@ export const FieldType = () => (
          description={description}
       />
       <Field type={'group'} label={'Checkbox'} description={description} spaceAfter={20}>
-         <Field type={'checkbox'} label={'Checkbox 1'} inline />
-         <Field type={'checkbox'} label={'Checkbox 2'} checked inline />
-         <Field type={'checkbox'} label={'Checkbox 3'} checked inline />
-         <Field type={'checkbox'} label={'Checkbox 4'} inline />
+         <Field type={'checkbox'} label={'Checkbox 1'} />
+         <Field type={'checkbox'} label={'Checkbox 2'} checked />
+         <Field type={'checkbox'} label={'Checkbox 3'} checked />
+         <Field type={'checkbox'} label={'Checkbox 4'} />
       </Field>
    </>
 );
@@ -244,6 +240,124 @@ export const OnlyField = () => (
       <Field spaceAfter={20} type={'textarea'} placeholder={'Textarea'} />
       <Field spaceAfter={20} type={'datepicker'} placeholder={'Datepicker'} />
       <Field spaceAfter={20} type={'checkbox'} defaultChecked />
+   </>
+);
+
+export const InlineField = () => (
+   <>
+      <Field
+         spaceAfter={20}
+         type={'text'}
+         placeholder={placeholder}
+         label={'Text'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'email'}
+         placeholder={placeholder}
+         label={'Email'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'password'}
+         placeholder={placeholder}
+         label={'Password'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'number'}
+         placeholder={placeholder}
+         label={'Number'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'number'}
+         plain
+         placeholder={placeholder}
+         label={'Plain Number'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Select'}
+         onChange={(val) => console.log(val)}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         multiSelect
+         closeOnSelect={false}
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Multi Select'}
+         onChange={(val) => console.log(val)}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         searchable
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Searchable Select'}
+         onChange={(val) => console.log(val)}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'select'}
+         plain
+         options={selectOptions}
+         placeholder={placeholder}
+         label={'Plain Select'}
+         onChange={(val) => console.log(val)}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'textarea'}
+         placeholder={placeholder}
+         label={'Textarea'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         spaceAfter={20}
+         type={'datepicker'}
+         placeholder={placeholder}
+         label={'Datepicker'}
+         description={long_description}
+         inline={4}
+      />
+      <Field
+         type={'group'}
+         label={'Checkbox'}
+         description={long_description}
+         spaceAfter={20}
+         inline={4}
+      >
+         <Field type={'checkbox'} label={'Checkbox 1'} />
+         <Field type={'checkbox'} label={'Checkbox 2'} checked />
+         <Field type={'checkbox'} label={'Checkbox 3'} checked />
+         <Field type={'checkbox'} label={'Checkbox 4'} />
+      </Field>
    </>
 );
 

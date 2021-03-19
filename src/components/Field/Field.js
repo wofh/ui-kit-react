@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { Row, Col } from '../Grid';
 import { Input } from './Input';
 import { Password } from './Password';
 import { Textarea } from './Textarea';
@@ -17,8 +18,14 @@ const StyledLabel = styled.label`
    width: 100%;
    font-size: ${typography.size.s3}px;
    font-weight: ${typography.weight.medium};
-   line-height: 1.5;
+   line-height: 1.2;
    margin-bottom: ${spacing.margin.small}px;
+
+   ${(props) =>
+      props.inline &&
+      css`
+         margin-top: ${spacing.margin.small}px;
+      `}
 `;
 
 const StyledDescription = styled.div`
@@ -208,9 +215,7 @@ export const Field = ({ onChange, onBlur, onFocus, ...props }) => {
    const getDescription = () => {
       switch (props.type) {
          case 'checkbox':
-            if (props.inline) {
-               return null;
-            }
+            return null;
 
          default:
             return props.description ? (
@@ -222,14 +227,29 @@ export const Field = ({ onChange, onBlur, onFocus, ...props }) => {
    const getLabel = () => {
       switch (props.type) {
          case 'checkbox':
-            if (props.inline) {
-               return null;
-            }
+            return null;
 
          default:
-            return props.label ? <StyledLabel>{props.label}</StyledLabel> : null;
+            return props.label ? (
+               <StyledLabel inline={props.inline}>{props.label}</StyledLabel>
+            ) : null;
       }
    };
+
+   if (props.inline) {
+      return (
+         <StyledField {...props}>
+            <Row spaceAfter={0}>
+               <Col span={isNaN(props.inline) ? 4 : props.inline} xs={12} sm={12}>
+                  {getLabel()}
+                  {getDescription()}
+                  {getError()}
+               </Col>
+               <Col grow>{getField()}</Col>
+            </Row>
+         </StyledField>
+      );
+   }
 
    return (
       <StyledField {...props}>
@@ -322,6 +342,14 @@ Field.propTypes = {
     * The icon to show on the right side
     */
    iconRight: PropTypes.string,
+
+   /**
+    * Displays the field inline. If `true` a grid col with span `4` will be used
+    */
+   inline: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.oneOf([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
+   ]),
 };
 
 Field.defaultProps = {
@@ -329,4 +357,5 @@ Field.defaultProps = {
    error: false,
    success: false,
    spaceAfter: undefined,
+   inline: false,
 };

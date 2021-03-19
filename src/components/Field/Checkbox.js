@@ -107,13 +107,11 @@ export const Checkbox = forwardRef(({ checked, ...props }, ref) => {
 });
 
 Checkbox.propTypes = {
-   inline: PropTypes.bool,
    checked: PropTypes.bool,
    onChange: PropTypes.func,
 };
 
 Checkbox.defaultProps = {
-   inline: false,
    checked: false,
    onChange: () => {},
 };
