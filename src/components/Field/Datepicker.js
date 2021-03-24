@@ -177,8 +177,8 @@ export const Datepicker = ({
             <StyledDatePicker onMouseDown={handleMouseDown}>
                <DayPicker
                   onDayClick={handleDateSelect}
-                  selectedDays={moment(value || null).toDate()}
-                  initialMonth={moment(value || null).toDate()}
+                  selectedDays={(value ? moment(value) : moment()).toDate()}
+                  initialMonth={value ? moment(value).toDate() : null}
                   firstDayOfWeek={firstDayOfWeek}
                   {...datepickerProps}
                />
