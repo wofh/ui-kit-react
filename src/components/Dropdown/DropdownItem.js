@@ -11,6 +11,7 @@ const ItemIcon = styled.span`
 
 const ItemLabel = styled.span`
    display: inline-block;
+   vertical-align: middle;
 `;
 
 const StyledDropdownItem = styled(Box)`

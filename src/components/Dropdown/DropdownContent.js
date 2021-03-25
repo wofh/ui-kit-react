@@ -17,7 +17,7 @@ const StyledDropdownContent = styled(Box)`
 
    ${props => (props.border && props.border > 0) && css`
       border: ${props.border}px solid ${color.mediumlight};
-      box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 10%);
+      box-shadow: 0 5px 5px -2px rgba(0, 0, 0, 10%), 0 5px 10px -2px rgba(0, 0, 0, 15%);
    `}
 
    ${props => (props.position === 'bottom-right' || props.position === 'bottom') && css`
