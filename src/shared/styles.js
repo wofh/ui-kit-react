@@ -16,7 +16,7 @@ export const color = {
    darkest: '#333333',
 
    // Status
-   success: '#66BF3C',
+   success: '#3dc763',
    danger: '#FC5A5A',
    warning: '#E69D00',
 };

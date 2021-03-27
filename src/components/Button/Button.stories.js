@@ -22,6 +22,9 @@ export const Uses = () => (
          <Button use={'tertiary'} label={'Tertiary'} />
       </Box>
       <Box pad={'xsmall'}>
+         <Button use={'success'} label={'Success'} />
+      </Box>
+      <Box pad={'xsmall'}>
          <Button use={'danger'} label={'Danger'} />
       </Box>
    </>
@@ -37,6 +40,9 @@ export const Stroked = () => (
       </Box>
       <Box pad={'xsmall'}>
          <Button use={'tertiary'} label={'Tertiary'} stroked />
+      </Box>
+      <Box pad={'xsmall'}>
+         <Button use={'success'} label={'Success'} stroked />
       </Box>
       <Box pad={'xsmall'}>
          <Button use={'danger'} label={'Danger'} stroked />
