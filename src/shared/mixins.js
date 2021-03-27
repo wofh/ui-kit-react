@@ -106,9 +106,21 @@ export const height = (h) => {
    return css``;
 };
 
+export const hexAdjust = (hex, amount = 10) => {
+   return '#' + hex.replace(/^#/, '').replace(/../g, hex => ('0' + Math.min(255, Math.max(0, parseInt(hex, 16) + amount)).toString(16)).substr(-2));
+}
+
 export const hex2rgba = (hex, alpha = 1) => {
    const [r, g, b] = hex.match(/\w\w/g).map((x) => parseInt(x, 16));
    return `rgba(${r},${g},${b},${alpha})`;
+};
+
+export const hexDarken = (hex, amount = 0.1) => {
+   return hexAdjust(hex, amount * -100);
+};
+
+export const hexLighten = (hex, amount = 0.1) => {
+   return hexAdjust(hex, amount * 100);
 };
 
 export const debounce = (cb, wait) => {

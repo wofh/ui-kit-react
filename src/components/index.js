@@ -1,6 +1,7 @@
 export * from './Accordion';
 export * from './Avatar';
 export * from './AvatarList';
+export * from './Badge';
 export * from './Box';
 export * from './Brand';
 export * from './Button';
