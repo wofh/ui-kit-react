@@ -30,10 +30,14 @@ const ButtonIcon = styled.span`
    position: relative;
    display: inline-block;
    top: -1px;
+   line-height: 1;
+   vertical-align: middle;
 `;
 
 const ButtonLabel = styled.span`
    display: inline-block;
+   line-height: 1;
+   vertical-align: middle;
 `;
 
 export const StyledButtonPlain = styled.button`
@@ -82,9 +86,11 @@ export const StyledButton = styled(StyledButtonPlain)`
    color: #fff;
    border-radius: ${(props) => props.theme.spacing.borderRadius.default}px;
    background-color: ${(props) => getColor(props)};
-   padding: 0 ${(props) => padding[props.size] * 1.5}px;
-   line-height: ${(props) => padding[props.size] * 2}px;
    font-weight: ${(props) => props.theme.typography.weight.semibold};
+
+   padding: ${(props) => padding[props.size] * 0.25}px ${(props) => padding[props.size] * 1.5}px;
+   line-height: ${(props) => padding[props.size] * 1.5}px;
+   min-height: ${(props) => padding[props.size] * 2}px;
 
    ${(props) =>
       props.stroked &&
