@@ -344,7 +344,6 @@ export const Filepicker = ({
       // "file" is equal to the first element of "acceptedFiles"
 
       if (multiple) {
-         console.log(value)
          const newValue = [...value];
          newValue.push(response);
          setValue(newValue);
@@ -448,7 +447,8 @@ export const Filepicker = ({
       return (
          <StyledFilePreviews multiple={multiple}>
             {
-               !acceptedFiles.length
+               !completedFiles.length
+               && !acceptedFiles.length
                && (multiple ? value.length : value)
                ? (
                   multiple
@@ -468,7 +468,7 @@ export const Filepicker = ({
                )
                : null
             }
-            {/*
+
             {completedFiles.map((file, key) => (
                <FilePreview
                   key={`completed_${key}`}
@@ -477,7 +477,7 @@ export const Filepicker = ({
                   onDelete={() => handleDelete(file, 'completed', key)}
                />
             ))}
-            */}
+
             {acceptedFiles.map((file, key) => (
                <FilePreview
                   key={`accepted_${key}`}
