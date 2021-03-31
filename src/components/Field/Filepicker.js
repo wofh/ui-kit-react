@@ -140,6 +140,7 @@ const StyledDropzone = styled.div`
    position: relative;
    display: block;
    height: 20vw;
+   max-height: 260px;
    border-radius: ${spacing.borderRadius.default}px;
    background-color: ${color.light};
    outline: none;
@@ -343,6 +344,7 @@ export const Filepicker = ({
       // "file" is equal to the first element of "acceptedFiles"
 
       if (multiple) {
+         console.log(value)
          const newValue = [...value];
          newValue.push(response);
          setValue(newValue);
@@ -445,22 +447,28 @@ export const Filepicker = ({
    const renderFilePreviews = () => {
       return (
          <StyledFilePreviews multiple={multiple}>
-            {!completedFiles.length &&
-            !acceptedFiles.length &&
-            (multiple ? value.length : value) ? (
-               multiple ? (
-                  value.map((image, key) => (
-                     <FilePreview
-                        key={`default_${key}`}
-                        image={image}
-                        completed
-                        onDelete={() => setValue(value.filter((val, index) => index != key))}
-                     />
-                  ))
-               ) : (
-                  <FilePreview image={value} completed onDelete={() => setValue(null)} />
+            {
+               !acceptedFiles.length
+               && (multiple ? value.length : value)
+               ? (
+                  multiple
+                  ? (
+                     value.map((image, key) => (
+                        <FilePreview
+                           key={`default_${key}`}
+                           image={image}
+                           completed
+                           onDelete={() => setValue(value.filter((val, index) => index != key))}
+                        />
+                     ))
+                  )
+                  : (
+                     <FilePreview image={value} completed onDelete={() => setValue(null)} />
+                  )
                )
-            ) : null}
+               : null
+            }
+            {/*
             {completedFiles.map((file, key) => (
                <FilePreview
                   key={`completed_${key}`}
@@ -469,6 +477,7 @@ export const Filepicker = ({
                   onDelete={() => handleDelete(file, 'completed', key)}
                />
             ))}
+            */}
             {acceptedFiles.map((file, key) => (
                <FilePreview
                   key={`accepted_${key}`}
@@ -486,7 +495,7 @@ export const Filepicker = ({
                   onDelete={() => handleDelete(reject.file, 'rejected', key)}
                />
             ))}
-            {multiple && (completedFiles.length || acceptedFiles.length) ? renderDropzone() : null}
+            {multiple ? renderDropzone() : null}
          </StyledFilePreviews>
       );
    };
@@ -520,7 +529,7 @@ export const Filepicker = ({
    return (
       <StyledFilePicker>
          {renderFilePreviews()}
-         {completedFiles.length || acceptedFiles.length || (multiple ? value.length : value)
+         {acceptedFiles.length || multiple || value
             ? null
             : renderDropzone()}
       </StyledFilePicker>
