@@ -6,6 +6,7 @@ import { width } from '../../shared/mixins'
 
 const StyledBrand = styled.div`
 	max-width: 300px;
+	line-height: 0;
 	${props => props.w && width(props.w)}
 `
 const StyledBrandImage = styled(Image)`

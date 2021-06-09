@@ -6,7 +6,7 @@ export const color = {
 
    // Monochrome
    lightest: '#FFFFFF',
-   lighter: '#F8F8F8',
+   lighter: '#FAFAFB',
    light: '#F3F3F3',
    mediumlight: '#EEEEEE',
    medium: '#DDDDDD',
