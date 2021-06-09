@@ -6,7 +6,7 @@ import { color, spacing, typography } from '../../shared/styles';
 const StyledBase = styled.textarea`
    display: block;
    width: 100%;
-   min-height: ${typography.size.m2 * 2}px;
+   min-height: ${(props) => props.minHeight}px;
    border: none;
    outline: none;
    resize: none;
@@ -77,8 +77,14 @@ Textarea.propTypes = {
     * Autoresize textarea
     */
    autoResize: PropTypes.bool,
+
+   /**
+    * Min height of the textarea
+    */
+   minHeight: PropTypes.number,
 };
 
 Textarea.defaultProps = {
    autoResize: false,
+   minHeight: 40,
 };
