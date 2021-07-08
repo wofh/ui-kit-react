@@ -76,4 +76,4 @@ const columns = [
    },
 ];
 
-export const Default = () => <Table data={data} columns={columns} />;
+export const Default = () => <Table data={data} columns={columns} pageSize={4} />;

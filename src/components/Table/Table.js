@@ -92,7 +92,15 @@ export const Table = ({ data: defaultData, columns: defaultColumns, ...props }) 
       setPageSize,
       state: { pageIndex, pageSize },
    } = useTable(
-      { columns, data, initialState: { pageSize: 10, pageIndex: 0 } },
+      {
+         columns,
+         data,
+         initialState: {
+            ...props,
+            pageSize: props.pageSize || 10,
+            pageIndex: 0,
+         }
+      },
       useSortBy,
       usePagination
    );
@@ -193,6 +201,11 @@ Table.propTypes = {
     * Array of table columns
     */
    columns: PropTypes.array,
+
+   /**
+    * Page size
+    */
+   pageSize: PropTypes.number,
 };
 
 Table.defaultProps = {};
